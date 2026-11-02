@@ -1,0 +1,397 @@
+{
+  "site_source_commit": "c9a3722d77901185e8d83ac32adc3bdee4f31c40",
+  "source_artifact_digest": "f53c278dbff0d81f7ca59ead83a557e9768b9efec5abff3164fd676fd92af78a",
+  "archive_sha256": "415c2997ad7b3e995525bc3eb43a84f08d99d437633ba13550787cabb78032da",
+  "files": [
+    {
+      "path": "assets/academy.css",
+      "bytes": 15819,
+      "sha256": "bcae7435d2a456e060c0209c4c0111b95bfb01aa9f66bebff15df15080b55bfe"
+    },
+    {
+      "path": "assets/academy.js",
+      "bytes": 33521,
+      "sha256": "b7b480bf57ca0a52db8f44ac5c470e25afa7c284a9d1841ee82926758ac0f382"
+    },
+    {
+      "path": "assets/app.js",
+      "bytes": 52838,
+      "sha256": "c707fe60884832ead872bf62fd4a81b76bb2c6d4ef27cbea09828f192ab9621b"
+    },
+    {
+      "path": "assets/calendar-core.js",
+      "bytes": 4147,
+      "sha256": "20b17eebf565127b3c71c8f0c78037a0f77345822db942329f7a4c11e561836c"
+    },
+    {
+      "path": "assets/chess-app.css",
+      "bytes": 7747,
+      "sha256": "d432a27db3fe7b3bc10f6c1b3b52d471c02a31105a509d02202c2d84fb8b802b"
+    },
+    {
+      "path": "assets/chess-app.js",
+      "bytes": 15358,
+      "sha256": "ab38d35a756eb395ee9f5cdad1ad71e7727f856adf25f23c13b81a24d8261e5e"
+    },
+    {
+      "path": "assets/club-logo.jpg",
+      "bytes": 2411,
+      "sha256": "da159caf78e18398c361e45cec42b327f2ed49ea426f9ec13a7c7fb13b06c6f6"
+    },
+    {
+      "path": "assets/club-media.js",
+      "bytes": 4311,
+      "sha256": "b6ff4eaef282283363c116f8fca867ae693a45a9af6fef1c35ed8ee4a0742328"
+    },
+    {
+      "path": "assets/club-sand.jpg",
+      "bytes": 389319,
+      "sha256": "7801ff63589701b5a1490c44bad59d14749f454c8e8ba90fb6884ba3066e7eda"
+    },
+    {
+      "path": "assets/club-team-1.jpg",
+      "bytes": 35641,
+      "sha256": "1c34e79d9e7f66ad7af83b63804975cdb03fb543dcbc5fe5f4addb48e1519d2a"
+    },
+    {
+      "path": "assets/club-team-2.jpg",
+      "bytes": 80726,
+      "sha256": "e75decff4f5a77c287ebaec116950ad54a9153ba6700917ea402bf90a56c66ca"
+    },
+    {
+      "path": "assets/club-training-young.jpg",
+      "bytes": 43317,
+      "sha256": "cf9a94b4b6c69d34b493de8c3e6236c2dbf3a02363ede7e8be66b46899a17d90"
+    },
+    {
+      "path": "assets/coach-arkhipenko.jpg",
+      "bytes": 206395,
+      "sha256": "28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e"
+    },
+    {
+      "path": "assets/coach-zinovyeva.jpg",
+      "bytes": 342969,
+      "sha256": "75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b"
+    },
+    {
+      "path": "assets/films.css",
+      "bytes": 11776,
+      "sha256": "c44d3df591fb1e321bcbde187c218e6cfc0854984bbaff77d26a57c5897c74e0"
+    },
+    {
+      "path": "assets/font-0.woff",
+      "bytes": 41768,
+      "sha256": "60c14f93f9f75e9cf14fcd2571d36c76fdcc4f64aaff7105be37bde97f37151f"
+    },
+    {
+      "path": "assets/font-1.woff",
+      "bytes": 41516,
+      "sha256": "4cbc887a74d77c0b864e038fa58b3ab3a96d2f51aaab3a475302334d59606e85"
+    },
+    {
+      "path": "assets/font-2.woff",
+      "bytes": 41804,
+      "sha256": "dc38f3497c2a7741aea505a00e9fd78c1707060cb0ec796b11a952e34143aae7"
+    },
+    {
+      "path": "assets/font-3.woff",
+      "bytes": 41820,
+      "sha256": "4a27b1d330a27298de396326999414ac901fa4c8bfc16af1881a5d939164ca19"
+    },
+    {
+      "path": "assets/font-4.woff",
+      "bytes": 40448,
+      "sha256": "b30c0b00526b31d44fcfbdda92d85254e5e6b35816e41d9300ebdcd55ae7db9e"
+    },
+    {
+      "path": "assets/font-5.woff",
+      "bytes": 44932,
+      "sha256": "07e56d99f94830a2b615ba0adb776001daa4f833c7b9cd454bde4a03f8ef413e"
+    },
+    {
+      "path": "assets/fonts.css",
+      "bytes": 869,
+      "sha256": "cb49b0d99ea84a6df67cf13a514941e62250fdc40a6c35b840c744877c76edd5"
+    },
+    {
+      "path": "assets/football-core.js",
+      "bytes": 1072,
+      "sha256": "345207befc8ffd61cc4e3ae59a1387e04002439f707510e88237278651da35d5"
+    },
+    {
+      "path": "assets/football3d.css",
+      "bytes": 8982,
+      "sha256": "0f6a8b477725f90863d0a23b56270f7776afb8ea4619a41582fc1603853893df"
+    },
+    {
+      "path": "assets/football3d.js",
+      "bytes": 33384,
+      "sha256": "e294c8652ee741f8b1c3d1476658920d3d48f3feee21bc2b1e1026d72a94573d"
+    },
+    {
+      "path": "assets/funnel.css",
+      "bytes": 13437,
+      "sha256": "986291f7ba4ddcea3bc6e7aa4a26dd32b4cd520bcb537885a1f93bd4f5720dd7"
+    },
+    {
+      "path": "assets/inquiry-core.js",
+      "bytes": 1590,
+      "sha256": "3b549b2bd4f2fc5ba7021182a21e693fdd0373fee00ad25a01099123c31c22cd"
+    },
+    {
+      "path": "assets/journey.css",
+      "bytes": 11920,
+      "sha256": "3f988bf8ee1099e469fdbc8e8086eda340007436447c5d9c2f7ecc9a6fd01e5f"
+    },
+    {
+      "path": "assets/journey.js",
+      "bytes": 16393,
+      "sha256": "baa7fecba70f8b72c474c5389523a01a3b8c6611abe2e9c72513b0db155915b5"
+    },
+    {
+      "path": "assets/media.js",
+      "bytes": 14603,
+      "sha256": "fbd720cd8a531944d4bebc9e03cbf46ba46543c70ef7c668cc824cb6bd7c26d7"
+    },
+    {
+      "path": "assets/media/adamov-message.jpg",
+      "bytes": 63320,
+      "sha256": "0f98d65b5d80661d8f3c3f9555df4916f8bdd5f570bbb935950bc1beae934297"
+    },
+    {
+      "path": "assets/media/adamov-message.mp4",
+      "bytes": 1281484,
+      "sha256": "1f451335f44bb55ad72ffeb8b11d540bd4e991b4ab4d5d7ae6cfefa91f948722"
+    },
+    {
+      "path": "assets/media/erokhin-message.jpg",
+      "bytes": 44217,
+      "sha256": "55e07a32823a37815dedd17b629547ff1f730676005ca2150fed53dadec390ad"
+    },
+    {
+      "path": "assets/media/erokhin-message.mp4",
+      "bytes": 2314484,
+      "sha256": "d529c9fd9377cdfebc3e23fc90270527850cbfd7ead74a3c3c6d06dfecace610"
+    },
+    {
+      "path": "assets/media/zenit-poster.jpg",
+      "bytes": 25581,
+      "sha256": "c73096ae8eac738fa64608c0c408902b1d4213f86f6658fa1c38cb1972000fa9"
+    },
+    {
+      "path": "assets/media/zenit.mp4",
+      "bytes": 2226075,
+      "sha256": "9afe95d52dd9b2bfbde91f10adabb172d2542bf555eb0edb530f3a813c43ef49"
+    },
+    {
+      "path": "assets/minimal.css",
+      "bytes": 15588,
+      "sha256": "13434527e780cafdabebeb78be48baa629015c127b1740bef8ee81ee00e47a33"
+    },
+    {
+      "path": "assets/models/player.glb",
+      "bytes": 498212,
+      "sha256": "7fd28255c484e19ba5086d9cf815128e21dfcb677d262a88b237a5f5af081c5f"
+    },
+    {
+      "path": "assets/player-journey-v1.jpg",
+      "bytes": 464505,
+      "sha256": "cd450471d803b4a50de2f2b83627a593db55d27d9f4710ae5be7b8d086eed13d"
+    },
+    {
+      "path": "assets/style.css",
+      "bytes": 23219,
+      "sha256": "1e2495852a5b125a65eeabb108d9a015dd899707530f277795350908c18ee1f6"
+    },
+    {
+      "path": "assets/telegram.js",
+      "bytes": 1505,
+      "sha256": "360bf7973a624b8151a34f4ed3847321cc038a44bafa98b2ee7fb9d83c850d5b"
+    },
+    {
+      "path": "assets/theme.css",
+      "bytes": 9133,
+      "sha256": "d68b61c0eee466996ef3ae5905696470304df354afc57988bb25eb50e17a82bd"
+    },
+    {
+      "path": "assets/theme.js",
+      "bytes": 2191,
+      "sha256": "d34297e1a28d0f272a13d1642168321641e1cd41ac939b10f20097b05b7d47fb"
+    },
+    {
+      "path": "assets/vendor/HavokPhysics.wasm",
+      "bytes": 2094563,
+      "sha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
+    },
+    {
+      "path": "assets/vendor/HavokPhysics_umd.js",
+      "bytes": 67605,
+      "sha256": "f378353fc44b33ee2c66b3110490ecfa72993a47652a3e57ba49c752f175f864"
+    },
+    {
+      "path": "assets/vendor/LICENSE-fonts.txt",
+      "bytes": 4427,
+      "sha256": "f2425a5b53396301011c60ba192ca9a9fb750638734b2dd599a028fdbe1c6e85"
+    },
+    {
+      "path": "assets/vendor/LICENSE-quaternius.txt",
+      "bytes": 364,
+      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c"
+    },
+    {
+      "path": "assets/vendor/babylon.js",
+      "bytes": 8759399,
+      "sha256": "2e5958f72efa5bc4957a5267a4852b8c2f1577e335ed7e5088bba9e44b6dd1d0"
+    },
+    {
+      "path": "assets/vendor/babylonjs-license.md",
+      "bytes": 9226,
+      "sha256": "9362ea9ea17cb221a20cbbd63f404710834cc273d2a9a7b60314fd68ab702cd6"
+    },
+    {
+      "path": "assets/vendor/babylonjs.loaders.min.js",
+      "bytes": 869114,
+      "sha256": "633b1bec409a33ad1d4b0335820e27c1430c28cfaf13b4772c4bd38a598d7061"
+    },
+    {
+      "path": "assets/vendor/chess/LICENSE-chessjs.txt",
+      "bytes": 1338,
+      "sha256": "2de72a0ab89c25da0e5c44c62108c47db186f95c08c9c652fd64c9c1ac457700"
+    },
+    {
+      "path": "assets/vendor/chess/LICENSE-stockfish.txt",
+      "bytes": 35821,
+      "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b"
+    },
+    {
+      "path": "assets/vendor/chess/chess.js",
+      "bytes": 110420,
+      "sha256": "c5d04c0e03e7cb913e67bc7e47447fa24dc92715570f95009cc1c9218efdc610"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/ATTRIBUTION.txt",
+      "bytes": 247,
+      "sha256": "ae7d5bd7af520f7175c0a04468c8cee8309fd2552958c20cf44813ee37f3c905"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/COPYRIGHT.txt",
+      "bytes": 29,
+      "sha256": "a66f251bcdb99479c102695a75ba292244ccf45f1f2710af552acdf4887e4f90"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/LICENSE.txt",
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bB.svg",
+      "bytes": 5273,
+      "sha256": "f835819861774dcacef7370ed2c23d4022ef6c2b17383a6a79c5f683d105e8b6"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bK.svg",
+      "bytes": 4530,
+      "sha256": "220d75890b4368f0309bab0be40ac1dac6809508f5e1ecb119d35d225bf01f90"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bN.svg",
+      "bytes": 1625,
+      "sha256": "acabd5a82666927d850a9eaab6f3766ef196a999dd3c6de0f927a8f12dacd356"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bP.svg",
+      "bytes": 1484,
+      "sha256": "073fb7b38b2ebe66ee54854fa492da6cc04e6d92bc679c860b77c254fa1d46ce"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bQ.svg",
+      "bytes": 7411,
+      "sha256": "0308426c9cfafabdce64600cbe90c193fc6ef7665f072b43d4dc82b5c1047670"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/bR.svg",
+      "bytes": 3077,
+      "sha256": "ad18856a97edf53281acc40e1e6e4f7021ed01fad380fff7e09e63465b3bb462"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wB.svg",
+      "bytes": 5492,
+      "sha256": "14cd4828240708d4d8431034537e2a5fb662d5054246fef681b172680cae9fcd"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wK.svg",
+      "bytes": 6258,
+      "sha256": "e50809e91a15790c8d81d3f199bf569f0eb5a09c472a0415944e8c9e3cfcddd0"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wN.svg",
+      "bytes": 1649,
+      "sha256": "adc921896bb6e6547828f2a6eb3d5195dd1b7ac8e8c1d2a9085583e4d4d81b68"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wP.svg",
+      "bytes": 1417,
+      "sha256": "0cf9dfe2f7b3ab11a7fdb13bf350f32e7a6c94e193fc023933e129ec02eeed8d"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wQ.svg",
+      "bytes": 3600,
+      "sha256": "2395664337bea8f13093858320cce6075d80f8086e6aa47e122ce556262b4d6b"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/wR.svg",
+      "bytes": 3350,
+      "sha256": "e7fb8605a9318ef50e497a97680e4722d3eabc1e9ab6e4e9f594b8f2ca2022e5"
+    },
+    {
+      "path": "assets/vendor/chess/stockfish-19-lite-single.js",
+      "bytes": 28241,
+      "sha256": "667f2610acd6015d85b0001ec55721ebccee7d25f8a075089159efeea8583779"
+    },
+    {
+      "path": "assets/vendor/chess/stockfish-19-lite-single.wasm",
+      "bytes": 1845971,
+      "sha256": "ee4f115bdb2d32cadf96cada104a05b5ec257d7ad6f57582190b49bc71f096de"
+    },
+    {
+      "path": "assets/vendor/chess/stockfish-source.tar.gz",
+      "bytes": 1405046,
+      "sha256": "25c073b887cbe0dd8001f917bae7d5684755e4bc1fe36105735f6ee857b358cf"
+    },
+    {
+      "path": "assets/vendor/havok-LICENSE",
+      "bytes": 1090,
+      "sha256": "1196da268a72f71d527156d33063e0a6abb191089105a616d56d257d9093d1cf"
+    },
+    {
+      "path": "assets/vendor/loaders-license.md",
+      "bytes": 9226,
+      "sha256": "9362ea9ea17cb221a20cbbd63f404710834cc273d2a9a7b60314fd68ab702cd6"
+    },
+    {
+      "path": "index.html",
+      "bytes": 43268,
+      "sha256": "ca86a2cce0c94459d481d12bc06634fe764429e598930d2d8f2176927d4a0370"
+    },
+    {
+      "path": "journey.html",
+      "bytes": 11226,
+      "sha256": "1803469b770f8de5305db8c724e3029800eb9ffcc9e081849f9441822e44d1b1"
+    },
+    {
+      "path": "play/chess.html",
+      "bytes": 5069,
+      "sha256": "098ab0d6274f89a65d2f2bd96caf443393873e83dba6abb97d6b009671ad51de"
+    },
+    {
+      "path": "play/football.html",
+      "bytes": 4149,
+      "sha256": "6efd2e94eecaf6bd475c20bcb0d599242feabf165012c8e53f76dc937d7de4d5"
+    },
+    {
+      "path": "stories.html",
+      "bytes": 3364,
+      "sha256": "ae8e0897a93c33b4f386208abaa8969dc65684609817383b46225838db6be036"
+    }
+  ]
+}
