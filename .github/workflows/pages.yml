@@ -1,0 +1,61 @@
+name: Publish website
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Unpack and verify the reviewed website
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, hashlib, zipfile
+          bundle = Path('site.zip')
+          manifest = json.loads(Path('site-manifest.json').read_text())
+          assert hashlib.sha256(bundle.read_bytes()).hexdigest() == manifest['archive_sha256']
+          root = Path('_site').resolve()
+          with zipfile.ZipFile(bundle) as archive:
+              assert set(archive.namelist()) == {entry['path'] for entry in manifest['files']}
+              for entry in manifest['files']:
+                  target = (root / entry['path']).resolve()
+                  assert target.is_relative_to(root)
+                  data = archive.read(entry['path'])
+                  assert len(data) == entry['bytes']
+                  assert hashlib.sha256(data).hexdigest() == entry['sha256']
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(data)
+          print(f"Verified {len(manifest['files'])} website files.")
+          PY
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: _site
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
