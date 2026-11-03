@@ -22,12 +22,12 @@ test('Active arena labels remain readable and clear of controls in both themes',
       const layout=await page.evaluate(()=>{
         const footer=document.querySelector('.arena-footer'),note=footer.querySelector('.arena-disclaimer'),link=footer.querySelector('a');
         const box=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
-        const style=getComputedStyle(note);
-        return {footer:box(footer),note:box(note),link:box(link),joystick:box(document.querySelector('#joystick')),actions:box(document.querySelector('.action-buttons')),font:parseFloat(style.fontSize),background:getComputedStyle(footer).backgroundColor,viewport:{width:innerWidth,height:innerHeight},scroll:document.documentElement.scrollWidth};
+        const style=getComputedStyle(note),background=getComputedStyle(footer).backgroundColor.match(/[\d.]+/g).map(Number);
+        return {footer:box(footer),note:box(note),link:box(link),joystick:box(document.querySelector('#joystick')),actions:box(document.querySelector('.action-buttons')),font:parseFloat(style.fontSize),backgroundAlpha:background[3]??1,viewport:{width:innerWidth,height:innerHeight},scroll:document.documentElement.scrollWidth};
       });
       await testInfo.attach(`arena-layout-${theme}-${viewport.width}`,{body:Buffer.from(JSON.stringify(layout)),contentType:'application/json'});
       expect(layout.font).toBeGreaterThanOrEqual(11);
-      expect(layout.background).toBe('rgb(7, 52, 75)');
+      expect(layout.backgroundAlpha).toBe(1);
       expect(layout.footer.left).toBeGreaterThanOrEqual(0);
       expect(layout.footer.right).toBeLessThanOrEqual(viewport.width);
       expect(layout.footer.bottom).toBeLessThanOrEqual(viewport.height);

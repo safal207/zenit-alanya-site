@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "8852b042ad9c90d97f22e5d538d6d5aa7a93d3e5",
-  "source_artifact_digest": "7e8a55cb892e74456f34bd356f700f184639ff62eed320f6044678be24a78469",
+  "site_source_commit": "790e6e747f2c7cee5601f557749a8354aada8c4c",
+  "source_artifact_digest": "07dfec8fce33c04c991a3defc4f2da89a315dd9b321fe42b517c123060157fca",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/chess-app.css",
@@ -155,8 +155,8 @@
     },
     {
       "path": "assets/football3d.css",
-      "bytes": 10820,
-      "sha256": "d9ba08209ed19d6bbe64ebceda183e35995d2d82bc2d12901be0680ba2008929"
+      "bytes": 10840,
+      "sha256": "7a4000335737e821e5808a70e561a424d67ada624014408ddfef67031d0253f1"
     },
     {
       "path": "assets/football3d.js",
