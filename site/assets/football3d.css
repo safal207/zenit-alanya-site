@@ -2,3 +2,6 @@
 
 .arena-return{display:block;color:#b7eafa;font-size:11px;min-height:44px;line-height:44px;text-decoration:none;margin-top:4px}.arena-return:focus-visible{outline:2px solid #ffe18c;outline-offset:3px}
 .practice-progress{position:fixed;left:25px;top:150px;font-size:11px;color:#fff;padding:9px 12px;background:#052b43d9;border-radius:5px;pointer-events:none;max-width:330px}.shot-power-control{position:fixed;right:25px;top:120px;background:#052b43e6;color:white;padding:12px 16px;font-size:11px;border-radius:5px;width:180px}.shot-power-control output{float:right;color:#ffe37e}.shot-power-control input{display:block;width:100%;min-height:44px;accent-color:#ffe37e}.arena-card .next-exercise{background:#edf8ff;color:#07344b;margin-top:10px}.arena-card [hidden],[hidden].shot-power-control{display:none!important}@media(max-width:760px){.practice-progress{top:148px;left:15px;font-size:9px;max-width:220px;padding:7px 9px}.shot-power-control{top:auto;right:18px;bottom:130px;width:150px;padding:7px 12px;font-size:10px}}@media(max-height:550px){.practice-progress{top:103px;max-width:230px;font-size:9px}.shot-power-control{bottom:115px;right:18px;width:145px}}
+
+/* Keep the small in-game footer readable over a bright 3D field. */
+.arena-footer>span,.arena-footer>a{color:#ecf5f9;background:#07344bf2;border-radius:3px;padding:3px 5px;font-size:8px;line-height:1.5}
