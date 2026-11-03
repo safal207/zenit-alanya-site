@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "586acee07c3bac0d6700c378c2160421df30849c",
-  "source_artifact_digest": "04532e83ab489c3cd2075056facaed7768324ff0d733d425e7779a055b53620e",
+  "site_source_commit": "8852b042ad9c90d97f22e5d538d6d5aa7a93d3e5",
+  "source_artifact_digest": "7e8a55cb892e74456f34bd356f700f184639ff62eed320f6044678be24a78469",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/chess-app.css",
@@ -155,8 +155,8 @@
     },
     {
       "path": "assets/football3d.css",
-      "bytes": 9162,
-      "sha256": "a5775b2eeb2074707acd8350e6eeb9f94fe7c97eac033d58d15b6d9789a2bab9"
+      "bytes": 10820,
+      "sha256": "d9ba08209ed19d6bbe64ebceda183e35995d2d82bc2d12901be0680ba2008929"
     },
     {
       "path": "assets/football3d.js",
@@ -440,8 +440,8 @@
     },
     {
       "path": "play/football.html",
-      "bytes": 4720,
-      "sha256": "09d4b88f8718fbb782ccd385d0c129c8108d365b875e4e564421747e6fc73155"
+      "bytes": 4813,
+      "sha256": "7f5cd5d5097d41b096101e40f86273148517483b97d0223865b1c5e45bb77337"
     },
     {
       "path": "stories.html",
