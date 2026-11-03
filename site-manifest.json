@@ -1,7 +1,7 @@
 {
-  "site_source_commit": "c9a3722d77901185e8d83ac32adc3bdee4f31c40",
-  "source_artifact_digest": "f53c278dbff0d81f7ca59ead83a557e9768b9efec5abff3164fd676fd92af78a",
-  "archive_sha256": "415c2997ad7b3e995525bc3eb43a84f08d99d437633ba13550787cabb78032da",
+  "site_source_commit": "f19f96bd5a23913956396e6bc44299de1e9e6bfa",
+  "source_artifact_digest": "e690b288e08ab62f71fea6a7230f2e1ea2e538df70b012899b2460f4e9a15737",
+  "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "files": [
     {
       "path": "assets/academy.css",
@@ -130,8 +130,8 @@
     },
     {
       "path": "assets/funnel.css",
-      "bytes": 13437,
-      "sha256": "986291f7ba4ddcea3bc6e7aa4a26dd32b4cd520bcb537885a1f93bd4f5720dd7"
+      "bytes": 13436,
+      "sha256": "4828f195466a6eb67534bb15058c7b23a25da07484a7ebf3fb1cc0b35e672090"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -210,8 +210,8 @@
     },
     {
       "path": "assets/theme.css",
-      "bytes": 9133,
-      "sha256": "d68b61c0eee466996ef3ae5905696470304df354afc57988bb25eb50e17a82bd"
+      "bytes": 9158,
+      "sha256": "f647d5fddf7872d806455d607b34bfab8493224b392bfe5ff94d618104e089a5"
     },
     {
       "path": "assets/theme.js",
@@ -370,8 +370,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 43268,
-      "sha256": "ca86a2cce0c94459d481d12bc06634fe764429e598930d2d8f2176927d4a0370"
+      "bytes": 43294,
+      "sha256": "969cacd0fb32b0816d84804b06c42090413d2e012014e69290214dcea31d297f"
     },
     {
       "path": "journey.html",
