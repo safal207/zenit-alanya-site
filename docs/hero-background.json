@@ -1,0 +1,20 @@
+{
+  "source": "User-provided zenit.mp4, requested as a looping homepage background",
+  "source_bytes": 2226075,
+  "source_sha256": "9afe95d52dd9b2bfbde91f10adabb172d2542bf555eb0edb530f3a813c43ef49",
+  "deployed_file": "dist/assets/media/zenit.mp4",
+  "copy": "byte-for-byte",
+  "playback": "autoplay muted loop playsinline; no play button or native controls",
+  "fallback": "Same-clip poster for reduced motion, data-saving or blocked autoplay",
+  "publication": "Existing private Sites audience; GitHub synchronization as previously requested",
+  "duration_seconds": 6.041667,
+  "dimensions": [
+    736,
+    400
+  ],
+  "fps": 24,
+  "codec": "H.264",
+  "poster": "dist/assets/media/zenit-poster.jpg",
+  "poster_source_seconds": 1,
+  "poster_sha256": "c73096ae8eac738fa64608c0c408902b1d4213f86f6658fa1c38cb1972000fa9"
+}

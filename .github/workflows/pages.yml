@@ -1,15 +1,22 @@
-name: Publish website
-"on":
+name: Test and publish website
+on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: github-pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  quality:
+    uses: ./.github/workflows/quality.yml
+    with:
+      bundle: true
   build:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: quality
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -19,33 +26,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Unpack and verify the reviewed website
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import json, hashlib, zipfile
-          bundle = Path('site.zip')
-          manifest = json.loads(Path('site-manifest.json').read_text())
-          assert hashlib.sha256(bundle.read_bytes()).hexdigest() == manifest['archive_sha256']
-          root = Path('_site').resolve()
-          with zipfile.ZipFile(bundle) as archive:
-              assert set(archive.namelist()) == {entry['path'] for entry in manifest['files']}
-              for entry in manifest['files']:
-                  target = (root / entry['path']).resolve()
-                  assert target.is_relative_to(root)
-                  data = archive.read(entry['path'])
-                  assert len(data) == entry['bytes']
-                  assert hashlib.sha256(data).hexdigest() == entry['sha256']
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  target.write_bytes(data)
-          print(f"Verified {len(manifest['files'])} website files.")
-          PY
+      - name: Unpack the tested artifact
+        run: python3 qa/unpack-site.py
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          path: _site
+          path: dist
   deploy:
-    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -56,6 +43,32 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish
+      - name: Publish the tested website
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+  live:
+    name: Verify the published website
+    needs: deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Match live pages and assets to the tested artifact
+        run: python3 qa/live-smoke.py
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise six journeys on the published URL
+        run: npx playwright test -c qa/playwright.live.config.cjs
+      - name: Retain publication evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: published-site-smoke
+          path: qa/results/live*
+          retention-days: 14

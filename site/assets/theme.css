@@ -1,0 +1,66 @@
+:root{color-scheme:light;--theme-bg:#fff;--theme-surface:#f3f8fa;--theme-raised:#fff;--theme-ink:#07344b;--theme-muted:#526b79;--theme-accent:#006c94;--theme-line:#d2e1e8;--theme-soft:#e4f2f8}
+:root[data-theme=dark]{color-scheme:dark;--theme-bg:#071c28;--theme-surface:#0d2736;--theme-raised:#123346;--theme-ink:#ecf5f9;--theme-muted:#b2c9d4;--theme-accent:#73d9ff;--theme-line:#315161;--theme-soft:#173c50;--line:#315161;--muted:#b2c9d4;--paper:#0d2736}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:44px;min-height:44px;padding:8px 11px;background:var(--theme-surface);color:var(--theme-ink);border:1px solid var(--theme-line);border-radius:99px;font:700 10px/1.3 Manrope,Arial,sans-serif;cursor:pointer;flex-shrink:0}
+.theme-toggle [data-theme-icon]{font:22px/1 Arial,sans-serif}.theme-toggle:focus-visible{outline:3px solid #efa900;outline-offset:3px}.theme-toggle:hover{border-color:var(--theme-accent)}
+.header-actions{gap:12px}.stories-header-actions{flex-wrap:wrap}.chess-header .theme-toggle{margin-left:0}.top-actions .theme-toggle{position:relative;z-index:51;background:var(--theme-surface);color:var(--theme-ink)}
+html[data-theme=dark] body{background:var(--theme-bg);color:var(--theme-ink)}
+html[data-theme=dark] :is(.header,.mobile-nav,.stories-header,.chess-header,footer,.parents,.academy-trust,.coach-card,.bag-section){background:var(--theme-bg);color:var(--theme-ink);border-color:var(--theme-line)}
+html[data-theme=dark] :is(.start-section,.utility-body,.funnel-context,.draft-text,.calendar-notice,.fair-play,.telegram-section,.trust-status,.parent-paths,.coach-questions,.final-invite){background:var(--theme-surface);color:var(--theme-ink)}
+html[data-theme=dark] :is(.inquiry-form,.plan-form,.calendar-panel,.telegram-post,.message-card,.media-card,.contact-panel,.film-dialog,.film-top,.coach-box,.move-panel,dialog,.board-wrap){background:var(--theme-raised);color:var(--theme-ink);border-color:var(--theme-line)}
+html[data-theme=dark] :is(h1,h2,h3,h4,.brand,.stories-brand,.contact-person h3,.contact-person .contact-number,.utility-link,.utility-item>summary,.compact-football .arena-mode-links>a,.text-button,.funnel-progress,.funnel-progress b,.contact-fab,.panel-phones a,.dialog-contacts>a,.chess-principles b,.player-line b){color:var(--theme-ink)}
+html[data-theme=dark] :is(.minimal-lead,.minimal-hint,.minimal-hero-media figcaption,.messages-heading p,.message-card-header p,.academy-trust .lead,.start-copy>p:not(.eyebrow),.parents .lead,.utility-heading p,.utility-item>summary small,.utility-link small,.compact-football .arena-mode-links small,.compact-football .game-note,.compact-football .arena-mode-links>a>span:first-child,.contact-label,.form-note,.funnel-description,.funnel-hint,.funnel-privacy,.panel-copy,.film-description,.film-meta,.stories-intro>p,.stories-local,.stories-footer,.story-copy p,.story-copy time,.chess-intro>span,.chess-header>span){color:var(--theme-muted)}
+html[data-theme=dark] :is(.eyebrow.blue,.copy-status,.text-link,.coach-card a,.contact-source,.message-source,.funnel-back,.panel-here,.panel-form,.story-copy>a,.story-source,.stories-home,.engine-line,.coach-kicker,.coach-questions a,.faq-list details>a,.footer-top a,.footer-top button,.utility-toggle){color:var(--theme-accent)}
+html[data-theme=dark] :is(input:not([type=checkbox]),select,textarea,.calendar-day,.calendar-toolbar>button,.event-badge,.event-actions>a,.event-actions>button,.funnel-draft-button,.dialog-close,.film-close,.film-controls button,.film-download:not([hidden]),.story-filters button,.story-save,.board-actions button,.chess-tabs button,.mobile-actions>button,.contact-fab,.minimal-play){background:var(--theme-surface);color:var(--theme-ink);border-color:var(--theme-line)}
+html[data-theme=dark] input::placeholder{color:#9cb6c5}
+html[data-theme=dark] :is(.coach-card-body p,.coach-questions p,.funnel-progress span,.telegram-note){color:var(--theme-muted)}
+html[data-theme=dark] :is(.start-copy>.eyebrow,.fair-play a,.telegram-post>a,.minimal-play>span:first-child,.utility-link>span:last-child,.message-download){color:var(--theme-accent)}
+html[data-theme=dark] :is(.bag-progress>span,.contact-fab>span:first-child){color:var(--theme-accent)}
+html[data-theme=dark] .message-download{background:var(--theme-surface);border-color:var(--theme-line)}
+html[data-theme=dark] .message-download:hover{background:var(--theme-soft)}
+html[data-theme=dark] :is(.contact-actions .contact-action,.dialog-contacts .contact-action){background:var(--theme-surface);color:var(--theme-ink);border-color:var(--theme-line)}
+html[data-theme=dark] .contact-actions .contact-action-telegram{background:#11435a;color:#9ee5ff;border-color:#356a80}
+html[data-theme=dark] .contact-actions .contact-action-whatsapp{background:#143d32;color:#a2edbd;border-color:#366c52}
+html[data-theme=dark] .contact-actions .contact-action:hover{filter:brightness(1.17)}
+html[data-theme=dark] :is(.header-cta,.inquiry-form .btn,.btn.dark,.calendar-day.selected,.calendar-views>button.active,.story-filters button[aria-pressed=true],.chess-tabs button.active,#hint-move){background:#79d9fa;color:#062d40;border-color:#79d9fa}
+html[data-theme=dark] .menu-toggle span{background:var(--theme-ink)}
+html[data-theme=dark] :is(.languages button,.story-languages button){color:var(--theme-muted)}
+html[data-theme=dark] :is(.languages button.active,.story-languages button[aria-pressed=true]){color:var(--theme-accent);border-color:var(--theme-accent)}
+html[data-theme=dark] .minimal-hero h1 .accent{color:var(--theme-accent)}
+html[data-theme=dark] .mobile-actions{background:#071c28f2;border-color:var(--theme-line)}
+html[data-theme=dark] :is(.contact-person,.training-messages,.message-source,.coach-questions,.utility-list,.utility-item,.utility-link,.inquiry-form,.message-card,.panel-phones a,.film-controls button){border-color:var(--theme-line)}
+/* The pitch and chess pieces keep their original colours; only the interface changes. */
+.arena-page .arena-header{z-index:60}
+html[data-theme=light] .arena-page :is(.scoreboard,.top-actions button,.arena-modes button){background:#f5fbfff0;color:#07344b;border-color:#b9d8e5}
+html[data-theme=light] .arena-page .scoreboard time{color:#00638b;border-color:#b9d8e5}
+html[data-theme=light] .arena-page .arena-modes button.active{background:#007da9;color:#fff}
+html[data-theme=light] .arena-page .arena-overlay{background:#e7f3f8d9;color:#07344b}
+html[data-theme=light] .arena-page .arena-card :is(h1,p,small,a){color:#07344b}
+html[data-theme=light] .arena-page .arena-card>button{background:#07344b;color:#fff}
+@media(max-width:760px){.theme-toggle{padding:7px;min-width:42px;min-height:44px}.theme-toggle [data-theme-label]{display:none}.header-actions{gap:4px}.header{gap:8px}.chess-header .theme-toggle{margin-left:auto}.stories-header{gap:12px}.stories-header-actions{gap:8px}.stories-brand>span{font-size:11px}}
+@media(max-width:380px){.header .brand>span{font-size:11px}.header .brand b{font-size:7px;letter-spacing:2px}.header .brand>img{width:31px;height:31px}.header .brand{gap:5px}.header .languages button{min-width:25px}.header .menu-toggle{width:36px}.header-actions{gap:2px}.stories-header-actions{margin-left:auto}.stories-brand>span{display:none}}
+
+/* A full-width, silent film behind the opening message in either theme. */
+.minimal-hero.video-hero{position:relative;isolation:isolate;display:flex;align-items:center;width:100%;max-width:none;min-height:620px;min-height:min(760px,calc(100svh - 100px));padding:90px max(6%,calc((100vw - 1120px)/2));overflow:hidden;background:#062c42;color:#fff}
+.video-hero .hero-backdrop{position:absolute;inset:0;z-index:-2;background:#062c42}
+.video-hero .hero-backdrop img,.video-hero .hero-backdrop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.video-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(2,22,35,.88),rgba(2,22,35,.64) 45%,rgba(2,22,35,.15) 100%)}
+.video-hero .minimal-hero-copy{width:min(570px,100%)}
+html .video-hero h1{color:#fff;font-size:clamp(38px,4.2vw,62px);line-height:1.1;letter-spacing:-2px}
+html .video-hero h1 .accent{color:#a8eaff;margin-top:12px}
+html .video-hero .eyebrow{color:#c4efff}
+html .video-hero .minimal-lead{color:#edf6fa;max-width:435px;margin:27px 0;font-size:16px}
+html .video-hero .minimal-hint{color:#d1e4ed;max-width:360px}
+.video-hero .btn.dark{background:#fff;color:#07344b;box-shadow:0 6px 24px #001b2a24}
+.video-hero .btn.dark:hover{background:#d9f4ff}
+@media(max-width:760px){.minimal-hero.video-hero{min-height:620px;min-height:calc(100svh - 105px);align-items:flex-end;padding:70px 7% 64px}.video-hero::after{background:linear-gradient(0deg,rgba(2,22,35,.94),rgba(2,22,35,.73) 52%,rgba(2,22,35,.24))}html .video-hero h1{font-size:clamp(34px,8vw,48px);letter-spacing:-1.5px}html .video-hero .minimal-lead{font-size:14px;line-height:1.7;margin:22px 0}.video-hero .hero-backdrop img,.video-hero .hero-backdrop video{object-position:58% center}}
+@media(prefers-reduced-motion:reduce){.video-hero .hero-backdrop video{display:none}}
+
+/* Readable secondary text and controls in both themes. */
+html[data-theme=light] :is(.languages button.active,.stories-kicker,.chess-header small,.chess-intro>p,.coach-box>p:first-child){color:#00638b}
+html[data-theme=light] :is(.contact-label,.stories-local){color:#526574}
+html[data-theme=light]{--muted:#526574}
+html[data-theme=light] .chess-tabs button.active{background:#00769b;color:#fff}
+html[data-theme=dark] .story-body p{color:var(--theme-muted)}
+html[data-theme=dark] :is(.coach-box>p:first-child,#copy-pgn,.chess-page footer a){color:var(--theme-accent)}
+html[data-theme=dark] body:has(.chessboard) footer a{color:var(--theme-accent)}
+.square.dark .coord{color:#063a44}

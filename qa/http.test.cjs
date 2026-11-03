@@ -1,0 +1,10 @@
+const {test,before,after}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {createServer}=require('./serve.cjs');let server,base;
+before(async()=>{server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));base=`http://127.0.0.1:${server.address().port}/zenit-alanya-site/`;});
+after(()=>new Promise(r=>server.close(r)));
+for(const route of ['','stories.html','journey.html','play/chess.html','play/football.html'])test('HTTP route '+(route||'/'),async()=>{const r=await fetch(base+route);assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/text\/html/);assert.match(await r.text(),/<html lang="ru"/);});
+test('WASM is delivered with the executable MIME type',async()=>{const r=await fetch(base+'assets/vendor/HavokPhysics.wasm',{method:'HEAD'});assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'application/wasm');});
+test('Text uses negotiated gzip, as on GitHub Pages',async()=>{const r=await fetch(base+'assets/style.css',{headers:{'Accept-Encoding':'gzip'}});assert.equal(r.headers.get('content-encoding'),'gzip');assert.equal(r.headers.get('vary'),'Accept-Encoding');assert.equal(await r.text(),fs.readFileSync(path.resolve(__dirname,'../dist/assets/style.css'),'utf8'));});
+test('Video range requests deliver only the requested bytes',async()=>{const file=path.resolve(__dirname,'../dist/assets/media/zenit.mp4');const r=await fetch(base+'assets/media/zenit.mp4',{headers:{Range:'bytes=0-1023'}});assert.equal(r.status,206);assert.equal(r.headers.get('content-type'),'video/mp4');assert.equal(r.headers.get('content-range'),`bytes 0-1023/${fs.statSync(file).size}`);assert.deepEqual(Buffer.from(await r.arrayBuffer()),fs.readFileSync(file).subarray(0,1024));});
+test('Missing pages return 404 and mutation methods are rejected',async()=>{assert.equal((await fetch(base+'missing-qa-page.html')).status,404);assert.equal((await fetch(base,{method:'POST',body:'qa'})).status,405);});
+test('Encoded traversal never exposes files above dist',async()=>{const r=await fetch(base+'..%2f..%2fpackage.json');assert.equal(r.status,403);});
