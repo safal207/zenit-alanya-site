@@ -1,11 +1,13 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "f5778c185bbd6928014e4a4789e6333fa7366d54",
-  "source_artifact_digest": "6fba19e00069a076cb389d0947e2ff3fe2ed0657635eda67cbb95fe988529025",
+  "site_source_commit": "586acee07c3bac0d6700c378c2160421df30849c",
+  "source_artifact_digest": "04532e83ab489c3cd2075056facaed7768324ff0d733d425e7779a055b53620e",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/chess-app.css",
     "assets/chess-app.js",
+    "assets/club-media.js",
+    "assets/club-sand.webp",
     "assets/films.css",
     "assets/font-0.woff2",
     "assets/font-1.woff2",
@@ -19,6 +21,7 @@
     "assets/journey.bundle.css",
     "assets/journey.css",
     "assets/media.js",
+    "assets/player-journey-v1.webp",
     "assets/stories.bundle.css",
     "assets/style.css",
     "assets/theme.css",
@@ -67,13 +70,18 @@
     },
     {
       "path": "assets/club-media.js",
-      "bytes": 4311,
-      "sha256": "b6ff4eaef282283363c116f8fca867ae693a45a9af6fef1c35ed8ee4a0742328"
+      "bytes": 4312,
+      "sha256": "40c7378f93ca45d37482a1655255ca85a0282e685348c78c84ecf2ac535c6008"
     },
     {
       "path": "assets/club-sand.jpg",
       "bytes": 389319,
       "sha256": "7801ff63589701b5a1490c44bad59d14749f454c8e8ba90fb6884ba3066e7eda"
+    },
+    {
+      "path": "assets/club-sand.webp",
+      "bytes": 248720,
+      "sha256": "fb3ae59aaf7848ce13bf0460d530fafcf8ec5564965703b0a596c32e533915e1"
     },
     {
       "path": "assets/club-team-1.jpg",
@@ -162,8 +170,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 102538,
-      "sha256": "c7f6cf2d5c488086f6ef7239789c2a522919c2eeba06a1f0667aefe8e2d27422"
+      "bytes": 102540,
+      "sha256": "df6bd45b456bbd8aa958d465ad32dffb1c241c24af583088a244cf37cf8bd879"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -172,13 +180,13 @@
     },
     {
       "path": "assets/journey.bundle.css",
-      "bytes": 22667,
-      "sha256": "dd85d3c58f0805467d283d2c7b21b6e1c7cac558bf00e2c0c2694cdc3d37a8b0"
+      "bytes": 22668,
+      "sha256": "8f801f9ebe1f987d94a908c084b8588990d7bad21579b214b697f6ea0f9d5dcc"
     },
     {
       "path": "assets/journey.css",
-      "bytes": 11895,
-      "sha256": "ef31f0e5f6c89c230eac16fed9bfee0feb8918e4f37db060827c081e958f5a37"
+      "bytes": 11896,
+      "sha256": "a4409a4e60236c66f7a05e3ec0a350f486816302d2a830409a425bf8bff50e83"
     },
     {
       "path": "assets/journey.js",
@@ -236,14 +244,19 @@
       "sha256": "cd450471d803b4a50de2f2b83627a593db55d27d9f4710ae5be7b8d086eed13d"
     },
     {
+      "path": "assets/player-journey-v1.webp",
+      "bytes": 322172,
+      "sha256": "c13d874a14399726d3b386dae6df7b02217b64d3e6d114435c640530cfc7531f"
+    },
+    {
       "path": "assets/stories.bundle.css",
       "bytes": 22521,
       "sha256": "9ee0de4d3f199036cfd82e34444bdbfc7cc55436f9b592e3b03d0ddfa91f0d79"
     },
     {
       "path": "assets/style.css",
-      "bytes": 23194,
-      "sha256": "8d564cbce75f160a791d4bcef4f13ce9d0824685ac6bd4cf9c99e807db135fe9"
+      "bytes": 23195,
+      "sha256": "294ccb6a75dba486c6f08423082156e1bae5b974faa921d0f4cb76fd1eee47e1"
     },
     {
       "path": "assets/telegram.js",
@@ -412,13 +425,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 43436,
-      "sha256": "1d6e724422e14fc8fdf6e1ce7fb2406c71d5ae666fe47369c702f06568a51a90"
+      "bytes": 43438,
+      "sha256": "7354f440be241cdd8b6471d8ef937b691ee438dda31828a96b76ff94a7af8da9"
     },
     {
       "path": "journey.html",
-      "bytes": 11781,
-      "sha256": "24f91da8bfbaa3fa3bf4b11188916a8afb20003666cabec71f17cb1e703d2909"
+      "bytes": 11782,
+      "sha256": "d9d2839535a5a5929b3f711a5c0002a75d78782cc04cf597333f338f064c1fe1"
     },
     {
       "path": "play/chess.html",
@@ -432,8 +445,8 @@
     },
     {
       "path": "stories.html",
-      "bytes": 8281,
-      "sha256": "0953c98ca3d16fa752bfba2f9e8e3dfd2155728a86419be9d30803aa9420b96f"
+      "bytes": 8283,
+      "sha256": "95c384c5142a2e28c437a7c3dfd128cab94ab151d40a9638d20ac11c58ed8582"
     }
   ],
   "source_repository": "safal207/zenit-alanya-academy"

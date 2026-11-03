@@ -1,0 +1,18 @@
+{
+  "purpose": "Delivery encoding only; original JPEGs retained. Same dimensions, composition and content.",
+  "encoder": "FFmpeg libwebp quality 80, compression level 6",
+  "images": [
+    {
+      "original": "assets/club-sand.jpg",
+      "delivered": "assets/club-sand.webp",
+      "original_bytes": 389319,
+      "delivered_bytes": 248720
+    },
+    {
+      "original": "assets/player-journey-v1.jpg",
+      "delivered": "assets/player-journey-v1.webp",
+      "original_bytes": 464505,
+      "delivered_bytes": 322172
+    }
+  ]
+}

@@ -26,12 +26,14 @@ def fetch(entry, method='GET'):
             assert int(response.headers['Content-Length']) == entry['bytes'], entry['path']
         if entry['path'].endswith('.wasm'):
             assert content_type == 'application/wasm'
+        if entry['path'].endswith('.webp'):
+            assert content_type == 'image/webp'
         if entry['path'].endswith('.mp4'):
             assert content_type == 'video/mp4'
         return {'path': entry['path'], 'method': method, 'status': response.status, 'content_type': content_type, 'exact_sha256': method == 'GET'}
 
 text = [e for e in files if '/vendor/' not in e['path'] and Path(e['path']).suffix in ('.html', '.css', '.js', '.json')]
-media = [e for e in files if Path(e['path']).suffix in ('.mp4', '.wasm', '.woff2')]
+media = [e for e in files if Path(e['path']).suffix in ('.mp4', '.wasm', '.woff2', '.webp')]
 try:
     # A newly deployed Pages edge can briefly serve the previous artifact.
     for attempt in range(6):
