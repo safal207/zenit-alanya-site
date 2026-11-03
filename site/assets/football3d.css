@@ -16,3 +16,11 @@ body.arena-page footer.arena-footer{display:flex;align-items:center;gap:12px;pad
 .arena-page .game-message{width:max-content;max-width:80%;padding:7px 14px;border-radius:6px;background:#07344b;color:#ecf5f9;text-shadow:none}
 @media(max-width:760px){body.arena-page footer.arena-footer{gap:8px;padding:5px 8px;font-size:11px}.arena-footer>a{font-size:11px;padding:4px 6px}.arena-disclaimer-detail{display:none}.arena-page .shot-power-control{bottom:calc(200px + env(safe-area-inset-bottom))}}
 @media(max-height:550px){.arena-page .shot-power-control{bottom:calc(188px + env(safe-area-inset-bottom))}.arena-page .game-message{top:40%;font-size:20px}.arena-disclaimer-detail{display:none}}
+
+/* Keep help in normal flow so longer exercise instructions cannot overlap progress. */
+.arena-page .arena-help{position:fixed;top:143px;left:25px;width:330px;max-width:calc(100vw - 50px);display:grid;gap:8px;pointer-events:none}
+.arena-help .match-tip,.arena-help .practice-progress{position:static;margin:0;width:auto;max-width:none}
+.arena-page .game-message{top:40%}
+@media(max-width:760px){.arena-page .arena-help{top:118px;left:15px;right:15px;width:auto;max-width:none}.arena-page .game-message{top:240px;font-size:18px}}
+@media(max-width:400px){.arena-page .arena-header{padding:10px;gap:6px;align-items:center}.club-back img{width:30px;height:30px}.scoreboard{padding:8px;gap:6px}.scoreboard>span{display:none}.scoreboard b{font-size:18px}.scoreboard time{font-size:10px;padding-left:6px}.arena-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.arena-modes button{padding:8px 4px;min-width:0;min-height:40px}}
+@media(max-height:550px){.arena-page .arena-help{top:103px;left:15px;right:auto;width:230px;max-width:calc(100vw - 30px)}.arena-page .game-message{top:40%;font-size:20px}}

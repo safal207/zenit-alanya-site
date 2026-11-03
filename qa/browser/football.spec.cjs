@@ -17,13 +17,14 @@ test('Active arena labels remain readable and clear of controls in both themes',
   await expect(page.locator('#arena-overlay')).toBeHidden();
   for(const theme of ['light','dark']){
     if(await page.locator('html').getAttribute('data-theme')!==theme)await page.locator('[data-theme-toggle]').click();
-    for(const viewport of [{width:320,height:568},{width:390,height:844},{width:640,height:360}]){
+    for(const viewport of [{width:1280,height:800},{width:320,height:568},{width:390,height:844},{width:640,height:360}]){
       await page.setViewportSize(viewport);
       const layout=await page.evaluate(()=>{
         const footer=document.querySelector('.arena-footer'),note=footer.querySelector('.arena-disclaimer'),link=footer.querySelector('a');
         const box=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
-        const style=getComputedStyle(note),background=getComputedStyle(footer).backgroundColor.match(/[\d.]+/g).map(Number);
-        return {footer:box(footer),note:box(note),link:box(link),joystick:box(document.querySelector('#joystick')),actions:box(document.querySelector('.action-buttons')),font:parseFloat(style.fontSize),backgroundAlpha:background[3]??1,viewport:{width:innerWidth,height:innerHeight},scroll:document.documentElement.scrollWidth};
+        const style=getComputedStyle(note),background=getComputedStyle(footer).backgroundColor.match(/[\d.]+/g).map(Number),tip=document.querySelector('.match-tip');
+        const controls=[...document.querySelectorAll('.club-back,.scoreboard,.top-actions button,.arena-modes button')].filter(el=>getComputedStyle(el).display!=='none').map(el=>({label:el.getAttribute('aria-label')||el.textContent,...box(el)}));
+        return {footer:box(footer),note:box(note),link:box(link),joystick:box(document.querySelector('#joystick')),actions:box(document.querySelector('.action-buttons')),tip:getComputedStyle(tip).display==='none'?null:box(tip),progress:box(document.querySelector('.practice-progress')),controls,font:parseFloat(style.fontSize),backgroundAlpha:background[3]??1,viewport:{width:innerWidth,height:innerHeight},scroll:document.documentElement.scrollWidth};
       });
       await testInfo.attach(`arena-layout-${theme}-${viewport.width}`,{body:Buffer.from(JSON.stringify(layout)),contentType:'application/json'});
       expect(layout.font).toBeGreaterThanOrEqual(11);
@@ -34,6 +35,12 @@ test('Active arena labels remain readable and clear of controls in both themes',
       expect(layout.scroll).toBeLessThanOrEqual(viewport.width);
       expect(layout.note.right+4).toBeLessThanOrEqual(layout.link.left);
       expect(layout.footer.top).toBeGreaterThanOrEqual(Math.max(layout.joystick.bottom,layout.actions.bottom)+8);
+      for(const control of layout.controls){
+        expect(control.left,`${control.label} stays inside the left edge`).toBeGreaterThanOrEqual(0);
+        expect(control.right,`${control.label} stays inside the right edge`).toBeLessThanOrEqual(viewport.width);
+      }
+      if(layout.tip)expect(layout.progress.top).toBeGreaterThanOrEqual(layout.tip.bottom+7);
+      await page.screenshot({path:testInfo.outputPath(`football-${theme}-${viewport.width}.png`)});
     }
     const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
     await testInfo.attach(`arena-axe-${theme}`,{body:Buffer.from(JSON.stringify(axe,null,2)),contentType:'application/json'});
