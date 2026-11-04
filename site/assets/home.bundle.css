@@ -286,6 +286,12 @@ footer{border-top:1px solid #dbe7ed}
 .coach-cards .coach-card{grid-template-columns:minmax(0,1fr);gap:16px}
 .coach-cards .coach-card>img{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:4/3;object-fit:cover;object-position:center 20%}
 .coach-cards .coach-card-body{min-height:0;padding:0}
+
+/* The generated training scenes retain their full composition and are labelled. */
+.coach-cards .coach-card>img{aspect-ratio:auto;object-position:center}
+.coach-cards .coach-image-caption{display:block;margin-top:-7px;color:#526574;font-size:11px;line-height:1.5}
+.coach-cards .coach-card a.coach-original{margin-top:12px;padding-top:0}
+html[data-theme=dark] .coach-cards .coach-image-caption{color:#b2c9d4}
 /* journey.css */
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--theme-bg,#fff);color:var(--theme-ink,#07344b);font:15px/1.7 Manrope,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;max-width:100%}[hidden]{display:none!important}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #e9a622;outline-offset:4px}h1,h2,h3,p{margin:0}button{color:inherit} 
 .journal-header{max-width:1380px;margin:auto;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--theme-line)}.journal-brand{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:800;line-height:1.5;letter-spacing:1.4px}.journal-brand img{width:43px;height:43px;border-radius:3px}.journal-brand small{display:block;color:var(--theme-muted);font-size:9px;font-weight:500;letter-spacing:2px}.journal-actions{display:flex;align-items:center;gap:24px}.journal-home{font-size:12px;font-weight:700;min-height:44px;display:flex;align-items:center}.journal-languages{display:flex;gap:2px}.journal-languages button{min-width:32px;min-height:44px;font-size:10px;font-weight:800;border:0;border-bottom:2px solid transparent;background:none;color:var(--theme-muted)}.journal-languages button[aria-pressed=true]{border-color:var(--theme-accent);color:var(--theme-accent)}

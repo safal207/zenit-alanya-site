@@ -37,14 +37,15 @@ test('Enquiry: editing a draft uses current values without mutating answers',()=
 test('Coach cards keep the named person, original portrait and source together',()=>{
   const crypto=require('node:crypto'),html=fs.readFileSync('dist/index.html','utf8');
   const checks=[
-    ['Таисия Кирилловна Зиновьева','coach-zinovyeva.jpg','DLFBqE2qP-5','75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b'],
-    ['Андрей Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e']
+    ['Таисия Кирилловна Зиновьева','coach-zinovyeva.jpg','DLFBqE2qP-5','75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b','taisiya-young-ai.webp'],
+    ['Андрей Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e','andrey-game-ai.webp']
   ];
   const cards=[...html.matchAll(/<article class="coach-card">([\s\S]*?)<\/article>/g)].map(x=>x[1]);
   assert.equal(cards.length,2);
-  for(const [name,file,source,sha] of checks){
+  for(const [name,file,source,sha,illustration] of checks){
     const card=cards.find(s=>s.includes(name));assert.ok(card,name);
     assert.ok(card.includes(file)&&card.includes(source),name+' portrait and source');
+    assert.ok(card.includes(illustration)&&card.includes('data-ac="coachIllustration"')&&card.includes('созданная ИИ'),name+' generated image is disclosed');
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync('dist/assets/'+file)).digest('hex'),sha);
   }
 });

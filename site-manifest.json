@@ -1,9 +1,11 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "38a779dd6bfde17b46b9356dc5ff4a9297fb8536",
-  "source_artifact_digest": "4e7930ef8197b2b9d17c8e3f37f857ce31040b96973041fc9fa3ce6faca1de81",
+  "site_source_commit": "6777b62b14751509ce367365c38dd13ea91eb696",
+  "source_artifact_digest": "0965f7769abfa8b11388c9b87c1eebf23ca2809e2cc693eb7a3de58edd5a6279",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
+    "assets/academy.js",
+    "assets/andrey-game-ai.webp",
     "assets/chess-app.css",
     "assets/chess-app.js",
     "assets/club-media.js",
@@ -25,6 +27,7 @@
     "assets/player-journey-v1.webp",
     "assets/stories.bundle.css",
     "assets/style.css",
+    "assets/taisiya-young-ai.webp",
     "assets/theme.css",
     "assets/theme.js",
     "index.html",
@@ -41,8 +44,13 @@
     },
     {
       "path": "assets/academy.js",
-      "bytes": 33521,
-      "sha256": "b7b480bf57ca0a52db8f44ac5c470e25afa7c284a9d1841ee82926758ac0f382"
+      "bytes": 34152,
+      "sha256": "d91b394c89a090fffa4ebc66685f3548b1a5b15182258f6547a5dd556e97ca55"
+    },
+    {
+      "path": "assets/andrey-game-ai.webp",
+      "bytes": 204666,
+      "sha256": "249b5a6872003dd847fb0e2716b036a6f4ef6c1500bfb3ad916cdef64e38eae2"
     },
     {
       "path": "assets/app.js",
@@ -171,8 +179,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 102896,
-      "sha256": "1ebbf23c72540f767327c0e66c9e95678c7cf599df6aef88e985225858cefa73"
+      "bytes": 103306,
+      "sha256": "53101cc8b31b8553fddb20c4d88abb8f587db2b0bfb70fc55a7354f7f449c36d"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -231,8 +239,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 15944,
-      "sha256": "409bb3c597b742420406db5eef85fc3be13d7705cf6d979d4e14b80e16f32c66"
+      "bytes": 16354,
+      "sha256": "52a5603c1d21a859a3b3efb7575025872f63d00dbe29e03032aadb55c6fd861c"
     },
     {
       "path": "assets/models/player.glb",
@@ -258,6 +266,11 @@
       "path": "assets/style.css",
       "bytes": 23195,
       "sha256": "294ccb6a75dba486c6f08423082156e1bae5b974faa921d0f4cb76fd1eee47e1"
+    },
+    {
+      "path": "assets/taisiya-young-ai.webp",
+      "bytes": 160236,
+      "sha256": "550f832058f2e8ccaa75f3c514d8a9aea902cbff8c3c18dd63c25a7baca230fc"
     },
     {
       "path": "assets/telegram.js",
@@ -426,8 +439,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 43438,
-      "sha256": "7354f440be241cdd8b6471d8ef937b691ee438dda31828a96b76ff94a7af8da9"
+      "bytes": 44121,
+      "sha256": "d432e45959058fcd614ddb50ad7b602e70b08291732913c38af82b11d7661ed8"
     },
     {
       "path": "journey.html",

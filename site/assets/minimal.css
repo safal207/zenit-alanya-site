@@ -182,3 +182,9 @@ footer{border-top:1px solid #dbe7ed}
 .coach-cards .coach-card{grid-template-columns:minmax(0,1fr);gap:16px}
 .coach-cards .coach-card>img{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:4/3;object-fit:cover;object-position:center 20%}
 .coach-cards .coach-card-body{min-height:0;padding:0}
+
+/* The generated training scenes retain their full composition and are labelled. */
+.coach-cards .coach-card>img{aspect-ratio:auto;object-position:center}
+.coach-cards .coach-image-caption{display:block;margin-top:-7px;color:#526574;font-size:11px;line-height:1.5}
+.coach-cards .coach-card a.coach-original{margin-top:12px;padding-top:0}
+html[data-theme=dark] .coach-cards .coach-image-caption{color:#b2c9d4}
