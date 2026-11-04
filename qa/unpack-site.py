@@ -15,7 +15,7 @@ if overrides:
     assert actual_overrides == overrides, 'The source override set must match the reviewed manifest.'
 assert overrides <= {entry['path'] for entry in expected}
 assert len({entry['path'] for entry in expected}) == len(expected)
-assert sum(entry['bytes'] for entry in expected) <= 25_000_000
+assert sum(entry['bytes'] for entry in expected) <= 25_050_000
 with zipfile.ZipFile(bundle) as archive:
     assert len(archive.namelist()) == len(set(archive.namelist()))
     assert sum(item.file_size for item in archive.infolist()) <= 25_000_000

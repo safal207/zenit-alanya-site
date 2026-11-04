@@ -1,6 +1,6 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "6379a8e14fe6638a10e33f0a0c808f4fac1074ec",
+  "site_source_commit": "f696542eae4366bb8efd4a746ac1a2592dfd5a69",
   "source_artifact_digest": "87f3efe9a5ea5a0f12a613b137bc1b5c88472f6fc01c4e87a6f714aeaf199445",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
