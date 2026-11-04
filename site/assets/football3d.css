@@ -24,3 +24,317 @@ body.arena-page footer.arena-footer{display:flex;align-items:center;gap:12px;pad
 @media(max-width:760px){.arena-page .arena-help{top:118px;left:15px;right:15px;width:auto;max-width:none}.arena-page .game-message{top:240px;font-size:18px}}
 @media(max-width:400px){.arena-page .arena-header{padding:10px;gap:6px;align-items:center}.club-back img{width:30px;height:30px}.scoreboard{padding:8px;gap:6px}.scoreboard>span{display:none}.scoreboard b{font-size:18px}.scoreboard time{font-size:10px;padding-left:6px}.arena-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.arena-modes button{padding:8px 4px;min-width:0;min-height:40px}}
 @media(max-height:550px){.arena-page .arena-help{top:103px;left:15px;right:auto;width:230px;max-width:calc(100vw - 30px)}.arena-page .game-message{top:40%;font-size:20px}}
+
+/* Match lobby and cup presentation share the same controls as the active field. */
+.arena-page .arena-modes {
+  z-index: 61;
+  gap: 6px;
+}
+.arena-page .arena-modes button {
+  min-height: 42px;
+  font-size: 11px;
+  border-radius: 6px;
+  background: #082d46;
+  border-color: #41647b;
+  color: #f0f9ff;
+}
+.arena-page .arena-modes button.active {
+  background: #bff35d;
+  color: #102b36;
+  border-color: #d1ff7d;
+}
+.arena-page .scoreboard {
+  border-top: 3px solid #2acbfa;
+  background: #06243c;
+  box-shadow: 0 8px 24px #00132650;
+}
+.arena-page .arena-overlay {
+  padding: 145px 20px 32px;
+  overflow-y: auto;
+  align-items: start;
+  overscroll-behavior: contain;
+  background: linear-gradient(125deg, #031a30ed, #052a45c7 64%, #0d4548a8);
+}
+.arena-page .arena-card {
+  width: min(620px, 100%);
+  max-width: none;
+  padding: 28px 34px;
+  border: 1px solid #47718b;
+  border-top: 3px solid #bff35d;
+  border-radius: 18px;
+  background: #06243cf5;
+  box-shadow: 0 24px 90px #00111b66;
+}
+.arena-page .arena-card > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+.arena-page .arena-card .arena-eyebrow {
+  margin: 14px 0 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #9fe9ff;
+}
+.arena-page .arena-card h1 {
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.03;
+  color: #f4fbff;
+  text-wrap: balance;
+}
+.arena-page .arena-card #arena-description {
+  max-width: 480px;
+  margin: 16px auto 20px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #d2e7f1;
+}
+.arena-settings {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid #3f627a;
+  border-radius: 10px;
+  background: #0d314a;
+  text-align: left;
+}
+.difficulty-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.difficulty-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #64889d;
+  border-radius: 6px;
+  background: #05243b;
+  color: #f0f9ff;
+  font: 700 15px Manrope, Arial, sans-serif;
+}
+.difficulty-field select:focus-visible {
+  outline: 3px solid #bff35d;
+  outline-offset: 3px;
+}
+.arena-page .arena-card #difficulty-description {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #d2e7f1;
+}
+.arena-page .arena-card .competition-summary {
+  margin: 15px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid #42627a;
+  color: #bff35d;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+.cup-bracket {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0;
+  margin: 15px 0 0;
+  list-style: none;
+}
+.cup-bracket li {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 12px 7px;
+  border: 1px solid #4a6b80;
+  border-radius: 7px;
+  background: #06243c;
+  text-align: center;
+}
+.cup-bracket span { color: #c7dfe9; font-size: 11px; }
+.cup-bracket b { color: #f0f9ff; font-size: 12px; letter-spacing: .5px; }
+.cup-bracket small { color: #c7dfe9; font-size: 10px; }
+.cup-bracket li.active, .cup-bracket li[aria-current="step"] {
+  border-color: #bff35d;
+  box-shadow: inset 0 3px #bff35d;
+}
+.cup-bracket li.won, .cup-bracket li.complete {
+  background: #183e36;
+  border-color: #85c58f;
+}
+.arena-page .arena-card .career-summary {
+  margin: 16px 0 0;
+  color: #cfecfa;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.match-report { margin: 22px 0 12px; }
+.arena-page .arena-card .match-report > p {
+  font-size: 12px;
+  font-weight: 800;
+  color: #d2e7f1;
+}
+.match-report dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+}
+.match-report dl > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 7px;
+  padding: 14px 7px;
+  background: #0d314a;
+  border: 1px solid #42627a;
+  border-radius: 8px;
+}
+.match-report dt { color: #d2e7f1; font-size: 11px; }
+.match-report dd { margin: 0; color: #f0f9ff; font-size: 27px; font-weight: 800; }
+.arena-page .arena-card > button {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 12px 0 0;
+  border-radius: 7px;
+  background: #bff35d;
+  color: #102b36;
+  font-size: 13px;
+  min-height: 50px;
+}
+.arena-page .arena-card > .next-exercise {
+  background: #153e59;
+  border: 1px solid #6c8ba0;
+  color: #eff9ff;
+}
+.arena-page .arena-card > small {
+  margin-top: 12px;
+  color: #c7dfe9;
+  font-size: 11px;
+}
+.arena-page .arena-card #arena-loading { font-size: 11px; color: #c7dfe9; }
+.arena-page .arena-return { color: #d3f4ff; font-size: 12px; }
+.stamina-control {
+  padding: 8px 10px;
+  border-radius: 5px;
+  background: #07344b;
+  color: #eff9ff;
+}
+.stamina-control label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.stamina-control label span { font-weight: 400; color: #d2e7f1; }
+.stamina-control progress {
+  display: block;
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  accent-color: #bff35d;
+  background: #3c5d70;
+}
+.stamina-control progress::-webkit-progress-bar { background: #3c5d70; }
+.stamina-control progress::-webkit-progress-value { background: #bff35d; border-radius: 8px; }
+.stamina-control progress::-moz-progress-bar { background: #bff35d; border-radius: 8px; }
+.arena-page .action-buttons #sprint-button {
+  background: #bff35d;
+  border-color: #d1ff7d;
+  color: #102b36;
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: none;
+  user-select: none;
+}
+.arena-page .action-buttons #sprint-button:active,
+.arena-page .action-buttons #sprint-button[aria-pressed="true"] { background: #e4ffad; }
+html[data-theme="light"] .arena-page .arena-card {
+  background: #f5fbfffa;
+  border-color: #94b6c9;
+  border-top-color: #087da7;
+  box-shadow: 0 24px 70px #06344b33;
+}
+html[data-theme="light"] .arena-settings,
+html[data-theme="light"] .match-report dl > div {
+  background: #e6f2f8;
+  border-color: #9bbdce;
+  color: #07344b;
+}
+html[data-theme="light"] .difficulty-field select {
+  background: #fff;
+  border-color: #7298ac;
+  color: #07344b;
+}
+html[data-theme="light"] .cup-bracket li {
+  background: #fff;
+  border-color: #9bbdce;
+}
+html[data-theme="light"] .cup-bracket :is(span, b, small),
+html[data-theme="light"] .match-report :is(dt, dd) { color: #07344b; }
+html[data-theme="light"] .cup-bracket li.active,
+html[data-theme="light"] .cup-bracket li[aria-current="step"] {
+  border-color: #007da9;
+  box-shadow: inset 0 3px #007da9;
+}
+html[data-theme="light"] .cup-bracket li.won,
+html[data-theme="light"] .cup-bracket li.complete { background: #e1f4e4; border-color: #39754a; }
+html[data-theme="light"] .arena-page .arena-card .competition-summary { border-color: #9bbdce; color: #07516c; }
+
+@media (max-width: 760px) {
+  .arena-page .arena-modes {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .arena-page .arena-modes button {
+    min-width: 0;
+    padding: 7px 3px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  .arena-page .arena-overlay { padding: 125px 14px 24px; }
+  .arena-page .arena-card { padding: 20px 16px; border-radius: 12px; }
+  .arena-page .arena-card h1 { font-size: 43px; }
+  .arena-page .arena-card #arena-description { font-size: 12px; }
+  .arena-settings { padding: 13px; }
+  .cup-bracket { gap: 5px; }
+  .cup-bracket li { padding: 11px 4px; }
+  .cup-bracket b { font-size: 11px; letter-spacing: 0; }
+  .cup-bracket small { font-size: 9px; }
+  .arena-page .action-buttons #switch-player { left: 0; bottom: 83px; }
+  .arena-page .action-buttons #sprint-button {
+    position: absolute;
+    right: 5px;
+    bottom: 86px;
+    width: 54px;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 9px;
+  }
+  .arena-page .arena-help { top: 123px; }
+  .arena-page .game-message { top: 285px; font-size: 17px; }
+}
+@media (max-height: 550px) {
+  .arena-page .arena-overlay { padding-top: 112px; padding-bottom: 20px; }
+  .arena-page .arena-card { padding: 17px 22px; max-width: 560px; }
+  .arena-page .arena-card h1 { font-size: 36px; }
+  .arena-page .arena-card #arena-description { display: block; margin: 12px auto; }
+  .arena-page .arena-card > img, .arena-page .arena-card .arena-eyebrow { display: none; }
+  .arena-settings { margin-top: 14px; padding: 12px; }
+  .arena-page .arena-help { top: 111px; width: 230px; }
+  .arena-page .game-message { top: 40%; }
+  .arena-page .action-buttons #switch-player { position: static; }
+  .arena-page .action-buttons #sprint-button {
+    position: static;
+    width: 44px;
+    height: 44px;
+  }
+}
+html[data-theme="light"] .arena-page .arena-card :is(#arena-description, #difficulty-description, #arena-loading) {
+  color: #07344b;
+}

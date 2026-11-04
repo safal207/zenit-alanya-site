@@ -1,10 +1,84 @@
-<!doctype html><html lang="ru"><head><!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="../assets/theme.js" defer></script><meta charset="utf-8"><link rel="stylesheet" href="../assets/fonts.css"><link rel="preload" href="../assets/font-0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/font-5.woff2" as="font" type="font/woff2" crossorigin><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#062a43"><meta name="robots" content="noindex,nofollow"><title>Zenit Alanya · 3D Football</title><link rel="icon" href="../assets/club-logo.jpg"><link rel="stylesheet" href="../assets/football3d.css?v=17.1"><script src="../assets/football-core.js" defer></script><script src="../assets/football3d.js" defer></script><link rel="stylesheet" href="../assets/theme.css"></head><body class="arena-page">
-<canvas id="arena" tabindex="0" aria-label="3D футбол. WASD или стрелки — движение, пробел — удар, E — пас, Q — смена игрока."></canvas>
-<header class="arena-header"><a href="../#game" class="club-back"><img src="../assets/club-logo.jpg" width="42" height="42" alt="Зенит ALANYA"><span>ZENIT ALANYA<small>FOOTBALL ARENA</small></span></a><div class="scoreboard" role="group" aria-label="Счёт матча: Зенит — гости"><span>ZENIT</span><b id="match-score">0 : 0</b><span>GUESTS</span><time id="match-clock">02:00</time></div><div class="top-actions"><button type="button" class="theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><span data-theme-icon aria-hidden="true">☼</span><span data-theme-label>Светлая</span></button><button id="camera-button" aria-label="Камера: сменить вид">Камера</button><button id="sound-button" aria-pressed="false">Звук выкл.</button><button id="pause-button" aria-label="Пауза или продолжить игру">Ⅱ</button></div></header>
-<nav class="arena-modes" aria-label="Режим игры"><button data-mode="match" class="active">Мини-матч 5×5</button><button data-mode="shoot">Удары</button><button data-mode="pass">Пасы</button><button data-mode="dribble">Ведение</button></nav>
-<div class="game-message" id="arena-message" role="status">Твоя команда. Твой матч.</div><aside class="arena-help" aria-label="Подсказки по игре"><div class="match-tip" id="arena-tip">WASD / стрелки — движение · E — пас · пробел — удар · Q — смена игрока</div>
-<div class="practice-progress" id="practice-progress" aria-live="polite"></div></aside><label class="shot-power-control" id="shot-power-control" hidden>Сила удара <output id="shot-power-value">100%</output><input id="shot-power" type="range" min="80" max="115" value="100" step="5"></label><div class="touch-controls"><div id="joystick" role="group" class="joystick" aria-label="Джойстик движения"><span id="joystick-knob"></span></div><div class="action-buttons"><button id="switch-player">СМЕНА</button><button id="pass-ball">ПАС</button><button id="shoot-ball">УДАР</button></div></div>
-<div class="keyboard-hint"><span>W A S D</span><span>Пробел · Удар</span><span>E · Пас</span><span>Q · Смена</span></div>
-<div class="arena-overlay" id="arena-overlay"><div class="arena-card"><img src="../assets/club-logo.jpg" width="68" height="68" alt="Зенит ALANYA"><p>ZENIT ALANYA · 3D FOOTBALL</p><h1 id="arena-heading">ВЫХОДИ<br>НА ПОЛЕ.</h1><p id="arena-description">Мини-матч 5×5 с компьютерным соперником. Живой мяч, пасы, удары и твоя команда в голубой форме.</p><div class="loading-line"><span id="loading-progress"></span></div><p id="arena-loading" role="status">Подготавливаем арену…</p><button id="start-match" disabled>НАЧАТЬ МАТЧ ↗</button><button id="next-exercise" class="next-exercise" hidden>СЛЕДУЮЩЕЕ УПРАЖНЕНИЕ ↗</button><a class="arena-return" href="../#game">← Все игровые режимы</a><small>Babylon.js 9 · Havok Physics · игровая концепция клуба</small></div></div>
+<!doctype html><html lang="ru"><head><!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="../assets/theme.js" defer></script><meta charset="utf-8"><link rel="stylesheet" href="../assets/fonts.css"><link rel="preload" href="../assets/font-0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../assets/font-5.woff2" as="font" type="font/woff2" crossorigin><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#062a43"><meta name="robots" content="noindex,nofollow"><title>Zenit Alanya · 3D Football</title><link rel="icon" href="../assets/club-logo.jpg"><link rel="stylesheet" href="../assets/football3d.css?v=23"><script src="../assets/football-core.js?v=23" defer></script><script src="../assets/football3d.js?v=23" defer></script><link rel="stylesheet" href="../assets/theme.css"></head><body class="arena-page">
+<canvas id="arena" tabindex="0" aria-label="3D футбол. WASD или стрелки — движение, пробел — удар, E — пас, Q — смена игрока, Shift — ускорение."></canvas>
+<header class="arena-header">
+  <a href="../#game" class="club-back"><img src="../assets/club-logo.jpg" width="42" height="42" alt="Зенит ALANYA"><span>ZENIT ALANYA<small>FOOTBALL ARENA</small></span></a>
+  <div class="scoreboard" role="group" aria-label="Счёт матча">
+    <span>ZENIT</span><b id="match-score">0 : 0</b><span id="opponent-team">GUESTS</span><time id="match-clock">02:00</time>
+  </div>
+  <div class="top-actions">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><span data-theme-icon aria-hidden="true">☼</span><span data-theme-label>Светлая</span></button>
+    <button id="camera-button" aria-label="Камера: сменить вид">Камера</button>
+    <button id="sound-button" aria-pressed="false">Звук выкл.</button>
+    <button id="pause-button" aria-label="Пауза или продолжить игру">Ⅱ</button>
+  </div>
+</header>
+<nav class="arena-modes" aria-label="Режим игры">
+  <button data-mode="match" class="active">Матч 5×5</button>
+  <button data-mode="cup">Кубок Аланьи</button>
+  <button data-mode="shoot">Удары</button>
+  <button data-mode="pass">Пасы</button>
+  <button data-mode="dribble">Ведение</button>
+</nav>
+<div class="game-message" id="arena-message" role="status">Твоя команда. Твой матч.</div>
+<aside class="arena-help" aria-label="Подсказки по игре">
+  <div class="match-tip" id="arena-tip">WASD / стрелки — движение · E — пас · пробел — удар · Q — смена · Shift — ускорение</div>
+  <div class="practice-progress" id="practice-progress" aria-live="polite"></div>
+  <div class="stamina-control" id="stamina-control">
+    <label for="stamina">Запас ускорения <span>Shift / рывок</span></label>
+    <progress id="stamina" max="100" value="100">100%</progress>
+  </div>
+</aside>
+<label class="shot-power-control" id="shot-power-control" hidden>Сила удара <output id="shot-power-value">100%</output><input id="shot-power" type="range" min="80" max="115" value="100" step="5"></label>
+<div class="touch-controls">
+  <div id="joystick" role="group" class="joystick" aria-label="Джойстик движения"><span id="joystick-knob"></span></div>
+  <div class="action-buttons">
+    <button id="switch-player">СМЕНА</button>
+    <button id="sprint-button" aria-label="Ускорение — удерживай кнопку">РЫВОК</button>
+    <button id="pass-ball">ПАС</button>
+    <button id="shoot-ball">УДАР</button>
+  </div>
+</div>
+<div class="keyboard-hint"><span>W A S D</span><span>Пробел · Удар</span><span>E · Пас</span><span>Q · Смена</span><span>Shift · Рывок</span></div>
+<div class="arena-overlay" id="arena-overlay">
+  <div class="arena-card">
+    <img src="../assets/club-logo.jpg" width="68" height="68" alt="Зенит ALANYA">
+    <p class="arena-eyebrow">ZENIT ALANYA · FOOTBALL ARENA</p>
+    <h1 id="arena-heading">ТВОЙ МАТЧ.<br>ТВОЯ КОМАНДА.</h1>
+    <p id="arena-description">Выходи на поле за «Зенит Аланья». Находи партнёров, ускоряйся в свободную зону и борись за кубок.</p>
+    <div id="arena-settings" class="arena-settings">
+      <div class="difficulty-field">
+        <label for="football-difficulty">Уровень соперника</label>
+        <select id="football-difficulty">
+          <option value="rookie">Новичок</option>
+          <option value="club" selected>Клубный</option>
+          <option value="pro">Профи</option>
+        </select>
+        <p id="difficulty-description">Сбалансированный темп, чтобы отработать пасы и выход к воротам.</p>
+      </div>
+      <p id="competition-summary" class="competition-summary">Быстрый матч · 5×5 · 2 минуты</p>
+      <ol id="cup-bracket" class="cup-bracket" aria-label="Путь к кубку" hidden>
+        <li data-round="0"><span>¼ финала</span><b>TOROS</b><small>Первый шаг</small></li>
+        <li data-round="1"><span>½ финала</span><b>AKDENIZ</b><small>Ближе к кубку</small></li>
+        <li data-round="2"><span>Финал</span><b>KALE</b><small>Матч за трофей</small></li>
+      </ol>
+    </div>
+    <p id="career-summary" class="career-summary">Победы 0 · Кубки 0</p>
+    <div id="match-report" class="match-report" hidden>
+      <p>Твой матч в цифрах</p>
+      <dl>
+        <div><dt>Удары · мы / соперник</dt><dd id="stats-shots">0</dd></div>
+        <div><dt>Точные пасы</dt><dd id="stats-passes">0</dd></div>
+        <div><dt>Владение</dt><dd id="stats-possession">0%</dd></div>
+      </dl>
+    </div>
+    <div class="loading-line"><span id="loading-progress"></span></div>
+    <p id="arena-loading" role="status">Подготавливаем арену…</p>
+    <button id="next-round" class="next-round" hidden>СЛЕДУЮЩИЙ РАУНД ↗</button>
+    <button id="start-match" disabled>НАЧАТЬ МАТЧ ↗</button>
+    <button id="next-exercise" class="next-exercise" hidden>СЛЕДУЮЩЕЕ УПРАЖНЕНИЕ ↗</button>
+    <a class="arena-return" href="../#game">← Все игровые режимы</a>
+    <small>Поддерживай команду пасом. Береги силы для решающего рывка.</small>
+  </div>
+</div>
 <footer class="arena-footer"><span class="arena-disclaimer">Игровой тренажёр<span class="arena-disclaimer-detail"> · реальные тренировки — с тренером</span></span><a href="../#contacts">Связаться со школой ↗</a></footer>
 </body></html>

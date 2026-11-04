@@ -1,9 +1,51 @@
 const {test,expect}=require('./fixtures.cjs');
 const AxeBuilder=require('@axe-core/playwright').default;
-test('3D renderer starts, clock advances, pause and exercise switch',async({page},testInfo)=>{
-  test.setTimeout(120000);await page.setViewportSize({width:640,height:360});await page.goto('play/football.html?mode=match');await expect(page.locator('#start-match')).toBeEnabled({timeout:60000});await page.locator('#start-match').click();await expect(page.locator('#arena-overlay')).toBeHidden();await expect.poll(()=>page.locator('#match-clock').innerText(),{timeout:45000}).not.toBe('02:00');
-  await page.locator('#pause-button').click();await expect(page.locator('#pause-button')).toHaveText('▶');const clock=await page.locator('#match-clock').innerText();await page.waitForTimeout(1200);await expect(page.locator('#match-clock')).toHaveText(clock);await page.locator('#pause-button').click();await expect(page.locator('#pause-button')).toHaveText('Ⅱ');
-  await page.locator('[data-mode=shoot]').click();await expect(page.locator('#start-match')).toBeEnabled();await page.locator('#start-match').click();await expect(page.locator('#shot-power-control')).toBeVisible();await page.locator('#shoot-ball').click();await expect(page.locator('#arena-message')).toContainText('Удар');await page.screenshot({path:testInfo.outputPath('football-rendered.png')});
+test('3D cup selection, difficulty, clock, sprint, pause and exercise switch', async ({page}, testInfo) => {
+  test.setTimeout(120000);
+  await page.setViewportSize({width:640,height:360});
+  await page.goto('play/football.html?mode=match');
+  await expect(page.locator('#start-match')).toBeEnabled({timeout:60000});
+  await page.locator('[data-mode=cup]').click();
+  await page.locator('#football-difficulty').selectOption('rookie');
+  await expect(page.locator('#cup-bracket')).toBeVisible();
+  await expect(page.locator('#cup-bracket li')).toHaveCount(3);
+  await page.locator('#start-match').click();
+  await expect(page.locator('#arena-overlay')).toBeHidden();
+  await expect(page.locator('#practice-progress')).toContainText('Четвертьфинал');
+  await expect(page.locator('#opponent-team')).toHaveText('TOROS');
+  await expect.poll(() => page.locator('#match-clock').innerText(), {timeout:45000}).not.toBe('02:00');
+
+  await page.keyboard.down('w');
+  await page.keyboard.down('Shift');
+  await expect.poll(() => page.locator('#stamina').evaluate(el => el.value), {timeout:15000}).toBeLessThan(95);
+  await page.keyboard.up('Shift');
+  await page.keyboard.up('w');
+  await page.locator('#pause-button').click();
+  await expect(page.locator('#pause-button')).toHaveText('▶');
+  const clock = await page.locator('#match-clock').innerText();
+  await page.waitForTimeout(1200);
+  await expect(page.locator('#match-clock')).toHaveText(clock);
+  await page.setViewportSize({width:320,height:568});
+  const controls = await page.locator('#sprint-button,#joystick,#shoot-ball,#pass-ball').evaluateAll(elements =>
+    elements.map(el => {const r=el.getBoundingClientRect();return {id:el.id,left:r.left,right:r.right,top:r.top,bottom:r.bottom};}));
+  for (const control of controls) {
+    expect(control.left, control.id).toBeGreaterThanOrEqual(0);
+    expect(control.right, control.id).toBeLessThanOrEqual(320);
+  }
+  const sprint = controls.find(control => control.id === 'sprint-button');
+  const joystick = controls.find(control => control.id === 'joystick');
+  expect(sprint.left).toBeGreaterThanOrEqual(joystick.right+8);
+  await page.setViewportSize({width:640,height:360});
+  await page.locator('#pause-button').click();
+  await expect(page.locator('#pause-button')).toHaveText('Ⅱ');
+
+  await page.locator('[data-mode=shoot]').click();
+  await expect(page.locator('#start-match')).toBeEnabled();
+  await page.locator('#start-match').click();
+  await expect(page.locator('#shot-power-control')).toBeVisible();
+  await page.locator('#shoot-ball').click();
+  await expect(page.locator('#arena-message')).toContainText('Удар');
+  await page.screenshot({path:testInfo.outputPath('football-rendered.png')});
 });
 test('Missing WebGL presents an actionable fallback',async({page})=>{await page.addInitScript(()=>{const real=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /webgl|experimental-webgl/.test(type)?null:real.call(this,type,...args);};});await page.goto('play/football.html');await expect(page.locator('#arena-loading')).toContainText(/WebGL|3D|поддерж|браузер/i,{timeout:30000});await expect(page.locator('.arena-return')).toBeVisible();await expect(page.locator('#start-match')).toHaveAttribute('data-failed','true');await expect(page.locator('#start-match')).toContainText('ПОВТОРИТЬ');});
 

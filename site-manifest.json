@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "f6135934a27e39e60125be28f4872a019b9faa5d",
-  "source_artifact_digest": "23e40149bfc872d944917fb3c1664de22028cfc632a7499cea4cb51fea148aee",
+  "site_source_commit": "6379a8e14fe6638a10e33f0a0c808f4fac1074ec",
+  "source_artifact_digest": "87f3efe9a5ea5a0f12a613b137bc1b5c88472f6fc01c4e87a6f714aeaf199445",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -18,7 +18,9 @@
     "assets/font-4.woff2",
     "assets/font-5.woff2",
     "assets/fonts.css",
+    "assets/football-core.js",
     "assets/football3d.css",
+    "assets/football3d.js",
     "assets/goalkeeper-training-ai.webp",
     "assets/home.bundle.css",
     "assets/journey.bundle.css",
@@ -161,18 +163,18 @@
     },
     {
       "path": "assets/football-core.js",
-      "bytes": 1072,
-      "sha256": "345207befc8ffd61cc4e3ae59a1387e04002439f707510e88237278651da35d5"
+      "bytes": 1571,
+      "sha256": "aa96a6248afaf0d17bdc7da11cf3a3317d284f2f6095677e1802275273b3af68"
     },
     {
       "path": "assets/football3d.css",
-      "bytes": 11948,
-      "sha256": "988a94a32ec16174256fcf95513dd1fd81d703d094a6fc44d796cc5e34769346"
+      "bytes": 20507,
+      "sha256": "2e4aa50d8d276a4a4c655b697a017ae5f2ac0b8c59684f3634a7438557e0187e"
     },
     {
       "path": "assets/football3d.js",
-      "bytes": 33384,
-      "sha256": "e294c8652ee741f8b1c3d1476658920d3d48f3feee21bc2b1e1026d72a94573d"
+      "bytes": 42609,
+      "sha256": "5e935e1f3379a9e2816f8cf724c095def7d1d654f5b1161b5dc178c59acdb08a"
     },
     {
       "path": "assets/funnel.css",
@@ -466,8 +468,8 @@
     },
     {
       "path": "play/football.html",
-      "bytes": 4968,
-      "sha256": "f51bdf1b539aaac89dfa0b63e6c0521fede2faf613b357c314625dc5e942f84d"
+      "bytes": 7369,
+      "sha256": "209a2613644b311e16ecd74b32991cc4dfe86f6f2b49eafe1b538bf5b404ddc1"
     },
     {
       "path": "stories.html",
