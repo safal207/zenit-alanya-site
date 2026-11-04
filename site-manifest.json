@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "f696542eae4366bb8efd4a746ac1a2592dfd5a69",
-  "source_artifact_digest": "87f3efe9a5ea5a0f12a613b137bc1b5c88472f6fc01c4e87a6f714aeaf199445",
+  "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
+  "source_artifact_digest": "a084b59a9054feef1133cddcd834393d696e89f17c43c0f11d4efb6dc5bf1be7",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -468,8 +468,8 @@
     },
     {
       "path": "play/football.html",
-      "bytes": 7369,
-      "sha256": "209a2613644b311e16ecd74b32991cc4dfe86f6f2b49eafe1b538bf5b404ddc1"
+      "bytes": 7374,
+      "sha256": "1f92dd3329959cceafa00c92fc9f931bbe964efcf7c408d3b7115f2b3c1c3f2f"
     },
     {
       "path": "stories.html",
