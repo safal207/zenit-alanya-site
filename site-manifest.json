@@ -1,12 +1,13 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "c298c556afb44baf54e01ddd0d340ec03611b4a1",
-  "source_artifact_digest": "46e1585681a80b5a7d8e246b81fa8ab06caaf3b643e009ec12d7ad50a99d2027",
+  "site_source_commit": "cfe2dae35d4cda6296b22bd7519a95ec129a5070",
+  "source_artifact_digest": "4e41de2bf7b0fab7381828db47533700f8497f260d8c66fee374aacaa2254b1d",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
     "assets/chess-app.css",
     "assets/chess-app.js",
+    "assets/chess-bots.js",
     "assets/club-media.js",
     "assets/club-sand.webp",
     "assets/films.css",
@@ -60,13 +61,18 @@
     },
     {
       "path": "assets/chess-app.css",
-      "bytes": 7722,
-      "sha256": "5ba79009abe01630632b8e6e7313c9df44dd40cc73df9bae3caa95ad79b3b9ff"
+      "bytes": 9181,
+      "sha256": "7dc24b27a6c40eaa8eb442d048d346df43495696f1743c1bc7ec5a6bc7c4922a"
     },
     {
       "path": "assets/chess-app.js",
-      "bytes": 15527,
-      "sha256": "e00f406a652259a4ecfc779976db84bc2ad9338ab2204e666a95fe465dc9fbcf"
+      "bytes": 19736,
+      "sha256": "36a4ef35d08b3158a9b80aae5904ebc4a210255009ab2903dd1a330b5eee7618"
+    },
+    {
+      "path": "assets/chess-bots.js",
+      "bytes": 1812,
+      "sha256": "27dab0c8591c3af1b32303c43b2c430c40e76606bba824d76d2832829a366aed"
     },
     {
       "path": "assets/club-logo.jpg",
@@ -455,8 +461,8 @@
     },
     {
       "path": "play/chess.html",
-      "bytes": 5619,
-      "sha256": "3797bb12e7163cb6e909e0ba6f4304ea08f1cdcf7df48e16caea56c05175fd1b"
+      "bytes": 6856,
+      "sha256": "d7dfde9c2cb57a584a23b91b0a13e7955ba31530e5a4d04d66f2c33cb9232194"
     },
     {
       "path": "play/football.html",

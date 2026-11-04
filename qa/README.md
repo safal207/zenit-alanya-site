@@ -15,7 +15,7 @@ Development requirements: Node.js 24, Python 3 and `npm ci --ignore-scripts`. Th
 | Security | Pinned workflow actions, bounded authored-source checks, npm dependency advisories, input-injection regression |
 | Release integrity | Static references/licences/size budgets and exact SHA-256 manifest; public bundle is verified before testing and deployment |
 
-The browser suite contains 100 scheduled cases. Two clipboard-permission cases are explicitly skipped in Firefox/WebKit because that permission automation is Chromium-specific; denied-copy fallback runs in all engines. A scheduled case is not evidence of passing: inspect its actual run result.
+The browser suite contains 103 scheduled cases. Two clipboard-permission cases are explicitly skipped in Firefox/WebKit because that permission automation is Chromium-specific; denied-copy fallback runs in all engines. A scheduled case is not evidence of passing: inspect its actual run result.
 
 Generated files: after editing stylesheet sources, run `node qa/build-css.cjs`; after changing film data, run `node qa/build-stories.cjs`; after changing the inline theme bootstrap, run `node qa/build-theme-head.cjs`. CI rejects stale generated bundles/feed.
 
