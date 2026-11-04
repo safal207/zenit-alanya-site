@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "c42ce72315f1520685cbe0d907897eca9b79cbb2",
-  "source_artifact_digest": "9199a3088f5d214d751ea4e2e4d263a546f93cd032c9d21c807da3313a01de80",
+  "site_source_commit": "38a779dd6bfde17b46b9356dc5ff4a9297fb8536",
+  "source_artifact_digest": "4e7930ef8197b2b9d17c8e3f37f857ce31040b96973041fc9fa3ce6faca1de81",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/chess-app.css",
@@ -21,6 +21,7 @@
     "assets/journey.bundle.css",
     "assets/journey.css",
     "assets/media.js",
+    "assets/minimal.css",
     "assets/player-journey-v1.webp",
     "assets/stories.bundle.css",
     "assets/style.css",
@@ -170,8 +171,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 102540,
-      "sha256": "df6bd45b456bbd8aa958d465ad32dffb1c241c24af583088a244cf37cf8bd879"
+      "bytes": 102896,
+      "sha256": "1ebbf23c72540f767327c0e66c9e95678c7cf599df6aef88e985225858cefa73"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -230,8 +231,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 15588,
-      "sha256": "13434527e780cafdabebeb78be48baa629015c127b1740bef8ee81ee00e47a33"
+      "bytes": 15944,
+      "sha256": "409bb3c597b742420406db5eef85fc3be13d7705cf6d979d4e14b80e16f32c66"
     },
     {
       "path": "assets/models/player.glb",
