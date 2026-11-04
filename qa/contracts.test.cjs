@@ -49,6 +49,7 @@ test('Coach cards keep the named person, original portrait and source together',
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync('dist/assets/'+file)).digest('hex'),sha);
   }
   assert.match(html,/<figure class="young-play">[\s\S]*?young-play-ai\.webp[\s\S]*?Иллюстрация, созданная ИИ[\s\S]*?<\/figure>/);
+  for(const scene of ['older-play-ai.webp','goalkeeper-training-ai.webp']){const figure=[...html.matchAll(/<figure class="young-play gallery-secondary">([\s\S]*?)<\/figure>/g)].find(x=>x[1].includes(scene));assert.ok(figure&&figure[1].includes('Иллюстрация, созданная ИИ'),scene+' is visibly disclosed as AI');}
 });
 const F=require('../dist/assets/football-core.js'),M=require('../dist/assets/club-media.js');
 test('Football: screen-up follows camera toward the pitch',()=>{const v=F.inputVector(0,1,{x:23,z:-27},{x:0,z:0});assert.ok(v.x<0&&v.z>0);assert.ok(Math.abs(Math.hypot(v.x,v.z)-1)<1e-9);});

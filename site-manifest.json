@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "cae6ecd86de155269f40bb148a65f7bfb98e5d54",
-  "source_artifact_digest": "8a5287f9f1943814077ed17c9380727fab9aebfd1a8ee9caaa45a2640b55d642",
+  "site_source_commit": "c298c556afb44baf54e01ddd0d340ec03611b4a1",
+  "source_artifact_digest": "46e1585681a80b5a7d8e246b81fa8ab06caaf3b643e009ec12d7ad50a99d2027",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -18,11 +18,13 @@
     "assets/font-5.woff2",
     "assets/fonts.css",
     "assets/football3d.css",
+    "assets/goalkeeper-training-ai.webp",
     "assets/home.bundle.css",
     "assets/journey.bundle.css",
     "assets/journey.css",
     "assets/media.js",
     "assets/minimal.css",
+    "assets/older-play-ai.webp",
     "assets/player-journey-v1.webp",
     "assets/stories.bundle.css",
     "assets/style.css",
@@ -43,8 +45,8 @@
     },
     {
       "path": "assets/academy.js",
-      "bytes": 33897,
-      "sha256": "ac4920c17304b8b13828a5c4fd07b11376acd5259bdea034d69ddc5ae4f5c6c8"
+      "bytes": 34243,
+      "sha256": "f3cdc7f71eabb276fd707b05db123539d8e0c31ba858aee09cac3e255620d969"
     },
     {
       "path": "assets/app.js",
@@ -172,9 +174,14 @@
       "sha256": "4828f195466a6eb67534bb15058c7b23a25da07484a7ebf3fb1cc0b35e672090"
     },
     {
+      "path": "assets/goalkeeper-training-ai.webp",
+      "bytes": 97398,
+      "sha256": "129e4cfa42a8b6720666ed2c9bd2046e312bf52b8aa75cea44303fcf977f523d"
+    },
+    {
       "path": "assets/home.bundle.css",
-      "bytes": 103455,
-      "sha256": "b37f9be05fb005a1e6152e6b3d42a508d3b7c46a35522375e9c1d3e8e5bdb461"
+      "bytes": 103976,
+      "sha256": "8f19c8c1c0ad1a6f8cec1f258aae0c8c741821ecc4a4a6d04359a67653987361"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -233,13 +240,18 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 16503,
-      "sha256": "66beb4551102c23be5c4e001771096dab2f6aaa6d0d3cd05a132e241a65347e4"
+      "bytes": 17024,
+      "sha256": "73e9c5fc5f027a52add36d1c17e2b6d7d5d014f9031335fa479204c3de68f6a6"
     },
     {
       "path": "assets/models/player.glb",
       "bytes": 498212,
       "sha256": "7fd28255c484e19ba5086d9cf815128e21dfcb677d262a88b237a5f5af081c5f"
+    },
+    {
+      "path": "assets/older-play-ai.webp",
+      "bytes": 103578,
+      "sha256": "2c749dea470efe415c792de050b18a323ccd4305607325cb1b006186d699a28e"
     },
     {
       "path": "assets/player-journey-v1.jpg",
@@ -433,8 +445,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 43888,
-      "sha256": "77cd75cb49d578251dfe90ddaf6cf19752a3282e81982fe88c36bdc67fe8e862"
+      "bytes": 44827,
+      "sha256": "085c91a00bfd62e81b49793044ca4d7d18b0347b772235bf1ff8c3213f5f08ef"
     },
     {
       "path": "journey.html",

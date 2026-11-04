@@ -13,6 +13,9 @@ Object.assign(labels.en,{gameTitle:'Your own team.\nReal 3D football.',gameLead:
 Object.assign(labels.ru,{duplicatePlan:'Такое занятие уже есть в вашем плане.',planFull:'В плане 100 занятий. Удалите ненужные записи перед добавлением новых.'});
 Object.assign(labels.tr,{duplicatePlan:'Bu antrenman planınızda zaten var.',planFull:'Planda 100 kayıt var. Yeni kayıt eklemeden önce gereksiz kayıtları silin.'});
 Object.assign(labels.en,{duplicatePlan:'This session is already in your plan.',planFull:'Your plan has 100 sessions. Remove an unused entry before adding another.'});
+Object.assign(labels.ru,{olderPlayTitle:'Игра ребят постарше',goalkeeperTitle:'Тренировка вратарей'});
+Object.assign(labels.tr,{olderPlayTitle:'Büyüklerin oyunu',goalkeeperTitle:'Kaleci antrenmanı'});
+Object.assign(labels.en,{olderPlayTitle:'Older players in action',goalkeeperTitle:'Goalkeeper training'});
 Object.assign(labels.ru,{youngPlayTitle:'Игра малышей',youngPlayDisclosure:'Иллюстрация, созданная ИИ'});
 Object.assign(labels.tr,{youngPlayTitle:'Miniklerin oyunu',youngPlayDisclosure:'Yapay zekâ ile oluşturulmuş görsel'});
 Object.assign(labels.en,{youngPlayTitle:'The little ones play',youngPlayDisclosure:'AI-generated illustration'});

@@ -186,3 +186,6 @@ footer{border-top:1px solid #dbe7ed}
 
 /* A separate, clearly labelled conceptual image of children playing. */
 .young-play{margin:30px 0 0}.young-play img{display:block;width:100%;height:auto;border-radius:5px}.young-play figcaption{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0 0;color:#526574;font-size:11px}.young-play figcaption strong{color:#07344b;font-size:16px}.young-play figcaption span{font-size:11px}html[data-theme=dark] .young-play figcaption{color:#b2c9d4}html[data-theme=dark] .young-play figcaption strong{color:#ecf5f9}
+
+/* Keep the youngest players' image prominent and show the two new scenes below. */
+.training-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}.training-gallery .young-play{margin:0;min-width:0}.training-gallery .young-play:first-child{grid-column:1/-1}.training-gallery .gallery-secondary img{aspect-ratio:16/9;object-fit:cover}@media(max-width:700px){.training-gallery{grid-template-columns:minmax(0,1fr);gap:24px}.training-gallery .young-play:first-child{grid-column:auto}}
