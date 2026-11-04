@@ -96,33 +96,94 @@ test('Chess beginner replies without Stockfish and mentor reveals a lesson in st
   await expect(page.locator('#lesson-progress')).toHaveText('Пройдено 1 из 6');
 });
 
-test('Player plan and photo stay in the browser across reloads and can be removed', async ({page}) => {
-  await page.setViewportSize({width: 390, height: 844});
+test('Player account is standalone and restores the photo and plan after sign-in on a second device', async ({page, browser}) => {
+  const id = '88b9eeb4-60ef-4758-ad5c-614c18f60ca4';
+  const saved = {id, nickname:'', strength:'', goal:'', route:'', photo_jpeg:null};
+  let registered = false;
+  let refreshed = false;
+  const mock = context => context.route('https://tqhewqpzpfviwhicsnzm.supabase.co/**', route => {
+    const req = route.request();
+    const url = new URL(req.url());
+    const headers = {'access-control-allow-origin':'*', 'access-control-allow-headers':'apikey, authorization, content-type, prefer', 'access-control-allow-methods':'GET, PATCH, POST, OPTIONS'};
+    const json = (status, data) => route.fulfill({status, headers, json:data});
+    if (req.method() === 'OPTIONS') return route.fulfill({status:204, headers});
+    if (url.pathname.endsWith('/player-account')) {
+      const data = req.postDataJSON();
+      if (data.action === 'register') {
+        if (data.invite !== 'A'.repeat(22)) return json(409, {code:'registration_unavailable'});
+        registered = true;
+      }
+      if (!registered || data.login !== 'player_qa' || data.password !== 'match-day-qa-pass') return json(401, {code:'invalid_login'});
+      return json(200, {access_token:'qa-token', refresh_token:'qa-refresh'});
+    }
+    if (url.pathname.endsWith('/logout')) return route.fulfill({status:204, headers});
+    if (url.pathname.endsWith('/token')) {
+      refreshed = true;
+      return json(200, {access_token:'qa-new-token', refresh_token:'qa-next-refresh'});
+    }
+    if (!url.pathname.endsWith('/zenit_player_profiles')) return json(404, {});
+    if (req.method() === 'PATCH') {
+      if (url.searchParams.get('id') !== 'eq.' + id) return json(400, {});
+      if (req.headers().authorization !== 'Bearer qa-new-token') return json(401, {});
+      Object.assign(saved, req.postDataJSON());
+      return json(200, [{id}]);
+    }
+    return json(200, [saved]);
+  });
+  const credentials = async target => {
+    await target.getByLabel('Логин', {exact:true}).fill('player_qa');
+    await target.getByLabel('Пароль', {exact:true}).fill('match-day-qa-pass');
+  };
+  await page.setViewportSize({width:390, height:844});
+  await mock(page.context());
+  await page.goto('./');
+  await expect(page.locator('a[href*="player.html"]')).toHaveCount(0);
+  await page.evaluate(() => localStorage.setItem('zenit-alanya-player-v1', JSON.stringify({strength:'Черновик с устройства'})));
   await page.goto('player.html');
-  await expect(page).toHaveURL(/player\.html$/);
-  await expect(page.getByRole('heading', {name: 'Мой футбол'})).toBeVisible();
+  const playerUrl = page.url();
+  await expect(page.getByLabel('Как меня зовут')).toBeHidden();
+  await page.getByRole('button', {name:'У меня есть код клуба'}).click();
+  await credentials(page);
+  await page.getByLabel('Одноразовый код клуба').fill('B'.repeat(22));
+  await page.getByRole('button', {name:'Создать аккаунт'}).click();
+  await expect(page.locator('#account-status')).toContainText('Код недействителен');
+  await page.getByLabel('Одноразовый код клуба').fill('A'.repeat(22));
+  await page.getByRole('button', {name:'Создать аккаунт'}).click();
+  await page.getByRole('button', {name:'Перенести черновик с устройства'}).click();
+  await expect(page.getByLabel('У меня уже получается')).toHaveValue('Черновик с устройства');
+  await expect(page.locator('#plan-status')).toHaveText('Черновик перенесён в аккаунт.');
   await page.getByLabel('Как меня зовут').fill('Игрок QA');
   await page.getByLabel('У меня уже получается').fill('Вижу партнёра');
   await page.getByLabel('Что попробую на тренировке').fill('Подниму голову перед пасом');
-  await page.getByRole('radio', {name: /Попробовать больше матчей/}).check();
-  await page.getByRole('button', {name: 'Сохранить мой план'}).click();
+  await page.getByRole('radio', {name:/Попробовать больше матчей/}).check();
+  await page.getByRole('button', {name:'Сохранить мой план'}).click();
   await expect(page.locator('#plan-status')).toHaveText('Твой план сохранён.');
-  const input = page.locator('#photo-input');
-  const photo = page.getByRole('img', {name: 'Фото игрока'});
-  await input.setInputFiles({
-    name: 'player.png', mimeType: 'image/png',
-    buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', 'base64')
+  expect(refreshed).toBe(true);
+  await page.locator('#photo-input').setInputFiles({
+    name:'player.png', mimeType:'image/png',
+    buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', 'base64')
   });
-  await expect(photo).toBeVisible();
+  await expect(page.getByRole('img', {name:'Фото игрока'})).toBeVisible();
   await page.reload();
-  await expect(page.getByLabel('Что попробую на тренировке')).toHaveValue('Подниму голову перед пасом');
-  await expect(page.getByRole('radio', {name: /Попробовать больше матчей/})).toBeChecked();
-  await expect(photo).toHaveAttribute('src', /^data:image\/jpeg;base64,/);
-  await input.setInputFiles({name: 'photo.svg', mimeType: 'image/svg+xml', buffer: Buffer.from('<svg/>')});
-  await expect(page.locator('#photo-status')).toContainText('JPG, PNG или WebP');
-  await expect(photo).toBeVisible();
-  await page.getByRole('button', {name: 'Удалить фото'}).click();
-  await page.reload();
-  await expect(photo).toHaveCount(0);
-  await expect(page.getByLabel('У меня уже получается')).toHaveValue('Вижу партнёра');
+  await expect(page.getByRole('radio', {name:/Попробовать больше матчей/})).toBeChecked();
+
+  const other = await browser.newContext();
+  try {
+    await mock(other);
+    const device = await other.newPage();
+    await device.goto(playerUrl);
+    await expect(device.getByLabel('Как меня зовут')).toBeHidden();
+    await credentials(device);
+    await device.getByRole('button', {name:'Войти', exact:true}).click();
+    const photo = device.getByRole('img', {name:'Фото игрока'});
+    await expect(photo).toHaveAttribute('src', /^data:image\/jpeg;base64,/);
+    await expect(device.getByLabel('Что попробую на тренировке')).toHaveValue('Подниму голову перед пасом');
+    await device.getByRole('button', {name:'Удалить фото'}).click();
+    await expect(photo).toHaveCount(0);
+    await expect(device.getByLabel('У меня уже получается')).toHaveValue('Вижу партнёра');
+    await device.getByRole('button', {name:'Выйти'}).click();
+    await expect(device.getByLabel('Как меня зовут')).toBeHidden();
+    await device.reload();
+    await expect(device.getByRole('button', {name:'Войти', exact:true})).toBeVisible();
+  } finally { await other.close(); }
 });

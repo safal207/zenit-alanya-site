@@ -70,8 +70,8 @@ body {
   background: var(--theme-surface);
 }
 .player-card h2 { margin: 0 0 12px; line-height: 1.2; }
-.player-plan label { display: grid; gap: 5px; min-width: 0; font-weight: 800; }
-.player-plan :is(input, textarea) {
+:is(.player-plan, .account-form) label { display: grid; gap: 5px; min-width: 0; font-weight: 800; }
+:is(.player-plan, .account-form) :is(input, textarea) {
   width: 100%;
   min-height: 44px;
   padding: 9px 12px;
@@ -113,3 +113,12 @@ body {
 @media (max-width: 360px) {
   .player-hero { grid-template-columns: minmax(0, 1fr); }
 }
+
+.player-hero.is-guest { grid-template-columns: minmax(0, 1fr); }
+.account-form { max-width: 540px; }
+.account-form p { margin: 0 0 14px; color: var(--theme-muted); }
+.account-form small { display: block; margin: 4px 0 12px; color: var(--theme-muted); }
+.account-status:not(:empty) { margin: 10px 0; }
+.player-tools { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.button.quiet { border-color: var(--theme-line); background: var(--theme-raised); color: var(--theme-ink); }
+.button:disabled, .file-pick:has(input:disabled) { cursor: wait; opacity: .65; }

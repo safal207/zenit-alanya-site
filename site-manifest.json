@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "ed6a3042603a69a570eae86617d9a7cfd9461369a1310e3e57b387b2c955c76e",
+  "source_artifact_digest": "b9f874f69b988aeebefdd5fe45b90c5a1b9d20afa131a8ff213a45501dd12be4",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -28,6 +28,7 @@
     "assets/media.js",
     "assets/minimal.css",
     "assets/older-play-ai.webp",
+    "assets/player-api.js",
     "assets/player-journey-v1.webp",
     "assets/player.css",
     "assets/player.js",
@@ -265,6 +266,11 @@
       "sha256": "2c749dea470efe415c792de050b18a323ccd4305607325cb1b006186d699a28e"
     },
     {
+      "path": "assets/player-api.js",
+      "bytes": 3836,
+      "sha256": "66afe114edce9da14228f4f7e21d23ece2dac210a14783cc29858210a0c0321a"
+    },
+    {
       "path": "assets/player-journey-v1.jpg",
       "bytes": 464505,
       "sha256": "cd450471d803b4a50de2f2b83627a593db55d27d9f4710ae5be7b8d086eed13d"
@@ -276,13 +282,13 @@
     },
     {
       "path": "assets/player.css",
-      "bytes": 4605,
-      "sha256": "a2191cbb444c9a1b586dfb583b27d17c4ec49e4d43a9eb31437ef8ac18ee685e"
+      "bytes": 5242,
+      "sha256": "35791a3eb85f003b14941c105ec4586f40a56b04c9d5349ee80713a13172a5cf"
     },
     {
       "path": "assets/player.js",
-      "bytes": 9649,
-      "sha256": "51226d2c39ee83a1437db2e042b5521e468fa060992d7bca41eaf32a7661edfb"
+      "bytes": 18216,
+      "sha256": "ebc39b287bdf26a512eecd1cd969073bff927577df49000358040405bf1fabb8"
     },
     {
       "path": "assets/stories.bundle.css",
@@ -486,8 +492,8 @@
     },
     {
       "path": "player.html",
-      "bytes": 6387,
-      "sha256": "b7995f955f12642d098a3c4f53ce684204d513737fde9b1bb4efc2846fb10d50"
+      "bytes": 8658,
+      "sha256": "7b1bc2119f8127417adc1b887a74b7caa537302ddf457260472979e2af82185a"
     },
     {
       "path": "stories.html",
