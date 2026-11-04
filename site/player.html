@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <meta http-equiv="Content-Security-Policy" content="connect-src 'none'; form-action 'none'; img-src 'self' data: blob:; object-src 'none'; base-uri 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-JSVOcb9J7ayIJza9Cihj7L2OrXX/WxMcTnx+RBhefog='; style-src 'self'; font-src 'self'; connect-src https://tqhewqpzpfviwhicsnzm.supabase.co; img-src 'self' data: blob:; form-action 'none'; object-src 'none'; base-uri 'none'">
   <meta name="theme-color" content="#f7fafc">
   <title>Мой футбол — Зенит Аланья</title>
   <link rel="icon" href="assets/club-logo.jpg">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/theme.css">
   <link rel="stylesheet" href="assets/player.css">
   <!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="assets/theme.js" defer></script>
+  <script src="assets/player-api.js" defer></script>
   <script src="assets/player.js" defer></script>
 </head>
 <body>
@@ -20,8 +21,8 @@
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><span data-theme-icon aria-hidden="true">☼</span><span data-theme-label>Светлая</span></button>
   </header>
   <main class="player-main">
-    <section class="player-hero" aria-labelledby="player-title">
-      <div class="player-avatar">
+    <section class="player-hero is-guest" id="player-hero" aria-labelledby="player-title">
+      <div class="player-avatar" id="player-avatar" hidden>
         <div id="avatar-placeholder" aria-hidden="true">
           <svg width="66" height="66" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="22" r="10"/><path d="M13 53c0-10 8-16 19-16s19 6 19 16"/></svg>
         </div>
@@ -39,11 +40,29 @@
           </label>
           <button id="photo-remove" class="button ghost" type="button" hidden data-copy="remove">Удалить фото</button>
         </div>
-        <p id="photo-note" class="player-note" data-copy="photoNote">Фото и план хранятся только в этом браузере. JPG, PNG или WebP до 12 МБ.</p>
+        <p id="photo-note" class="player-note" data-copy="photoNote" hidden>Фото видно только в твоём аккаунте. JPG, PNG или WebP до 12 МБ.</p>
         <p id="photo-status" class="player-status" role="status"></p>
       </div>
     </section>
-    <noscript><p>Включите JavaScript, чтобы сохранить фото и план в этом браузере.</p></noscript>
+    <noscript><p>Включите JavaScript, чтобы войти в личный кабинет.</p></noscript>
+    <p id="account-status" class="player-status account-status" role="status"></p>
+    <form id="auth-form" class="player-card account-form" aria-labelledby="account-title" hidden>
+      <h2 id="account-title">Войти в кабинет</h2>
+      <p id="account-intro">Войди, чтобы открыть своё фото и футбольный план.</p>
+      <label><span data-copy="login">Логин</span><input name="login" type="text" required minlength="3" maxlength="24" pattern="[A-Za-z0-9][A-Za-z0-9_\-]{2,23}" autocomplete="username" autocapitalize="off" spellcheck="false" aria-describedby="login-note"></label>
+      <small id="login-note" data-copy="loginNote">От 3 до 24 знаков. Латинские буквы, цифры, дефис или подчёркивание.</small>
+      <label><span data-copy="password">Пароль</span><input name="password" type="password" required minlength="12" maxlength="72" autocomplete="current-password"></label>
+      <small data-copy="passwordNote">От 12 символов. Сохрани пароль, чтобы войти с другого устройства.</small>
+      <label id="invite-field" hidden><span data-copy="invite">Одноразовый код клуба</span><input name="invite" type="text" minlength="22" maxlength="22" pattern="[A-Za-z0-9_\-]{22}" autocomplete="off" autocapitalize="off" spellcheck="false" disabled></label>
+      <div class="save-row">
+        <button id="auth-submit" type="submit" class="button save">Войти</button>
+        <button id="auth-switch" type="button" class="button quiet">У меня есть код клуба</button>
+      </div>
+    </form>
+    <div id="player-tools" class="player-tools" hidden>
+      <button id="import-draft" class="button quiet" type="button" hidden data-copy="importDraft">Перенести черновик с устройства</button>
+      <button id="signout" class="button quiet" type="button" data-copy="signout">Выйти</button>
+    </div>
     <form id="player-form" aria-labelledby="plan-title" hidden>
       <section class="player-card player-plan">
         <p class="player-kicker" data-copy="step">01 · Мой следующий шаг</p>
@@ -65,7 +84,7 @@
         </div>
       </fieldset>
       <div class="save-row">
-        <button class="button save" type="submit" data-copy="save">Сохранить мой план</button>
+        <button id="save-plan" class="button save" type="submit" data-copy="save">Сохранить мой план</button>
         <p id="plan-status" class="player-status" role="status"></p>
       </div>
     </form>

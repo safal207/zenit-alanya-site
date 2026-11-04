@@ -1,0 +1,4 @@
+project_id = "zenit-alanya-player"
+
+[functions.player-account]
+verify_jwt = false
