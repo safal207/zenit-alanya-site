@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "cfe2dae35d4cda6296b22bd7519a95ec129a5070",
-  "source_artifact_digest": "4e41de2bf7b0fab7381828db47533700f8497f260d8c66fee374aacaa2254b1d",
+  "site_source_commit": "f6135934a27e39e60125be28f4872a019b9faa5d",
+  "source_artifact_digest": "23e40149bfc872d944917fb3c1664de22028cfc632a7499cea4cb51fea148aee",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -66,8 +66,8 @@
     },
     {
       "path": "assets/chess-app.js",
-      "bytes": 19736,
-      "sha256": "36a4ef35d08b3158a9b80aae5904ebc4a210255009ab2903dd1a330b5eee7618"
+      "bytes": 20748,
+      "sha256": "43321d4d03092808e8598d8179ca93a062d2f819e044d145cc2a7005bb2e6260"
     },
     {
       "path": "assets/chess-bots.js",

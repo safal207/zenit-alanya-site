@@ -78,6 +78,7 @@ test('Chess beginner replies without Stockfish and mentor reveals a lesson in st
   const hint = page.locator('#hint-move');
   await hint.click();
   await expect(page.locator('.square.hint')).toHaveCount(0);
+  await expect(page.locator('#coach-message')).toContainText('Поищи поле для шаха');
   await hint.click();
   await expect(page.locator('.square.hint')).toHaveCount(1);
   await expect(page.locator('[data-square=g6]')).toHaveClass(/\bhint\b/);

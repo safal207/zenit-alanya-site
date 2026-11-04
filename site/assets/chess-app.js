@@ -1,12 +1,12 @@
 import { Chess } from './vendor/chess/chess.js';
 import { BOT_LEVELS, chooseStarterMove } from './chess-bots.js';
 const $=s=>document.querySelector(s),names={p:'пешка',n:'конь',b:'слон',r:'ладья',q:'ферзь',k:'король'},lessons={
-develop:{fen:'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',goal:'Выведи коня ближе к центру, чтобы он контролировал больше полей.',solutions:['b1c3','g1f3'],hint:'Конь на c3 или f3 помогает контролировать центр и готовит развитие остальных фигур.',title:'Развивай фигуры.'},
-defend:{fen:'4r1k1/8/8/8/8/8/2B5/4K3 w - - 0 1',goal:'Чёрная ладья дала шах по вертикали e. Уведи короля с этой линии.',solutions:['e1d1','e1f1'],hint:'На d1 и f1 король уходит с линии ладьи.',title:'Защити короля.'},
-mate:{fen:'7k/8/5KQ1/8/8/8/8/8 w - - 0 1',goal:'Поставь мат чёрному королю за один ход. Король должен помогать ферзю.',solutions:['g6g7'],hint:'Ферзь идёт на g7: король f6 защищает его, а у чёрного короля нет безопасного поля.',title:'Мат — когда от шаха нет защиты.'},
-fork:{fen:'2r3k1/8/8/5N2/8/8/8/6K1 w - - 0 1',goal:'Найди ход конём, который одновременно атакует короля и ладью.',solutions:['f5e7'],hint:'Конь на e7 даёт шах королю g8 и одновременно атакует ладью c8.',title:'Две угрозы одним ходом.'},
-capture:{fen:'4k3/8/8/8/4q3/8/4R3/4K3 w - - 0 1',goal:'Посмотри, какую дорогую фигуру можно забрать без потери своей.',solutions:['e2e4'],hint:'Ладья e2 может забрать ферзя на e4. Проверь, защищено ли это поле.',title:'Сначала проверь незащищённые фигуры.'},
-castle:{fen:'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1',goal:'Сделай рокировку. Здесь и короткая, и длинная рокировка разрешены правилами.',solutions:['e1g1','e1c1'],hint:'Выбери короля e1 и поле g1 или c1. Ладья переместится вместе с королём.',title:'Король и ладья делают общий ход.'}
+develop:{fen:'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',goal:'Выведи коня ближе к центру, чтобы он контролировал больше полей.',idea:'Сравни, сколько полей конь контролирует у края доски и ближе к центру.',solutions:['b1c3','g1f3'],hint:'Конь на c3 или f3 помогает контролировать центр и готовит развитие остальных фигур.',title:'Развивай фигуры.'},
+defend:{fen:'4r1k1/8/8/8/8/8/2B5/4K3 w - - 0 1',goal:'Чёрная ладья дала шах по вертикали e. Уведи короля с этой линии.',idea:'Проследи линию от чёрной ладьи к королю. Проверь соседние поля за пределами этой линии.',solutions:['e1d1','e1f1'],hint:'На d1 и f1 король уходит с линии ладьи.',title:'Защити короля.'},
+mate:{fen:'7k/8/5KQ1/8/8/8/8/8 w - - 0 1',goal:'Поставь мат чёрному королю за один ход. Король должен помогать ферзю.',idea:'Ферзь может закрыть соседние поля. Поищи поле для шаха, которое защищает белый король.',solutions:['g6g7'],hint:'Ферзь идёт на g7: король f6 защищает его, а у чёрного короля нет безопасного поля.',title:'Мат — когда от шаха нет защиты.'},
+fork:{fen:'2r3k1/8/8/5N2/8/8/8/6K1 w - - 0 1',goal:'Найди ход конём, который одновременно атакует короля и ладью.',idea:'Проверь прыжки коня с шахом. С какого поля он сможет атаковать и ладью?',solutions:['f5e7'],hint:'Конь на e7 даёт шах королю g8 и одновременно атакует ладью c8.',title:'Две угрозы одним ходом.'},
+capture:{fen:'4k3/8/8/8/4q3/8/4R3/4K3 w - - 0 1',goal:'Посмотри, какую дорогую фигуру можно забрать без потери своей.',idea:'Найди самую ценную чёрную фигуру и проверь, кто защищает её поле.',solutions:['e2e4'],hint:'Ладья e2 может забрать ферзя на e4. Проверь, защищено ли это поле.',title:'Сначала проверь незащищённые фигуры.'},
+castle:{fen:'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1',goal:'Сделай рокировку. Здесь и короткая, и длинная рокировка разрешены правилами.',idea:'При рокировке король перемещается на две клетки в сторону ладьи.',solutions:['e1g1','e1c1'],hint:'Выбери короля e1 и поле g1 или c1. Ладья переместится вместе с королём.',title:'Король и ладья делают общий ход.'}
 };
 let game=new Chess(),selected=null,focusSquare='e2',legal=[],flipped=false,mode='play',lastMove=null,hintSquares=[],pendingPromotion=null,lessonDone=false,engineReady=false,worker,activeJob=null,generation=0,readyResolve,readyReject;
 const lessonSelect = $('#lesson-select');
@@ -34,10 +34,11 @@ function resetHint() {
 }
 function renderPractice() {
   const bot = BOT_LEVELS[levelSelect.value];
-  $('#opponent-name').textContent = bot.name;
+  $('#opponent-name').textContent = mode === 'learn' ? 'Чёрные' : bot.name;
   $('#bot-description').textContent = bot.description;
   $('#lesson-progress').textContent = 'Пройдено ' + solved.size + ' из ' + lessonOrder.length;
   $('#next-lesson').disabled = !lessonDone || solved.size === lessonOrder.length;
+  $('#new-game').textContent = mode === 'learn' ? 'Сначала' : 'Новая партия';
   const hint = $('#hint-move');
   hint.textContent = ['✦ Подсказка', 'Показать фигуру', 'Показать ход', 'Ход показан'][hintStep];
   hint.disabled = hintPending || lessonDone || game.turn() !== 'w' || game.isGameOver() || hintStep === 3;
@@ -51,7 +52,7 @@ function choose(square){if(game.isGameOver()||lessonDone||mode==='play'&&game.tu
 function move(from,to,promotion='q'){let result;try{result=game.move({from,to,promotion});}catch{notice('Этот ход не разрешён правилами. Выбери подсвеченное поле.');return;}selected=null;legal=[];resetHint();lastMove=result;notice('');if(mode==='learn'){const lesson=lessons[$('#lesson-select').value],uci=from+to+(result.promotion||'');if(lesson.solutions.includes(uci)){lessonDone=true;solved.add(lessonSelect.value);save(progressKey,JSON.stringify([...solved]));$('#coach-heading').textContent='Верно! '+lesson.title;$('#coach-message').textContent=lesson.hint;$('#engine-line').textContent='Решение: '+result.san;notice('Отлично! Выбери следующую задачу или начни партию.');}else{game.undo();lastMove=null;$('#coach-heading').textContent='Ход законный — попробуй найти тактику.';$('#coach-message').textContent=lesson.goal;notice('Подумай о шахах, взятиях и одновременных угрозах.');}render();return;}$('#coach-heading').textContent=result.captured?'Взятие: '+names[result.captured]+'.':'Ход '+result.san;$('#coach-message').textContent=result.san.includes('+')?'Ты дал шах. Соперник обязан защитить короля.':'Теперь посмотри, какие поля контролирует твоя фигура и что может ответить соперник.';render();if(!game.isGameOver()&&game.turn()==='b')search('move');}
 function positionIdea() {
   if (game.isCheck()) return 'Найди безопасное поле, возьми атакующую фигуру или закрой линию шаха.';
-  if (game.moves({ verbose: true }).some(move => move.captured)) return 'Проверь доступные взятия и чем может ответить соперник.';
+  if (game.moves({ verbose: true }).some(move => move.isCapture() || move.isEnPassant())) return 'Проверь доступные взятия и чем может ответить соперник.';
   if (game.moveNumber() <= 5) return 'Посмотри, какую фигуру можно развить к центру.';
   return 'Сначала проверь шахи и угрозы. Как изменится позиция после твоего хода?';
 }
@@ -79,7 +80,7 @@ function showHint() {
   if (hintStep === 0) {
     hintStep = 1;
     $('#coach-heading').textContent = 'Начни с идеи.';
-    $('#coach-message').textContent = mode === 'learn' ? lessons[lessonSelect.value].goal : positionIdea();
+    $('#coach-message').textContent = mode === 'learn' ? lessons[lessonSelect.value].idea : positionIdea();
     render();
   } else if (hintStep === 1) {
     if (mode === 'learn') revealHint(lessons[lessonSelect.value].solutions[0], false);
