@@ -95,3 +95,36 @@ test('Chess beginner replies without Stockfish and mentor reveals a lesson in st
   await page.locator('[data-chess-mode=learn]').click();
   await expect(page.locator('#lesson-progress')).toHaveText('Пройдено 1 из 6');
 });
+
+test('Player plan and photo stay in the browser across reloads and can be removed', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.goto('./');
+  await page.locator('.menu-toggle').click();
+  await page.locator('#mobile-nav').getByRole('link', {name: 'Мой футбол'}).click();
+  await expect(page).toHaveURL(/player\.html$/);
+  await expect(page.getByRole('heading', {name: 'Мой футбол'})).toBeVisible();
+  await page.getByLabel('Как меня зовут').fill('Игрок QA');
+  await page.getByLabel('У меня уже получается').fill('Вижу партнёра');
+  await page.getByLabel('Что попробую на тренировке').fill('Подниму голову перед пасом');
+  await page.getByRole('radio', {name: /Попробовать больше матчей/}).check();
+  await page.getByRole('button', {name: 'Сохранить мой план'}).click();
+  await expect(page.locator('#plan-status')).toHaveText('Твой план сохранён.');
+  const input = page.locator('#photo-input');
+  const photo = page.getByRole('img', {name: 'Фото игрока'});
+  await input.setInputFiles({
+    name: 'player.png', mimeType: 'image/png',
+    buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', 'base64')
+  });
+  await expect(photo).toBeVisible();
+  await page.reload();
+  await expect(page.getByLabel('Что попробую на тренировке')).toHaveValue('Подниму голову перед пасом');
+  await expect(page.getByRole('radio', {name: /Попробовать больше матчей/})).toBeChecked();
+  await expect(photo).toHaveAttribute('src', /^data:image\/jpeg;base64,/);
+  await input.setInputFiles({name: 'photo.svg', mimeType: 'image/svg+xml', buffer: Buffer.from('<svg/>')});
+  await expect(page.locator('#photo-status')).toContainText('JPG, PNG или WebP');
+  await expect(photo).toBeVisible();
+  await page.getByRole('button', {name: 'Удалить фото'}).click();
+  await page.reload();
+  await expect(photo).toHaveCount(0);
+  await expect(page.getByLabel('У меня уже получается')).toHaveValue('Вижу партнёра');
+});

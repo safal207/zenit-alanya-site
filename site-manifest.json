@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "a084b59a9054feef1133cddcd834393d696e89f17c43c0f11d4efb6dc5bf1be7",
+  "source_artifact_digest": "0540a3b419dcc535c72fcd14eeb9f9187e58b7e72644462071525a5bc7958bda",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -29,6 +29,8 @@
     "assets/minimal.css",
     "assets/older-play-ai.webp",
     "assets/player-journey-v1.webp",
+    "assets/player.css",
+    "assets/player.js",
     "assets/stories.bundle.css",
     "assets/style.css",
     "assets/theme.css",
@@ -38,6 +40,7 @@
     "journey.html",
     "play/chess.html",
     "play/football.html",
+    "player.html",
     "stories.html"
   ],
   "files": [
@@ -48,8 +51,8 @@
     },
     {
       "path": "assets/academy.js",
-      "bytes": 34243,
-      "sha256": "f3cdc7f71eabb276fd707b05db123539d8e0c31ba858aee09cac3e255620d969"
+      "bytes": 34691,
+      "sha256": "fece2dd3e3a8d8e7c05b200656d68a6b911daafccf77ef0164858d7763036dbc"
     },
     {
       "path": "assets/app.js",
@@ -272,6 +275,16 @@
       "sha256": "c13d874a14399726d3b386dae6df7b02217b64d3e6d114435c640530cfc7531f"
     },
     {
+      "path": "assets/player.css",
+      "bytes": 4605,
+      "sha256": "a2191cbb444c9a1b586dfb583b27d17c4ec49e4d43a9eb31437ef8ac18ee685e"
+    },
+    {
+      "path": "assets/player.js",
+      "bytes": 9649,
+      "sha256": "51226d2c39ee83a1437db2e042b5521e468fa060992d7bca41eaf32a7661edfb"
+    },
+    {
       "path": "assets/stories.bundle.css",
       "bytes": 22521,
       "sha256": "9ee0de4d3f199036cfd82e34444bdbfc7cc55436f9b592e3b03d0ddfa91f0d79"
@@ -453,8 +466,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 44827,
-      "sha256": "085c91a00bfd62e81b49793044ca4d7d18b0347b772235bf1ff8c3213f5f08ef"
+      "bytes": 45120,
+      "sha256": "61b003ce7f1393fb8ecce8cd4774c7e93dcb327a236efda106c0b4b4117f2358"
     },
     {
       "path": "journey.html",
@@ -470,6 +483,11 @@
       "path": "play/football.html",
       "bytes": 7374,
       "sha256": "1f92dd3329959cceafa00c92fc9f931bbe964efcf7c408d3b7115f2b3c1c3f2f"
+    },
+    {
+      "path": "player.html",
+      "bytes": 6387,
+      "sha256": "b7995f955f12642d098a3c4f53ce684204d513737fde9b1bb4efc2846fb10d50"
     },
     {
       "path": "stories.html",

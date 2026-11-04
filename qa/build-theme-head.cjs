@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'../dist');
 const init="(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();";
-for(const name of ['index.html','stories.html','journey.html','play/chess.html','play/football.html']){
+for(const name of ['index.html','stories.html','journey.html','player.html','play/chess.html','play/football.html']){
  const file=path.join(root,name),old=fs.readFileSync(file,'utf8');
  const expression=/(?:<!-- theme-init:start -->[\s\S]*?<!-- theme-init:end -->)?<script src="((?:\.\.\/)?assets\/theme.js)"(?: defer)?><\/script>/;
  if(!expression.test(old))throw Error('Theme script missing from '+name);
