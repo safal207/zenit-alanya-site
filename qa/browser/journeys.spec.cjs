@@ -98,9 +98,7 @@ test('Chess beginner replies without Stockfish and mentor reveals a lesson in st
 
 test('Player plan and photo stay in the browser across reloads and can be removed', async ({page}) => {
   await page.setViewportSize({width: 390, height: 844});
-  await page.goto('./');
-  await page.locator('.menu-toggle').click();
-  await page.locator('#mobile-nav').getByRole('link', {name: 'Мой футбол'}).click();
+  await page.goto('player.html');
   await expect(page).toHaveURL(/player\.html$/);
   await expect(page.getByRole('heading', {name: 'Мой футбол'})).toBeVisible();
   await page.getByLabel('Как меня зовут').fill('Игрок QA');
