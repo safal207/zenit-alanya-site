@@ -37,17 +37,18 @@ test('Enquiry: editing a draft uses current values without mutating answers',()=
 test('Coach cards keep the named person, original portrait and source together',()=>{
   const crypto=require('node:crypto'),html=fs.readFileSync('dist/index.html','utf8');
   const checks=[
-    ['Таисия Кирилловна Зиновьева','coach-zinovyeva.jpg','DLFBqE2qP-5','75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b','taisiya-young-ai.webp'],
-    ['Андрей Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e','andrey-game-ai.webp']
+    ['Таисия Кирилловна Зиновьева','coach-zinovyeva.jpg','DLFBqE2qP-5','75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b'],
+    ['Андрей Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e']
   ];
   const cards=[...html.matchAll(/<article class="coach-card">([\s\S]*?)<\/article>/g)].map(x=>x[1]);
   assert.equal(cards.length,2);
-  for(const [name,file,source,sha,illustration] of checks){
+  for(const [name,file,source,sha] of checks){
     const card=cards.find(s=>s.includes(name));assert.ok(card,name);
-    assert.ok(card.includes(file)&&card.includes(source),name+' portrait and source');
-    assert.ok(card.includes(illustration)&&card.includes('data-ac="coachIllustration"')&&card.includes('созданная ИИ'),name+' generated image is disclosed');
+    assert.ok(card.includes('<img src="assets/'+file+'"')&&card.includes(source),name+' original portrait and source');
+    assert.ok(!card.includes('-ai.webp'),name+' coach portrait must be the original');
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync('dist/assets/'+file)).digest('hex'),sha);
   }
+  assert.match(html,/<figure class="young-play">[\s\S]*?young-play-ai\.webp[\s\S]*?Иллюстрация, созданная ИИ[\s\S]*?<\/figure>/);
 });
 const F=require('../dist/assets/football-core.js'),M=require('../dist/assets/club-media.js');
 test('Football: screen-up follows camera toward the pitch',()=>{const v=F.inputVector(0,1,{x:23,z:-27},{x:0,z:0});assert.ok(v.x<0&&v.z>0);assert.ok(Math.abs(Math.hypot(v.x,v.z)-1)<1e-9);});
