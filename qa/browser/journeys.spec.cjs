@@ -28,8 +28,26 @@ test('Denied clipboard permission selects the complete draft for manual copy',as
   await page.addInitScript(()=>{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new DOMException('Denied','NotAllowedError');}}});});await page.goto('./');await draft(page);await page.locator('#copy-button').click();await expect(page.locator('#copy-status')).not.toBeEmpty();expect(await page.evaluate(()=>window.getSelection().toString())).toBe(await page.locator('#draft-text').textContent());
 });
 
-test('Contact destinations match both public administrator numbers',async({page})=>{
-  await page.goto('./');await draft(page);for(const [who,number]of [['anastasia','905369424842'],['anna','905388899272']]){const person=page.locator(`#message-dialog [data-contact-person=${who}]`);await expect(person.locator('.contact-action-call')).toHaveAttribute('href','tel:+'+number);await expect(person.locator('.contact-action-telegram')).toHaveAttribute('href','https://t.me/+'+number);await expect(person.locator('.contact-action-whatsapp')).toHaveAttribute('href','https://wa.me/'+number);}
+test('All contact surfaces and localized call buttons lead only to Anna',async({page})=>{
+  await page.goto('./');
+  await expect(page.locator('[data-contact-person]')).toHaveCount(3);
+  await expect(page.locator('[data-contact-person=anastasia], a[href*="905369424842"]')).toHaveCount(0);
+  for(const scope of ['#contacts','#contact-panel','#message-dialog']){
+    const people=page.locator(scope+' [data-contact-person]');
+    await expect(people).toHaveCount(1);
+    await expect(people).toHaveAttribute('data-contact-person','anna');
+    await expect(people.locator('.contact-action-call')).toHaveAttribute('href','tel:+905388899272');
+    await expect(people.locator('.contact-action-telegram')).toHaveAttribute('href','https://t.me/+905388899272');
+    await expect(people.locator('.contact-action-whatsapp')).toHaveAttribute('href','https://wa.me/905388899272');
+  }
+  for(const [lang,label]of [['en','Call Anna ↗'],['tr','Anna’yı ara ↗'],['ru','Позвонить Анне ↗']]){
+    await page.locator(`[data-lang=${lang}]`).click();
+    await expect(page.locator('[data-i18n=callAdminNow]')).toHaveText(label);
+    await expect(page.locator('[data-i18n=callAdminNow]')).toHaveAttribute('href','tel:+905388899272');
+    await expect(page.locator('body')).not.toContainText(/Анастас|Anastasia|536 942/);
+  }
+  await draft(page);
+  await expect(page.locator('#message-dialog [data-i18n=anna]')).toBeVisible();
 });
 
 test('RU/TR/EN, menu keyboard and saved theme across routes',async({page})=>{

@@ -1,10 +1,11 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "b34cb7e99a8848365c09be54c610aaf817ac4bb550d6a110e5117bafee466bc0",
+  "source_artifact_digest": "c56993c3e8e7738b02552bb77159302a6697ed1a8032b4f64b4abc138c7359fb",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
+    "assets/app.js",
     "assets/before-training-ai.webp",
     "assets/chess-app.css",
     "assets/chess-app.js",
@@ -58,8 +59,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 52838,
-      "sha256": "c707fe60884832ead872bf62fd4a81b76bb2c6d4ef27cbea09828f192ab9621b"
+      "bytes": 52691,
+      "sha256": "a3d5d28d36e91a597812e7e40ed834701b16195b1a6b61e253580f6b557c537b"
     },
     {
       "path": "assets/before-training-ai.webp",
@@ -478,8 +479,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 45364,
-      "sha256": "eb5f286c7315b5a2fb3b01614ab8c909668b39bd6290b2fdb397d9c78c6cd0c2"
+      "bytes": 42445,
+      "sha256": "da6d1babe549908d873a7e266a894e930a2b107ac0a891cde8bf01632d776060"
     },
     {
       "path": "journey.html",
