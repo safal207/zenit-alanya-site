@@ -189,3 +189,16 @@ footer{border-top:1px solid #dbe7ed}
 
 /* Keep the youngest players' image prominent and show the two new scenes below. */
 .training-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}.training-gallery .young-play{margin:0;min-width:0}.training-gallery .young-play:first-child{grid-column:auto}.training-gallery .gallery-secondary img{aspect-ratio:16/9;object-fit:cover}@media(max-width:700px){.training-gallery{grid-template-columns:minmax(0,1fr);gap:24px}.training-gallery .young-play:first-child{grid-column:auto}}
+
+/* A direct account entry remains visible beside the menu on every screen. */
+.header-account{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 12px;border:1px solid var(--theme-line);border-radius:8px;background:var(--theme-soft);color:var(--theme-accent);font-size:12px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.header-account svg{flex:none}
+.mobile-nav .mobile-account{padding:12px;border-radius:8px;background:var(--theme-soft);color:var(--theme-accent)}
+@media(max-width:1250px){.header-cta{display:none}}
+@media(max-width:600px){
+ .header{flex-wrap:wrap;gap:8px}
+ .header .brand{order:0}
+ .header-actions{order:1}
+ .header-account{order:2;flex-basis:100%}
+ html{scroll-padding-top:124px}
+}

@@ -293,6 +293,19 @@ footer{border-top:1px solid #dbe7ed}
 
 /* Keep the youngest players' image prominent and show the two new scenes below. */
 .training-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:30px}.training-gallery .young-play{margin:0;min-width:0}.training-gallery .young-play:first-child{grid-column:auto}.training-gallery .gallery-secondary img{aspect-ratio:16/9;object-fit:cover}@media(max-width:700px){.training-gallery{grid-template-columns:minmax(0,1fr);gap:24px}.training-gallery .young-play:first-child{grid-column:auto}}
+
+/* A direct account entry remains visible beside the menu on every screen. */
+.header-account{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 12px;border:1px solid var(--theme-line);border-radius:8px;background:var(--theme-soft);color:var(--theme-accent);font-size:12px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.header-account svg{flex:none}
+.mobile-nav .mobile-account{padding:12px;border-radius:8px;background:var(--theme-soft);color:var(--theme-accent)}
+@media(max-width:1250px){.header-cta{display:none}}
+@media(max-width:600px){
+ .header{flex-wrap:wrap;gap:8px}
+ .header .brand{order:0}
+ .header-actions{order:1}
+ .header-account{order:2;flex-basis:100%}
+ html{scroll-padding-top:124px}
+}
 /* journey.css */
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--theme-bg,#fff);color:var(--theme-ink,#07344b);font:15px/1.7 Manrope,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;max-width:100%}[hidden]{display:none!important}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #e9a622;outline-offset:4px}h1,h2,h3,p{margin:0}button{color:inherit} 
 .journal-header{max-width:1380px;margin:auto;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--theme-line)}.journal-brand{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:800;line-height:1.5;letter-spacing:1.4px}.journal-brand img{width:43px;height:43px;border-radius:3px}.journal-brand small{display:block;color:var(--theme-muted);font-size:9px;font-weight:500;letter-spacing:2px}.journal-actions{display:flex;align-items:center;gap:24px}.journal-home{font-size:12px;font-weight:700;min-height:44px;display:flex;align-items:center}.journal-languages{display:flex;gap:2px}.journal-languages button{min-width:32px;min-height:44px;font-size:10px;font-weight:800;border:0;border-bottom:2px solid transparent;background:none;color:var(--theme-muted)}.journal-languages button[aria-pressed=true]{border-color:var(--theme-accent);color:var(--theme-accent)}

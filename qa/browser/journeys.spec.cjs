@@ -51,7 +51,7 @@ test('All contact surfaces and localized call buttons lead only to Anna',async({
 });
 
 test('RU/TR/EN, menu keyboard and saved theme across routes',async({page})=>{
-  await page.setViewportSize({width:390,height:844});await page.goto('./');for(const lang of ['en','tr','ru']){await page.locator(`[data-lang=${lang}]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);await expect(page.locator(`[data-lang=${lang}]`)).toHaveAttribute('aria-pressed','true');expect(await page.locator('[data-journey-link]').first().getAttribute('href')).toContain('lang='+lang);}
+  await page.setViewportSize({width:390,height:844});await page.goto('./');for(const lang of ['en','tr','ru']){await page.locator(`[data-lang=${lang}]`).click();await expect(page.locator('html')).toHaveAttribute('lang',lang);await expect(page.locator(`[data-lang=${lang}]`)).toHaveAttribute('aria-pressed','true');expect(await page.locator('[data-journey-link]').first().getAttribute('href')).toContain('lang='+lang);expect(await page.locator('.header-account').getAttribute('href')).toContain('lang='+lang);}
   await page.locator('.menu-toggle').click();await expect(page.locator('#mobile-nav')).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('#mobile-nav')).not.toBeVisible();await expect(page.locator('.menu-toggle')).toBeFocused();await theme(page,'dark');await page.reload();await expect(page.locator('html')).toHaveAttribute('data-theme','dark');await page.goto('journey.html');await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
 });
 
@@ -155,9 +155,10 @@ test('Player account is standalone and restores the photo and plan after sign-in
   await page.setViewportSize({width:390, height:844});
   await mock(page.context());
   await page.goto('./');
-  await expect(page.locator('a[href*="player.html"]')).toHaveCount(0);
+  await expect(page.locator('[data-player-link]')).toHaveCount(2);
+  await expect(page.locator('.header-account')).toBeVisible();
   await page.evaluate(() => localStorage.setItem('zenit-alanya-player-v1', JSON.stringify({strength:'Черновик с устройства'})));
-  await page.goto('player.html');
+  await page.locator('.header-account').click();
   const playerUrl = page.url();
   await expect(page.getByLabel('Как меня зовут')).toBeHidden();
   await page.locator('[data-path-step=international]').click();
