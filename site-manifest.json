@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "c56993c3e8e7738b02552bb77159302a6697ed1a8032b4f64b4abc138c7359fb",
+  "source_artifact_digest": "933d5b15475e1259c91344ef31ffdd661ba7e8144866b1d524e219fd7c273101",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -32,6 +32,7 @@
     "assets/older-play-ai.webp",
     "assets/player-api.js",
     "assets/player-journey-v1.webp",
+    "assets/player-path.js",
     "assets/player.css",
     "assets/player.js",
     "assets/stories.bundle.css",
@@ -274,8 +275,8 @@
     },
     {
       "path": "assets/player-api.js",
-      "bytes": 3836,
-      "sha256": "66afe114edce9da14228f4f7e21d23ece2dac210a14783cc29858210a0c0321a"
+      "bytes": 3849,
+      "sha256": "dbde90c0e855ca1bddec4a94a501722cf7d2c25d22f4e339fa966be56077c7d2"
     },
     {
       "path": "assets/player-journey-v1.jpg",
@@ -288,14 +289,19 @@
       "sha256": "c13d874a14399726d3b386dae6df7b02217b64d3e6d114435c640530cfc7531f"
     },
     {
+      "path": "assets/player-path.js",
+      "bytes": 24408,
+      "sha256": "2dbccd1627b8f6760bafeb7211fbab279712f9454041fecac69a3be774563e85"
+    },
+    {
       "path": "assets/player.css",
-      "bytes": 5242,
-      "sha256": "35791a3eb85f003b14941c105ec4586f40a56b04c9d5349ee80713a13172a5cf"
+      "bytes": 8959,
+      "sha256": "15700fbe360a59a658a05d14642d07e4a62c5ca035f1dd1f09ecb085133b3195"
     },
     {
       "path": "assets/player.js",
-      "bytes": 18216,
-      "sha256": "ebc39b287bdf26a512eecd1cd969073bff927577df49000358040405bf1fabb8"
+      "bytes": 19094,
+      "sha256": "7fc7cb906e590460e85f3564d940f73371cc5f6e764bf826518f93e2a7c1227c"
     },
     {
       "path": "assets/stories.bundle.css",
@@ -499,8 +505,8 @@
     },
     {
       "path": "player.html",
-      "bytes": 8658,
-      "sha256": "7b1bc2119f8127417adc1b887a74b7caa537302ddf457260472979e2af82185a"
+      "bytes": 18582,
+      "sha256": "d8c557228e3abf86ea177abaead2cb75622bd7777bd00a95b1b063066320927b"
     },
     {
       "path": "stories.html",

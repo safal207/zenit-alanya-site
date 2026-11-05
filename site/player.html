@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/player.css">
   <!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="assets/theme.js" defer></script>
   <script src="assets/player-api.js" defer></script>
+  <script src="assets/player-path.js" defer></script>
   <script src="assets/player.js" defer></script>
 </head>
 <body>
@@ -59,6 +60,29 @@
         <button id="auth-switch" type="button" class="button quiet">У меня есть код клуба</button>
       </div>
     </form>
+    <section id="path-overview" class="player-card path-overview" aria-labelledby="path-title">
+      <p class="player-kicker" data-path-copy="eyebrow">ПУТЬ ИГРОКА</p>
+      <h2 id="path-title" data-path-copy="title">Мой путь в футболе</h2>
+      <p class="path-intro" data-path-copy="intro">У каждого свой темп. Выбери интересный шаг и обсуди подготовку с тренером.</p>
+      <div class="path-layout">
+        <ol class="path-steps"><li><button type="button" data-path-step="start" aria-controls="path-detail" aria-pressed="true"><b aria-hidden="true">01</b><span>Начинаю играть</span></button></li>
+<li><button type="button" data-path-step="team" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">02</b><span>Играю за команду</span></button></li>
+<li><button type="button" data-path-step="away" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">03</b><span>Мой первый выезд</span></button></li>
+<li><button type="button" data-path-step="international" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">04</b><span>Международный турнир</span></button></li>
+<li><button type="button" data-path-step="trial" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">05</b><span>Готовлюсь к просмотру</span></button></li>
+<li><button type="button" data-path-step="academy" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">06</b><span>Играю в академии</span></button></li>
+<li><button type="button" data-path-step="adult" aria-controls="path-detail" aria-pressed="false"><b aria-hidden="true">07</b><span>Взрослый футбол</span></button></li></ol>
+        <article id="path-detail" class="path-detail" aria-labelledby="path-step-title">
+          <span id="path-number" class="path-number" aria-hidden="true">01</span>
+          <h3 id="path-step-title">Начинаю играть</h3>
+          <p id="path-step-intro">Осваиваюсь с мячом и знакомлюсь с командой.</p>
+          <h4 data-path-copy="progress">Как увижу прогресс</h4><p id="path-step-progress"></p>
+          <h4 data-path-copy="question">Что спрошу у тренера</h4><p id="path-step-question"></p>
+          <button id="path-pick" type="button" class="button save" data-path-copy="pick">Сделать моей целью</button>
+        </article>
+      </div>
+      <p class="path-note" data-path-copy="model">Ориентиры развития. Поездка, просмотр, зачисление и контракт — отдельные решения клуба.</p>
+    </section>
     <div id="player-tools" class="player-tools" hidden>
       <button id="import-draft" class="button quiet" type="button" hidden data-copy="importDraft">Перенести черновик с устройства</button>
       <button id="signout" class="button quiet" type="button" data-copy="signout">Выйти</button>
@@ -73,8 +97,28 @@
           <label><span data-copy="goal">Что попробую на тренировке</span><textarea name="goal" maxlength="180" rows="2" data-placeholder="goalExample" placeholder="Например, поднять голову перед приёмом мяча"></textarea></label>
         </div>
       </section>
+      <section class="player-card path-plan player-plan" aria-labelledby="path-plan-title">
+        <h2 id="path-plan-title" data-path-copy="plan">02 · Подготовка к следующему шагу</h2>
+        <p class="path-intro" data-path-copy="planIntro">Это твой план для разговора с тренером. Отметки ниже — твоя самооценка.</p>
+        <p id="path-summary" class="path-summary"></p><p id="path-review-summary" class="path-note"></p>
+        <div class="plan-fields">
+          <label><span data-path-copy="stage">Моя ближайшая цель</span><select name="journey_stage"><option value="" data-path-copy="emptyStage">Выбрать вместе с тренером</option><option value="start">Начинаю играть</option><option value="team">Играю за команду</option><option value="away">Мой первый выезд</option><option value="international">Международный турнир</option><option value="trial">Готовлюсь к просмотру</option><option value="academy">Играю в академии</option><option value="adult">Взрослый футбол</option></select></label>
+          <label><span data-path-copy="target">Выезд или академия, о которых хочу узнать</span><select name="journey_target"><option value="" data-path-copy="emptyTarget">Пока без конкретного направления</option><option value="kemer">Турнир в Кемере</option><option value="jwca">Junior World Cup Antalya</option><option value="alanyaspor">Академия Alanyaspor</option><option value="benfica">Академия Benfica</option></select></label>
+          <label><span data-path-copy="review">Когда пересмотрим план</span><input name="journey_review" type="date" min="2000-01-01" max="2099-12-31"></label>
+          <label><span data-path-copy="practice">Над чем работаю до встречи</span><textarea name="journey_practice" maxlength="240" rows="3" data-path-placeholder="practiceExample"></textarea></label>
+        </div>
+        <fieldset class="path-checklist"><legend data-path-copy="preparation">Мои шаги подготовки</legend>
+          <label><input type="checkbox" name="journey_actions" value="practice"><span data-path-copy="practiceAction">Потренировал выбранный навык</span></label>
+          <label><input type="checkbox" name="journey_actions" value="video"><span data-path-copy="videoAction">Выбрал игровые эпизоды для разбора</span></label>
+          <label><input type="checkbox" name="journey_actions" value="coach"><span data-path-copy="coachAction">Обсудил готовность с тренером</span></label>
+          <label><input type="checkbox" name="journey_actions" value="questions"><span data-path-copy="questionsAction">Подготовил вопросы о выезде или просмотре</span></label>
+        </fieldset>
+        <details class="path-reflection"><summary data-path-copy="reflectionTitle">После матча, поездки или просмотра</summary>
+          <label><span data-path-copy="reflection">Что получилось и что попробую дальше</span><textarea name="journey_reflection" maxlength="240" rows="3" data-path-placeholder="reflectionExample"></textarea></label>
+        </details>
+      </section>
       <fieldset class="player-card route-options">
-        <legend data-copy="directions">02 · Куда хочу дальше</legend>
+        <legend data-copy="directions">03 · Куда хочу дальше</legend>
         <p data-copy="routeNote">Выбери, что тебе сейчас интересно. Подходящие группы, матчи и просмотры обсуди с тренером.</p>
         <div class="route-grid">
           <label class="route"><input type="radio" name="route" value="team"><span><strong data-copy="team">Расти в своей команде</strong><small data-copy="teamNote">Играть, пробовать новые роли и развивать свои сильные стороны.</small></span></label>
@@ -88,6 +132,20 @@
         <p id="plan-status" class="player-status" role="status"></p>
       </div>
     </form>
+    <section class="player-card path-opportunities" aria-labelledby="path-opportunities-title">
+      <h2 id="path-opportunities-title" data-path-copy="opportunities">Выезды и следующие возможности</h2>
+      <p class="path-intro" data-path-copy="opportunitiesIntro">Сведения проверены 05.11.2026. Актуальные даты, состав, стоимость и условия участия уточняет Анна.</p>
+      <details><summary data-path-copy="trips">Поездки из материалов школы</summary><div class="path-opportunity-grid">
+        <article><p class="path-badge" data-path-copy="jwcaBadge">Прошедший турнир · 2026</p><h3 data-path-copy="jwca">Junior World Cup Antalya</h3><p data-path-copy="jwcaCopy"></p><a href="https://juniorworldcupantalya.com/en/jwca-2026-international-youth-football-tournament/" target="_blank" rel="noopener noreferrer" data-path-copy="jwcaLink">Программа организатора ↗</a><a href="https://www.instagram.com/zenitalanya/reel/Deuhcswu7LJ/" target="_blank" rel="noopener noreferrer" data-path-copy="schoolLink">Публикация школы ↗</a></article>
+        <article><p class="path-badge" data-path-copy="kemerBadge">Детали уточняются</p><h3 data-path-copy="kemer">Турнир в Кемере</h3><p data-path-copy="kemerCopy"></p><a href="https://t.me/zenitalanya/192" target="_blank" rel="noopener noreferrer" data-path-copy="schoolLink">Публикация школы ↗</a></article>
+      </div></details>
+      <details><summary data-path-copy="academies">Академии: варианты для обсуждения</summary><div class="path-opportunity-grid">
+        <article><p class="path-badge" data-path-copy="alanyaBadge">Пример завершённого отбора</p><h3 data-path-copy="alanya">Академия Alanyaspor</h3><p data-path-copy="alanyaCopy"></p><a href="https://www.alanyaspor.org.tr/Haber/corendon-alanyaspor-futbol-akademi-2026--2027-sezonu-futbolcu-secmeleri-duyurusu" target="_blank" rel="noopener noreferrer" data-path-copy="conditions">Условия академии ↗</a></article>
+        <article><p class="path-badge" data-path-copy="benficaBadge">Как устроен отбор</p><h3 data-path-copy="benfica">Академия Benfica</h3><p data-path-copy="benficaCopy"></p><a href="https://www.slbenfica.pt/en-us/futebol-formacao/formacao/prospecao/recrutamento-jogadores" target="_blank" rel="noopener noreferrer" data-path-copy="conditions">Условия академии ↗</a></article>
+      </div><p class="path-note" data-path-copy="partnerNote"></p><p class="path-note" data-path-copy="minorNote"></p><a href="https://inside.fifa.com/transfer-system/agents/education/fifa-parent-education-on-football-agents/all-documents" target="_blank" rel="noopener noreferrer" data-path-copy="fifaLink">Правила и материалы FIFA ↗</a></details>
+      <details><summary data-path-copy="exampleTitle">Реальный пример из футбола школы</summary><p data-path-copy="example"></p><a href="https://kff.kz/en/news/27586" target="_blank" rel="noopener noreferrer" data-path-copy="exampleLink">Публикация КФФ ↗</a></details>
+      <a class="button quiet path-contact" href="https://t.me/+905388899272" target="_blank" rel="noopener noreferrer" data-path-copy="contact">Уточнить у Анны в Telegram ↗</a>
+    </section>
   </main>
 </body>
 </html>

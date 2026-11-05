@@ -3,6 +3,34 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),vm=require('node:vm');
 const C=require('../dist/assets/calendar-core.js');
 const I=require('../dist/assets/inquiry-core.js');
+const P=require('../dist/assets/player-path.js');
+test('Player pathway: empty and damaged plans remain empty without granting a stage',()=>{
+  for(const value of [null, [], 'academy', {stage:'__proto__',target:'unknown',review:'2026-02-30',actions:['approved']}]){
+    assert.equal(P.hasContent(value),false);
+    assert.equal(P.normalize(value).stage,'');
+  }
+});
+test('Player pathway: a private plan round-trips its goal, destination, reflection and unique preparation steps',()=>{
+  const value={stage:'trial',target:'benfica',review:'2026-12-12',practice:'  Пас под давлением  ',reflection:'Спросить тренера',actions:['coach','video','video']};
+  const saved=P.normalize(value);
+  assert.equal(saved.practice,'Пас под давлением');assert.deepEqual(saved.actions,['video','coach']);
+  assert.deepEqual(P.normalize(JSON.parse(JSON.stringify(saved))),saved);assert.equal(P.hasContent(saved),true);
+});
+test('Player pathway: dates, payload size and unsupported authority claims are bounded',()=>{
+  assert.equal(P.normalize({review:'2024-02-29'}).review,'2024-02-29');
+  for(const review of ['2026-02-29','2026-04-31','x',{},null])assert.equal(P.normalize({review}).review,'');
+  const value=P.normalize({practice:'x'.repeat(1000),reflection:'y'.repeat(1000),coach_approved:true,stage:'adult'});
+  assert.equal(value.practice.length,240);assert.equal(value.reflection.length,240);assert.equal('coach_approved' in value,false);
+});
+test('Player pathway: all displayed labels and seven stages have RU, TR and EN content',()=>{
+  const html=fs.readFileSync('dist/player.html','utf8');
+  const keys=[...html.matchAll(/data-path-(?:copy|placeholder)="([^"]+)"/g)].map(m=>m[1]);
+  for(const lang of ['ru','tr','en']){
+    for(const key of keys)assert.equal(typeof P.locales[lang][key],'string',lang+': '+key);
+    assert.equal(P.locales[lang].steps.length,7);
+    assert.ok(P.locales[lang].steps.every(s=>s.length===4&&s.every(v=>typeof v==='string'&&v.length)));
+  }
+});
 const inquiryBase={age:'7',experience:'beginner',area:'',language:'ru',topic:'training'};
 test('Enquiry: missing, fractional, non-finite and out-of-range ages cannot advance',()=>{
   for(const age of ['',null,'0','19','7.5','Infinity','NaN','1e1','seven'])assert.equal(I.normalize({...inquiryBase,age}).error,'age');

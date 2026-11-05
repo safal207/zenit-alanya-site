@@ -77,9 +77,9 @@ own_js=[p for p in (DIST/'assets').glob('*.js')]
 own_js_bytes=sum(p.stat().st_size for p in own_js)
 # The football cup, difficulty presets and match coaching load only on the arena.
 # Bound that feature separately while retaining the homepage and journal limits.
-player_js_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('player.js','player-api.js'))
+player_js_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('player.js','player-api.js','player-path.js'))
 require(own_js_bytes-player_js_bytes<=210_000,f'Existing authored JS budget exceeded: {own_js_bytes-player_js_bytes}')
-require(player_js_bytes<=25_000,f'Player dashboard JavaScript budget exceeded: {player_js_bytes}')
+require(player_js_bytes<=50_000,f'Player dashboard JavaScript budget exceeded: {player_js_bytes}')
 football_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('football3d.js','football-core.js'))
 require(football_bytes<=52_000,f'Football JavaScript budget exceeded: {football_bytes}')
 require((DIST/'assets/theme.js').stat().st_size<=3_000,'Shared theme controller exceeds 3 KB')
@@ -87,7 +87,7 @@ require((DIST/'assets/journey.js').stat().st_size<=20_000,'Journal controller an
 require('src="assets/journey.js"' not in home,'Homepage must not bootstrap the journal controller')
 total=sum(p.stat().st_size for p in DIST.rglob('*') if p.is_file())
 # Includes the background MP4 and the bounded football arena expansion.
-require(total<=25_050_000,f'Static bundle budget exceeded: {total}')
+require(total<=25_100_000,f'Static bundle budget exceeded: {total}')
 for pattern in ('stories.html','assets/club-media.js','assets/football-core.js','play/chess.html','play/football.html','assets/vendor/chess/stockfish-source.tar.gz','assets/vendor/LICENSE-fonts.txt'):
     require((DIST/pattern).is_file(),f'Missing required artifact: {pattern}')
 metrics={'assertions':checks,'font_bytes':font_bytes,'authored_javascript_bytes':own_js_bytes,'dist_bytes':total,'babylon_gzip_bytes':len(gzip.compress((DIST/'assets/vendor/babylon.js').read_bytes())),'claim':'artifact budgets only; not measured Core Web Vitals'}

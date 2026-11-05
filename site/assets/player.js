@@ -7,7 +7,7 @@
       unreadable: 'Не удалось открыть фото. Попробуй другой файл.',
       unavailable: 'Не удалось сохранить изменения. Попробуй ещё раз.',
       photoSaved: 'Фото сохранено в аккаунте.', photoRemoved: 'Фото удалено.',
-      planSaved: 'Твой план сохранён.'
+      planSaved: 'Твой план сохранён.', unsaved: 'Есть изменения — сохрани план.'
     },
     tr: {
       back: '← Kulüp sitesine dön', kicker: 'Oyuncu alanı', title: 'Benim futbolum',
@@ -18,13 +18,13 @@
       nameExample: 'Adın veya takma adın', strength: 'Artık yapabildiğim şey',
       strengthExample: 'Örneğin, boşta olan takım arkadaşımı görüyorum',
       goal: 'Antrenmanda ne deneyeceğim?', goalExample: 'Örneğin, topu almadan önce başımı kaldırmak',
-      directions: '02 · Bundan sonra ne istiyorum?',
+      directions: '03 · Bundan sonra ne istiyorum?',
       routeNote: 'Şu anda ilgini çeken yolu seç. Uygun grupları, maçları ve seçmeleri antrenörünle konuş.',
       team: 'Takımımda gelişmek', teamNote: 'Oyna, yeni roller dene ve güçlü yanlarını geliştir.',
       matches: 'Daha fazla maç oynamak', matchesNote: 'Sana uygun maç ve grupları öğren.',
       academy: 'Seçmeler hakkında bilgi almak', academyNote: 'Antrenörüne nasıl hazırlanabileceğini sor.',
       open: 'Henüz karar vermedim', openNote: 'Farklı bir tempo, yeni bir rol veya ara vermeyi konuşabilirsin.',
-      save: 'Planımı kaydet', planSaved: 'Planın kaydedildi.',
+      save: 'Planımı kaydet', planSaved: 'Planın kaydedildi.', unsaved: 'Değişiklikler var — planını kaydet.',
       invalid: 'En fazla 12 MB boyutunda bir JPG, PNG veya WebP seç.',
       unreadable: 'Fotoğraf açılamadı. Başka bir dosya dene.',
       unavailable: 'Değişiklikler kaydedilemedi. Tekrar dene.',
@@ -39,13 +39,13 @@
       nameExample: 'Name or nickname', strength: 'What I can already do',
       strengthExample: 'For example, I can spot a teammate in space',
       goal: 'What I’ll try at training', goalExample: 'For example, look up before receiving the ball',
-      directions: '02 · Where I want to go next',
+      directions: '03 · Where I want to go next',
       routeNote: 'Choose what interests you now. Talk to your coach about suitable groups, matches and trials.',
       team: 'Grow with my team', teamNote: 'Play, try new roles and build on your strengths.',
       matches: 'Play more matches', matchesNote: 'Find out which matches and groups might suit you.',
       academy: 'Learn about trials', academyNote: 'Ask your coach what to work on and how to prepare.',
       open: 'I’m still deciding', openNote: 'Talk about a different pace, a new role or taking a break.',
-      save: 'Save my plan', planSaved: 'Your plan was saved.',
+      save: 'Save my plan', planSaved: 'Your plan was saved.', unsaved: 'You have changes — save your plan.',
       invalid: 'Choose a JPG, PNG or WebP image up to 12 MB.',
       unreadable: 'The photo couldn’t be opened. Try another file.',
       unavailable: 'The changes couldn’t be saved. Try again.',
@@ -187,7 +187,8 @@
       nickname: clean(data.nickname, 40),
       strength: clean(data.strength, 180),
       goal: clean(data.goal, 180),
-      route: supportedRoutes.includes(data.route) ? data.route : ''
+      route: supportedRoutes.includes(data.route) ? data.route : '',
+      journey_plan: ZenitPath.normalize(data.journey_plan)
     };
   }
 
@@ -197,9 +198,13 @@
     return isPhoto(oldPhoto) ? {...values, photo_jpeg: oldPhoto} : values;
   }
 
+  function hasContent(data) {
+    return Object.entries(data).some(([key, value]) => key === 'journey_plan' ? ZenitPath.hasContent(value) : Boolean(value));
+  }
+
   function updateDraftOption() {
-    importButton.hidden = !profile || Object.values(profile).some(Boolean) ||
-      !Object.values(draft()).some(Boolean);
+    importButton.hidden = !profile || hasContent(profile) ||
+      !hasContent(draft());
   }
 
   function setMode(next) {
@@ -219,6 +224,7 @@
   function showGuest(message = '') {
     profile = null;
     form.reset();
+    ZenitPath.writeForm({});
     showName('');
     showPhoto(null);
     form.hidden = true;
@@ -236,7 +242,8 @@
 
   function showAccount(data) {
     profile = {...fields(data), photo_jpeg: isPhoto(data.photo_jpeg) ? data.photo_jpeg : null};
-    Object.entries(fields(profile)).forEach(([name, value]) => { form.elements[name].value = value; });
+    Object.entries(fields(profile)).filter(([name]) => name !== 'journey_plan').forEach(([name, value]) => { form.elements[name].value = value; });
+    ZenitPath.writeForm(profile.journey_plan);
     showName(profile.nickname);
     showPhoto(profile.photo_jpeg);
     updateDraftOption();
@@ -309,10 +316,17 @@
     updateDraftOption();
   }
 
-  form.addEventListener('input', () => { planStatus.textContent = ''; });
+  form.addEventListener('input', () => { planStatus.textContent = copy.unsaved; });
+  document.addEventListener('zenit-path-pick', event => {
+    if (!profile) { accountStatus.textContent = event.detail.message; auth.elements.login.focus(); return; }
+    form.elements.journey_stage.value = event.detail.stage;
+    ZenitPath.writeForm(ZenitPath.readForm());
+    planStatus.textContent = copy.unsaved;
+    form.elements.journey_stage.focus();
+  });
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const changes = fields(Object.fromEntries(new FormData(form)));
+    const changes = fields({...Object.fromEntries(new FormData(form)), journey_plan: ZenitPath.readForm()});
     return writeChanges(planStatus, async () => {
       await save(changes);
       showName(changes.nickname);
@@ -348,7 +362,7 @@
   });
 
   importButton.addEventListener('click', () => writeChanges(planStatus, async () => {
-    if (!profile || Object.values(profile).some(Boolean)) return;
+    if (!profile || hasContent(profile)) return;
     const savedDraft = draft();
     await save(savedDraft);
     try {

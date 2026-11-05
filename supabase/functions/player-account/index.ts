@@ -1,9 +1,12 @@
-const siteOrigin = "https://safal207.github.io";
+const allowedOrigins = new Set(["https://safal207.github.io", "https://zenit-alanya-club-concept.safalex.chatgpt.site"]);
 const backend = Deno.env.get("SUPABASE_URL")!;
 const publicKey = Deno.env.get("SUPABASE_ANON_KEY")!;
 const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+Deno.serve(async request => {
+  const origin = request.headers.get("Origin") || "";
+  if (!allowedOrigins.has(origin)) return new Response(null, { status: 403 });
 const cors = {
-  "Access-Control-Allow-Origin": siteOrigin,
+  "Access-Control-Allow-Origin": origin,
   "Access-Control-Allow-Headers": "apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Cache-Control": "no-store",
@@ -93,8 +96,6 @@ async function register(login: string, password: string, invite: string): Promis
   return reply(201, { registered: true });
 }
 
-Deno.serve(async request => {
-  if (request.headers.get("Origin") !== siteOrigin) return new Response(null, { status: 403 });
   if (request.method === "OPTIONS") return new Response(null, { headers: cors });
   if (request.method !== "POST") return reply(405, { code: "invalid_request" });
   if (!request.headers.get("Content-Type")?.startsWith("application/json")) {

@@ -88,7 +88,7 @@
       return true;
     },
     async load() {
-      const row = await authorized(profile + '?select=id,nickname,strength,goal,route,photo_jpeg');
+      const row = await authorized(profile + '?select=id,nickname,strength,goal,route,photo_jpeg,journey_plan');
       if (!/^[a-f0-9-]{36}$/.test(row.id)) fail('unavailable');
       profileId = row.id;
       return row;

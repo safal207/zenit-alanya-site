@@ -116,7 +116,7 @@ test('Chess beginner replies without Stockfish and mentor reveals a lesson in st
 
 test('Player account is standalone and restores the photo and plan after sign-in on a second device', async ({page, browser}) => {
   const id = '88b9eeb4-60ef-4758-ad5c-614c18f60ca4';
-  const saved = {id, nickname:'', strength:'', goal:'', route:'', photo_jpeg:null};
+  const saved = {id, nickname:'', strength:'', goal:'', route:'', photo_jpeg:null, journey_plan:{}};
   let registered = false;
   let refreshed = false;
   const mock = context => context.route('https://tqhewqpzpfviwhicsnzm.supabase.co/**', route => {
@@ -174,6 +174,15 @@ test('Player account is standalone and restores the photo and plan after sign-in
   await page.getByLabel('У меня уже получается').fill('Вижу партнёра');
   await page.getByLabel('Что попробую на тренировке').fill('Подниму голову перед пасом');
   await page.getByRole('radio', {name:/Попробовать больше матчей/}).check();
+  await page.locator('[data-path-step=trial]').click();
+  await page.locator('#path-pick').click();
+  await expect(page.locator('[name=journey_stage]')).toHaveValue('trial');
+  await page.getByLabel('Выезд или академия, о которых хочу узнать').selectOption('benfica');
+  await page.getByLabel('Когда пересмотрим план').fill('2026-12-12');
+  await page.getByLabel('Над чем работаю до встречи').fill('Разобрать приём мяча');
+  await page.getByLabel('Обсудил готовность с тренером').check();
+  await page.locator('.path-reflection summary').click();
+  await page.getByLabel('Что получилось и что попробую дальше').fill('Поднял голову перед пасом');
   await page.getByRole('button', {name:'Сохранить мой план'}).click();
   await expect(page.locator('#plan-status')).toHaveText('Твой план сохранён.');
   expect(refreshed).toBe(true);
@@ -196,6 +205,12 @@ test('Player account is standalone and restores the photo and plan after sign-in
     const photo = device.getByRole('img', {name:'Фото игрока'});
     await expect(photo).toHaveAttribute('src', /^data:image\/jpeg;base64,/);
     await expect(device.getByLabel('Что попробую на тренировке')).toHaveValue('Подниму голову перед пасом');
+    await expect(device.locator('[name=journey_stage]')).toHaveValue('trial');
+    await expect(device.locator('[name=journey_target]')).toHaveValue('benfica');
+    await expect(device.locator('[name=journey_review]')).toHaveValue('2026-12-12');
+    await expect(device.locator('[name=journey_practice]')).toHaveValue('Разобрать приём мяча');
+    await expect(device.getByLabel('Обсудил готовность с тренером')).toBeChecked();
+    await expect(device.locator('[name=journey_reflection]')).toHaveValue('Поднял голову перед пасом');
     await device.getByRole('button', {name:'Удалить фото'}).click();
     await expect(photo).toHaveCount(0);
     await expect(device.getByLabel('У меня уже получается')).toHaveValue('Вижу партнёра');
@@ -204,4 +219,23 @@ test('Player account is standalone and restores the photo and plan after sign-in
     await device.reload();
     await expect(device.getByRole('button', {name:'Войти', exact:true})).toBeVisible();
   } finally { await other.close(); }
+});
+
+for(const lang of ['ru','tr','en'])test('Player pathway is readable, standalone and honest about past events: '+lang,async({page})=>{
+  await page.setViewportSize({width:320,height:800});await page.goto('player.html?lang='+lang);
+  await expect(page.locator('[data-path-step]')).toHaveCount(7);
+  for(const step of ['international','trial','academy','adult']){
+    await page.locator('[data-path-step='+step+']').click();
+    await expect(page.locator('[data-path-step='+step+']')).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('#path-step-title')).not.toBeEmpty();
+  }
+  await page.locator('#path-pick').click();await expect(page.locator('#account-status')).not.toBeEmpty();
+  await expect(page.locator('#player-form')).toBeHidden();
+  await page.locator('.path-opportunities details').nth(0).locator('summary').click();
+  await expect(page.locator('[data-path-copy=jwcaBadge]')).toContainText('2026');
+  await page.locator('.path-opportunities details').nth(1).locator('summary').click();
+  await expect(page.locator('[data-path-copy=partnerNote]')).not.toBeEmpty();
+  expect(await page.locator('html').evaluate(e=>e.scrollWidth-e.clientWidth)).toBeLessThanOrEqual(1);
+  await page.locator('[data-theme-toggle]').click();
+  await expect(page.locator('#path-title')).toBeVisible();
 });
