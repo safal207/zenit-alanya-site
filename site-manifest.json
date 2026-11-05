@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "933d5b15475e1259c91344ef31ffdd661ba7e8144866b1d524e219fd7c273101",
+  "source_artifact_digest": "003329d8955d49b4f1d27ca2836fcea54c807f6e15d51a6d3e204aa178e16e97",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -300,8 +300,8 @@
     },
     {
       "path": "assets/player.js",
-      "bytes": 19094,
-      "sha256": "7fc7cb906e590460e85f3564d940f73371cc5f6e764bf826518f93e2a7c1227c"
+      "bytes": 19425,
+      "sha256": "97bb1bab14c32cab9da541e449042b4bcfa74c36f789b4b9b9807821f7d37334"
     },
     {
       "path": "assets/stories.bundle.css",

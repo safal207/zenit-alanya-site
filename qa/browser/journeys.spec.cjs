@@ -160,6 +160,8 @@ test('Player account is standalone and restores the photo and plan after sign-in
   await page.goto('player.html');
   const playerUrl = page.url();
   await expect(page.getByLabel('Как меня зовут')).toBeHidden();
+  await page.locator('[data-path-step=international]').click();
+  await page.locator('#path-pick').click();
   await page.getByRole('button', {name:'У меня есть код клуба'}).click();
   await credentials(page);
   await page.getByLabel('Одноразовый код клуба').fill('B'.repeat(22));
@@ -167,6 +169,7 @@ test('Player account is standalone and restores the photo and plan after sign-in
   await expect(page.locator('#account-status')).toContainText('Код недействителен');
   await page.getByLabel('Одноразовый код клуба').fill('A'.repeat(22));
   await page.getByRole('button', {name:'Создать аккаунт'}).click();
+  await expect(page.locator('[name=journey_stage]')).toHaveValue('international');
   await page.getByRole('button', {name:'Перенести черновик с устройства'}).click();
   await expect(page.getByLabel('У меня уже получается')).toHaveValue('Черновик с устройства');
   await expect(page.locator('#plan-status')).toHaveText('Черновик перенесён в аккаунт.');

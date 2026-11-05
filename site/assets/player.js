@@ -128,6 +128,7 @@
   const importButton = get('import-draft');
   const lockTargets = [photoInput, photoRemove, importButton, get('save-plan'), get('signout')];
   let profile = null;
+  let pendingStage = '';
   let mode = 'login';
   let busy = false;
 
@@ -256,6 +257,13 @@
     get('photo-actions').hidden = false;
     get('photo-note').hidden = false;
     get('player-hero').classList.remove('is-guest');
+    if (pendingStage) {
+      form.elements.journey_stage.value = pendingStage;
+      pendingStage = '';
+      ZenitPath.writeForm(ZenitPath.readForm());
+      planStatus.textContent = copy.unsaved;
+      form.elements.journey_stage.focus();
+    }
   }
 
   async function loadAccount() {
@@ -318,7 +326,7 @@
 
   form.addEventListener('input', () => { planStatus.textContent = copy.unsaved; });
   document.addEventListener('zenit-path-pick', event => {
-    if (!profile) { accountStatus.textContent = event.detail.message; auth.elements.login.focus(); return; }
+    if (!profile) { pendingStage = event.detail.stage; accountStatus.textContent = event.detail.message; auth.elements.login.focus(); return; }
     form.elements.journey_stage.value = event.detail.stage;
     ZenitPath.writeForm(ZenitPath.readForm());
     planStatus.textContent = copy.unsaved;
@@ -375,6 +383,7 @@
 
   get('signout').addEventListener('click', () => {
     if (busy) return;
+    pendingStage = '';
     void api.logout();
     showGuest();
     auth.elements.login.focus();
