@@ -1,10 +1,11 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "3ede6eae2e94cd298f5aeaf5200b1e7ebdafc66a6c89ac40a34a5cdd413d59ed",
+  "source_artifact_digest": "b34cb7e99a8848365c09be54c610aaf817ac4bb550d6a110e5117bafee466bc0",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
+    "assets/before-training-ai.webp",
     "assets/chess-app.css",
     "assets/chess-app.js",
     "assets/chess-bots.js",
@@ -52,13 +53,18 @@
     },
     {
       "path": "assets/academy.js",
-      "bytes": 34243,
-      "sha256": "f3cdc7f71eabb276fd707b05db123539d8e0c31ba858aee09cac3e255620d969"
+      "bytes": 34461,
+      "sha256": "9adad2371e5424ba5e1cc71a46a0296cf8ada6d075734e405985d322d3531017"
     },
     {
       "path": "assets/app.js",
       "bytes": 52838,
       "sha256": "c707fe60884832ead872bf62fd4a81b76bb2c6d4ef27cbea09828f192ab9621b"
+    },
+    {
+      "path": "assets/before-training-ai.webp",
+      "bytes": 104330,
+      "sha256": "37c3c308430161ade78a45a6f2e47328dd354ed6c09f63264a01f4681e35b0fb"
     },
     {
       "path": "assets/calendar-core.js",
@@ -187,13 +193,13 @@
     },
     {
       "path": "assets/goalkeeper-training-ai.webp",
-      "bytes": 90396,
-      "sha256": "2b832620840a2ad8126569ab17dc9bced73b67475c98621cbf29e25c45c553e9"
+      "bytes": 109398,
+      "sha256": "8b13394e173fb0083dcc8dabd0bce0987f0a4c6ec77fd9a78878551c5d0b0821"
     },
     {
       "path": "assets/home.bundle.css",
       "bytes": 103976,
-      "sha256": "8f19c8c1c0ad1a6f8cec1f258aae0c8c741821ecc4a4a6d04359a67653987361"
+      "sha256": "c9f82f735f38eb8c8d9fcdaf0a1ec351825dd3661a9a1bc288b336d21ca41c35"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -253,7 +259,7 @@
     {
       "path": "assets/minimal.css",
       "bytes": 17024,
-      "sha256": "73e9c5fc5f027a52add36d1c17e2b6d7d5d014f9031335fa479204c3de68f6a6"
+      "sha256": "17401f6bbbcedddf09f5c2eec853f5af522509b6c485cb31861e73d81ccabc77"
     },
     {
       "path": "assets/models/player.glb",
@@ -262,8 +268,8 @@
     },
     {
       "path": "assets/older-play-ai.webp",
-      "bytes": 92776,
-      "sha256": "04e98e8e056307d4d01f24338272e6aa29c3af448e4a4ce8143df749ad65d444"
+      "bytes": 109380,
+      "sha256": "1ec2a819e16bf3a07789bccc313608bc999571296eb60495e93d86ae57b646f4"
     },
     {
       "path": "assets/player-api.js",
@@ -467,13 +473,13 @@
     },
     {
       "path": "assets/young-play-ai.webp",
-      "bytes": 215154,
-      "sha256": "8b845861acd825c4cd573e1839bcf9315f74cef9a31863fe3f9f0ab4c3fe926e"
+      "bytes": 107264,
+      "sha256": "1e20f1757972adbe5b136036d8874a1944736d17985c595949bfc473a3aa154c"
     },
     {
       "path": "index.html",
-      "bytes": 44872,
-      "sha256": "572ccd208304cc5b5782968437ed6d46c2c2af7eeb35a45d9ad848d42fba5f2c"
+      "bytes": 45364,
+      "sha256": "eb5f286c7315b5a2fb3b01614ab8c909668b39bd6290b2fdb397d9c78c6cd0c2"
     },
     {
       "path": "journey.html",
