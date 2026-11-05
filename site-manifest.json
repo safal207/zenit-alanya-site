@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "b9f874f69b988aeebefdd5fe45b90c5a1b9d20afa131a8ff213a45501dd12be4",
+  "source_artifact_digest": "3ede6eae2e94cd298f5aeaf5200b1e7ebdafc66a6c89ac40a34a5cdd413d59ed",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -187,8 +187,8 @@
     },
     {
       "path": "assets/goalkeeper-training-ai.webp",
-      "bytes": 97398,
-      "sha256": "129e4cfa42a8b6720666ed2c9bd2046e312bf52b8aa75cea44303fcf977f523d"
+      "bytes": 90396,
+      "sha256": "2b832620840a2ad8126569ab17dc9bced73b67475c98621cbf29e25c45c553e9"
     },
     {
       "path": "assets/home.bundle.css",
@@ -262,8 +262,8 @@
     },
     {
       "path": "assets/older-play-ai.webp",
-      "bytes": 103578,
-      "sha256": "2c749dea470efe415c792de050b18a323ccd4305607325cb1b006186d699a28e"
+      "bytes": 92776,
+      "sha256": "04e98e8e056307d4d01f24338272e6aa29c3af448e4a4ce8143df749ad65d444"
     },
     {
       "path": "assets/player-api.js",
@@ -467,13 +467,13 @@
     },
     {
       "path": "assets/young-play-ai.webp",
-      "bytes": 254844,
-      "sha256": "f2ccb2abe7bb3bf3cd4d0415845a8ed26dd5e06408994c0f6c0b8e4ab1e87e11"
+      "bytes": 215154,
+      "sha256": "8b845861acd825c4cd573e1839bcf9315f74cef9a31863fe3f9f0ab4c3fe926e"
     },
     {
       "path": "index.html",
-      "bytes": 44827,
-      "sha256": "085c91a00bfd62e81b49793044ca4d7d18b0347b772235bf1ff8c3213f5f08ef"
+      "bytes": 44872,
+      "sha256": "572ccd208304cc5b5782968437ed6d46c2c2af7eeb35a45d9ad848d42fba5f2c"
     },
     {
       "path": "journey.html",
