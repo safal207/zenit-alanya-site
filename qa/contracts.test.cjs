@@ -83,7 +83,10 @@ test('Coach cards keep the named person, original portrait and source together',
     assert.ok(card&&card.includes('www.instagram.com/'),file+' must link to source');
     assert.ok(fs.existsSync('dist/assets/'+file),'media delivered: '+file);
   }
-  for(const file of ['young-play-ai.webp','older-play-ai.webp','goalkeeper-training-ai.webp','before-training-ai.webp'])assert.ok(!html.includes(file),'no AI image in page: '+file);
+  for(const file of ['young-play-ai.webp','older-play-ai.webp','goalkeeper-training-ai.webp','before-training-ai.webp']){
+    assert.ok(!html.includes(file),'no AI image in page: '+file);
+    assert.equal(fs.existsSync('dist/assets/'+file),false,'AI file must not be published: '+file);
+  }
   assert.equal([...html.matchAll(/class="real-social-item"/g)].length,13,'Instagram links preserved');
   assert.ok(html.includes('player-journey-v1.webp'),'comic preserved');
   assert.ok(html.includes('data-gallery-whatsapp'),'contact CTA visible');
