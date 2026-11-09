@@ -76,8 +76,17 @@ test('Coach cards keep the named person, original portrait and source together',
     assert.ok(!card.includes('-ai.webp'),name+' coach portrait must be the original');
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync('dist/assets/'+file)).digest('hex'),sha);
   }
-  assert.match(html,/<figure class="young-play">[\s\S]*?young-play-ai\.webp[\s\S]*?Иллюстрация, созданная ИИ[\s\S]*?<\/figure>/);
-  for(const scene of ['older-play-ai.webp','goalkeeper-training-ai.webp','before-training-ai.webp']){const figure=[...html.matchAll(/<figure class="young-play gallery-secondary">([\s\S]*?)<\/figure>/g)].find(x=>x[1].includes(scene));assert.ok(figure&&figure[1].includes('Иллюстрация, созданная ИИ'),scene+' is visibly disclosed as AI');}
+  const realCards=[...html.matchAll(/<article class="real-training-card">([\s\S]*?)<\/article>/g)].map(m=>m[1]);
+  assert.equal(realCards.length,4,'four authentic training images');
+  for(const file of ['club-training-young.jpg','club-sand.webp','club-team-1.jpg','club-team-2.jpg']){
+    const card=realCards.find(c=>c.includes('src="assets/'+file+'"'));
+    assert.ok(card&&card.includes('www.instagram.com/'),file+' must link to source');
+    assert.ok(fs.existsSync('dist/assets/'+file),'media delivered: '+file);
+  }
+  for(const file of ['young-play-ai.webp','older-play-ai.webp','goalkeeper-training-ai.webp','before-training-ai.webp'])assert.ok(!html.includes(file),'no AI image in page: '+file);
+  assert.equal([...html.matchAll(/class="real-social-item"/g)].length,13,'Instagram links preserved');
+  assert.ok(html.includes('player-journey-v1.webp'),'comic preserved');
+  assert.ok(html.includes('data-gallery-whatsapp'),'contact CTA visible');
 });
 const F=require('../dist/assets/football-core.js'),M=require('../dist/assets/club-media.js');
 test('Football: screen-up follows camera toward the pitch',()=>{const v=F.inputVector(0,1,{x:23,z:-27},{x:0,z:0});assert.ok(v.x<0&&v.z>0);assert.ok(Math.abs(Math.hypot(v.x,v.z)-1)<1e-9);});
