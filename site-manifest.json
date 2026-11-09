@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "0684ef94ad2640173cdac3efe15706b1bde49e36c6c63695fab17ab89b42adfd",
+  "source_artifact_digest": "f2d16474a0c9f9a54d03958ac4bc12078c669e4648e95ab291da8b3d0301809f",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -56,8 +56,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 59559,
-      "sha256": "376a4a1c8156092530e9790b05bdc540e3952c7b8c093d89fe36cd1493272152"
+      "bytes": 62104,
+      "sha256": "22238f9ef88173abd3467d107cf22557b4dab9425fc771b25655bcef88f5b5f3"
     },
     {
       "path": "assets/calendar-core.js",
@@ -186,8 +186,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 112675,
-      "sha256": "47388c1225b22aec1d25654c3a50df3b56200c85ed9cd501222a7566830af45e"
+      "bytes": 114310,
+      "sha256": "afa447889990990748864d36f2153dc67260f8a024351d7f9a5e8164a9f4a131"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -211,8 +211,8 @@
     },
     {
       "path": "assets/media.js",
-      "bytes": 14811,
-      "sha256": "1dcdeb545b5c60447602fae339f7d584eb4ce525a81c81574178ab6b540390be"
+      "bytes": 16814,
+      "sha256": "a1dc464b835a8284b590229e0d658251a2c0995a12b8aeab03f3ca692bdb3f4e"
     },
     {
       "path": "assets/media/adamov-message.jpg",
@@ -246,8 +246,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 25723,
-      "sha256": "a66e3636a9f5a5192ab0eb692551be31b656938d48822a2f245b69bb8b52e93c"
+      "bytes": 27358,
+      "sha256": "55636680399d69bde2a9cc3cedcd11b77c7527cebba7dde2942d045054899ee0"
     },
     {
       "path": "assets/models/player.glb",
@@ -461,8 +461,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 52528,
-      "sha256": "761b3fc5dac28250ac767395d5f7ec3b3d153f6f2ba60ff08f90401a59c1b1f4"
+      "bytes": 53322,
+      "sha256": "38003ef9f28a46a0fe946060d8c826d251680999c8b8e8092e55459509555a97"
     },
     {
       "path": "journey.html",

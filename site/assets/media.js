@@ -26,19 +26,64 @@ function renderCards(){const grid=$('#film-grid');if(!grid)return;grid.replaceCh
 function language(next){if(!words[next])return;lang=next;document.querySelectorAll('[data-film-player]').forEach(el=>{el.title=title(data.films.find(f=>f.id===el.dataset.filmPlayer));el.setAttribute('aria-label',el.title);});document.querySelectorAll('[data-film-title]').forEach(el=>{const film=data.films.find(f=>f.id===el.dataset.filmTitle);if(film)el.textContent=title(film);});document.querySelectorAll('[data-film-text]').forEach(el=>el.textContent=t(el.dataset.filmText));document.querySelectorAll('[data-film-filter]').forEach(b=>{b.textContent=t(b.dataset.filmFilter);b.setAttribute('aria-pressed',String(filter===b.dataset.filmFilter));});document.querySelectorAll('[data-story-link]').forEach(a=>{const u=new URL(a.href);u.searchParams.set('lang',lang);a.href=u;});renderCards();detail();}
 document.querySelectorAll('[data-film-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filmFilter;language(lang);}));document.querySelectorAll('[data-story-lang]').forEach(b=>b.addEventListener('click',()=>{document.documentElement.lang=b.dataset.storyLang;const url=new URL(location.href);url.searchParams.set('lang',b.dataset.storyLang);history.replaceState(null,'',url);document.querySelectorAll('[data-story-lang]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));language(b.dataset.storyLang);}));document.addEventListener('site:language',()=>language(document.documentElement.lang));window.addEventListener('storage',e=>{if(e.key===key){readSaved();renderCards();detail();}});
 const incoming=new URLSearchParams(location.search);if(['training','team','tournament','saved'].includes(incoming.get('category')))filter=incoming.get('category');if($('#film-grid')&&words[incoming.get('lang')])document.documentElement.lang=incoming.get('lang');language(document.documentElement.lang);document.querySelectorAll('[data-story-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.storyLang===lang)));if(incoming.get('film'))showFilm(incoming.get('film'),false);
-// Decorative background: silent looping playback, with a still fallback.
+// Silent hero video with a genuine user-activated fallback for mobile/data-saving browsers.
 const hero=$('#hero-film');
 if(hero&&data.hero.file){
+ const toggle=$('#hero-video-toggle'),label=toggle?.querySelector('[data-hero-video-label]'),fallback=$('#hero-video-fallback');
  const motion=matchMedia('(prefers-reduced-motion: reduce)');
- let visible=true;
- const sync=()=>{
-  const still=motion.matches||navigator.connection?.saveData;
-  hero.hidden=Boolean(still);
-  if(still||!visible||document.hidden||dialog.open){hero.pause();return;}
-  hero.muted=true;hero.loop=true;
-  hero.play().catch(()=>{hero.hidden=true;});
+ let visible=true,manualActivated=false,userPaused=false,autoplayBlocked=false;
+ const localized={
+  ru:{watch:'▶ Смотреть видео',pause:'Ⅱ Пауза',retry:'▶ Повторить',open:'Открыть MP4 ↗'},
+  tr:{watch:'▶ Videoyu izle',pause:'Ⅱ Duraklat',retry:'▶ Tekrar dene',open:'MP4 dosyasını aç ↗'},
+  en:{watch:'▶ Play video',pause:'Ⅱ Pause',retry:'▶ Retry video',open:'Open MP4 ↗'}
  };
- hero.addEventListener('error',()=>{hero.hidden=true;});
+ const updateControls=()=>{
+  const t=localized[document.documentElement.lang]||localized.ru;
+  const playing=!hero.hidden&&!hero.paused&&!hero.ended;
+  if(label)label.textContent=playing?t.pause:(autoplayBlocked&&manualActivated?t.retry:t.watch);
+  if(toggle){toggle.setAttribute('aria-pressed',String(playing));toggle.setAttribute('aria-label',playing?t.pause:t.watch);}
+  if(fallback)fallback.textContent=t.open;
+ };
+ const failed=()=>{
+  autoplayBlocked=true;hero.hidden=true;hero.pause();
+  if(manualActivated&&fallback)fallback.hidden=false;
+  updateControls();
+ };
+ const playVideo=(requested)=>{
+  if(requested){manualActivated=true;userPaused=false;autoplayBlocked=false;hero.dataset.manualPlay='true';}
+  if(autoplayBlocked&&!requested)return;
+  hero.hidden=false;
+  hero.muted=true;hero.loop=true;
+  try{
+   const attempt=hero.play();
+   if(attempt&&typeof attempt.then==='function')attempt.then(()=>{
+    if(fallback)fallback.hidden=true;
+    updateControls();
+   },failed);
+   else updateControls();
+  }catch{failed();}
+ };
+ const sync=()=>{
+  const conserve=motion.matches||Boolean(navigator.connection?.saveData);
+  if(!visible||document.hidden||dialog.open||userPaused||(conserve&&!manualActivated)){
+   hero.pause();
+   if(conserve&&!manualActivated)hero.hidden=true;
+   updateControls();
+   return;
+  }
+  if(!autoplayBlocked&&hero.paused)playVideo(false);
+  updateControls();
+ };
+ if(toggle)toggle.addEventListener('click',()=>{
+  if(!hero.hidden&&!hero.paused){
+   userPaused=true;hero.pause();updateControls();return;
+  }
+  playVideo(true);
+ });
+ hero.addEventListener('playing',updateControls);
+ hero.addEventListener('pause',updateControls);
+ hero.addEventListener('error',failed);
+ document.addEventListener('site:language',updateControls);
  motion.addEventListener('change',sync);
  navigator.connection?.addEventListener('change',sync);
  document.addEventListener('visibilitychange',sync);
