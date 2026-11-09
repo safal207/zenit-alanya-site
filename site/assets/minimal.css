@@ -237,3 +237,45 @@ html .video-hero .minimal-hint{max-width:520px;margin-top:13px;font-size:12px;li
  .video-hero .hero-phone strong{display:block;font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){.video-hero .hero-conversion-actions a{transition:none}}
+
+/* Authentic club photo proof, no AI illustrations in the training gallery. */
+.academy-trust .real-training-proof{grid-column:1/-1;min-width:0;margin-top:12px}
+.real-training-heading{max-width:740px;margin-bottom:24px}
+.real-training-heading h3{font-family:Manrope,Arial,sans-serif;font-size:clamp(27px,3vw,38px);letter-spacing:-1px;line-height:1.18;color:#07344b;margin:0}
+.real-training-heading p:last-child{font-size:14px;line-height:1.75;color:#526574;margin-top:12px}
+.real-training-proof .training-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:0}
+.real-training-card{min-width:0;overflow:hidden;background:#fff;border:1px solid #dbe7ed;border-radius:12px;box-shadow:0 8px 30px rgba(6,38,60,.055)}
+.real-training-image{display:block;overflow:hidden;aspect-ratio:16/10;background:#e6f1f6}
+.real-training-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .3s ease}
+.real-training-card:hover .real-training-image img{transform:scale(1.025)}
+.real-training-info{padding:18px 20px 20px}
+.real-training-info h4{font-size:19px;color:#07344b;line-height:1.35;margin:0}
+.real-training-info p{font-size:12px;color:#526574;line-height:1.65;margin:8px 0 11px}
+.real-training-info>a{display:inline-flex;align-items:center;min-height:40px;font-size:12px;font-weight:800;color:#00638b;text-decoration:underline;text-underline-offset:3px}
+.real-training-cta{display:flex;align-items:center;justify-content:space-between;gap:25px;background:#062f47;color:#fff;padding:26px 30px;margin-top:24px;border-radius:12px}
+.real-training-cta>div:first-child{max-width:525px}
+.real-training-cta strong{display:block;font-size:20px;line-height:1.4}
+.real-training-cta p{font-size:12px;line-height:1.7;color:#cce4f0;margin-top:8px}
+.real-training-cta-actions{display:flex;flex-direction:column;gap:9px;min-width:235px}
+.real-training-cta-actions a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px 15px;border-radius:8px;font-size:12px;font-weight:800;text-decoration:none}
+.real-training-wa{background:#dcf7eb;color:#063d32}
+.real-training-wa:hover{background:#fff}
+.real-training-call{border:1px solid rgba(255,255,255,.6);color:#fff}
+.real-training-call:hover{background:#16516a}
+.real-social-details{margin-top:22px;border:1px solid #dbe7ed;border-radius:10px;background:transparent;overflow:hidden}
+.real-social-details>summary{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:17px 20px;min-height:54px;cursor:pointer;color:#07344b;font-size:14px;font-weight:800}
+.real-social-details[open]>summary{border-bottom:1px solid #dbe7ed}
+.real-social-details>p{font-size:12px;color:#526574;line-height:1.65;margin:14px 20px}
+.real-social-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:0 18px 18px}
+.real-social-item{display:flex;align-items:center;gap:10px;min-height:48px;padding:10px 11px;border:1px solid #c9dce7;border-radius:8px;background:#f6fbfd;font-size:12px;font-weight:700;color:#075477;text-decoration:none}
+.real-social-item>span:last-child{margin-left:auto}
+.real-social-index{font-size:11px;font-weight:800;color:#668496}
+.real-social-item:hover{background:#e3f5fc}
+.real-training-proof a:focus-visible,.real-social-details>summary:focus-visible{outline:3px solid #e6a900;outline-offset:3px}
+html[data-theme=dark] .real-training-heading h3,html[data-theme=dark] .real-training-info h4,html[data-theme=dark] .real-social-details>summary{color:#e6f5fa}
+html[data-theme=dark] .real-training-info,html[data-theme=dark] .real-training-card{background:#092f43;border-color:#2b5163}
+html[data-theme=dark] .real-training-info p,html[data-theme=dark] .real-training-heading p:last-child,html[data-theme=dark] .real-social-details>p{color:#b9cfda}
+html[data-theme=dark] .real-social-details{border-color:#2b5163}
+@media(max-width:800px){.real-training-cta{flex-direction:column;align-items:stretch}.real-training-cta-actions{min-width:0;flex-direction:row}.real-training-cta-actions a{flex:1 1 50%}.real-social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.real-training-proof .training-gallery{grid-template-columns:minmax(0,1fr);gap:14px}.real-training-image{aspect-ratio:16/9}.real-training-info{padding:15px}.real-training-cta{padding:20px}.real-training-cta strong{font-size:18px}.real-training-cta-actions{flex-direction:column}.real-social-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:12px}.real-social-details>summary{padding:15px}.real-training-heading h3{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.real-training-image img{transition:none}}

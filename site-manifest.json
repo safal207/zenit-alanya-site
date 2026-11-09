@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "ff10ee11ec0025eaea7698fbae1b8ed2cce1261e418f0f7c0e217d40e6dd1dfb",
+  "source_artifact_digest": "410b75da8d821a1ea1177b08f66117975e53eee27f519fe838eb82156a1fa7a8",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -60,8 +60,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 54480,
-      "sha256": "123c9ad56ee633d35fe486047608110c2ba4a2b29375245bb3a22b07a5eea471"
+      "bytes": 59559,
+      "sha256": "376a4a1c8156092530e9790b05bdc540e3952c7b8c093d89fe36cd1493272152"
     },
     {
       "path": "assets/before-training-ai.webp",
@@ -200,8 +200,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 107691,
-      "sha256": "e5bacfd86b655cf5be2b02b6b93ac3aac3b4f6ec059b13b32f4901fd5d95ae20"
+      "bytes": 112399,
+      "sha256": "350780cf78d04b469cb908108966d13653e01910d6886f50320cecc5050b42fd"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -260,8 +260,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 20739,
-      "sha256": "f73f2e121840c204d56f5afe6de79379d2598b4bb0924e17e2a004983d2a6742"
+      "bytes": 25447,
+      "sha256": "f81d104406d5c25bbf38d2dee5b2b7307245a9673f0d8a7f99fbad3807d1c082"
     },
     {
       "path": "assets/models/player.glb",
@@ -485,8 +485,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 45980,
-      "sha256": "4cbd5735f8437818b4a9936c827e1de588e44aeb335233d5701a9aa73b135a15"
+      "bytes": 52528,
+      "sha256": "761b3fc5dac28250ac767395d5f7ec3b3d153f6f2ba60ff08f90401a59c1b1f4"
     },
     {
       "path": "journey.html",
