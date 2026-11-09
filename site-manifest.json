@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "6518393647e10519acecc2b3980ac1d3633031ffe4b5638b0ef25f851d8afe74",
+  "source_artifact_digest": "ff10ee11ec0025eaea7698fbae1b8ed2cce1261e418f0f7c0e217d40e6dd1dfb",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -485,8 +485,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 45885,
-      "sha256": "307cd734d2be9402202f09a3145d65ad8634252bae5cf0bd8af1c936c2ad27b7"
+      "bytes": 45980,
+      "sha256": "4cbd5735f8437818b4a9936c827e1de588e44aeb335233d5701a9aa73b135a15"
     },
     {
       "path": "journey.html",
