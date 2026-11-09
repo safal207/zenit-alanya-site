@@ -73,6 +73,33 @@ test('Stories filters, saving, local message and download',async({page})=>{await
 
 test('Decorative background and reduced-motion fallback',async({page})=>{await page.goto('./');const v=page.locator('#hero-film');await expect(v).toHaveAttribute('autoplay','');await expect(v).toHaveAttribute('loop','');expect(await v.evaluate(el=>({muted:el.muted,controls:el.controls}))).toEqual({muted:true,controls:false});await page.emulateMedia({reducedMotion:'reduce'});await expect(v).toBeHidden();await expect(page.locator('.hero-backdrop img')).toBeVisible();});
 
+test('Hero video: denied playback leaves manual control and direct MP4 fallback',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.addInitScript(()=>{
+  const original=HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play=function(){if(this.id==='hero-film')return Promise.reject(new DOMException('Blocked by browser','NotAllowedError'));return original.call(this);};
+ });
+ await page.goto('./');
+ const video=page.locator('#hero-film');
+ await expect(video).toBeHidden();
+ await expect(page.locator('#hero-video-toggle')).toBeVisible();
+ await page.locator('#hero-video-toggle').click();
+ await expect(page.locator('#hero-video-fallback')).toBeVisible();
+ await expect(page.locator('#hero-video-fallback')).toHaveAttribute('href','assets/media/zenit.mp4');
+});
+test('Hero share: invitation includes the published site and contact phone',async({page})=>{
+ await page.addInitScript(()=>{
+  Object.defineProperty(navigator,'share',{configurable:true,value:undefined});
+  Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__sharedInvitation=text;}}});
+ });
+ await page.goto('./');
+ await page.locator('[data-hero-share]').click();
+ await expect(page.locator('[data-share-feedback]')).toContainText('скопированы');
+ const text=await page.evaluate(()=>window.__sharedInvitation);
+ expect(text).toContain('Зенит Аланья');expect(text).toContain('+90 538 889 92 72');
+ expect(text).toContain('zenit-alanya-site/');
+});
+
 test('Unavailable storage does not break enquiry or calendar controls',async({page})=>{await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw new DOMException('Denied','SecurityError');};Storage.prototype.setItem=()=>{throw new DOMException('Denied','SecurityError');};});await page.goto('./');await draft(page);await page.keyboard.press('Escape');await page.goto('./#checklist');await page.locator('#bag-list input').first().check();await expect(page.locator('#bag-count')).toHaveText('1 / 6');});
 
 test('Chess engine replies, undo and all lesson solutions',async({page})=>{test.setTimeout(60000);await page.goto('play/chess.html');await expect(page.locator('#engine-state')).toContainText('готов',{timeout:30000});await page.locator('#chess-level').selectOption('0');await page.locator('[data-square=e2]').click();await page.locator('[data-square=e4]').click();await expect(page.locator('#board-status')).toContainText('Твой ход',{timeout:15000});await expect(page.locator('#move-list li')).toHaveCount(1);await page.locator('#undo-move').click();await expect(page.locator('#move-list li')).toHaveCount(0);const hint=page.locator('#hint-move');await hint.click();await expect(page.locator('.square.hint')).toHaveCount(0);await hint.click();await expect(page.locator('.square.hint')).toHaveCount(1,{timeout:15000});await hint.click();await expect(page.locator('.square.hint')).toHaveCount(2);await expect(page.locator('#move-list li')).toHaveCount(0);await page.locator('[data-chess-mode=learn]').click();for(const [lesson,from,to]of [['develop','g1','f3'],['defend','e1','d1'],['mate','g6','g7'],['fork','f5','e7'],['capture','e2','e4'],['castle','e1','g1']]){await page.locator('#lesson-select').selectOption(lesson);await page.locator(`[data-square=${from}]`).click();await page.locator(`[data-square=${to}]`).click();await expect(page.locator('#coach-heading')).toContainText('Верно!');}});
