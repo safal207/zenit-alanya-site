@@ -202,3 +202,38 @@ footer{border-top:1px solid #dbe7ed}
  .header-account{order:2;flex-basis:100%}
  html{scroll-padding-top:124px}
 }
+/* Direct contact above the fold: the 6-second goal video stays visible. */
+.video-hero .hero-conversion{width:min(525px,100%);padding:20px 22px 17px;margin-top:24px;border:1px solid rgba(214,241,253,.33);border-radius:14px;background:rgba(2,24,37,.63);box-shadow:0 14px 40px rgba(0,14,24,.24);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.video-hero .hero-conversion-heading{margin:0 0 14px;color:#fff;font-size:16px;font-weight:800;line-height:1.45;letter-spacing:-.15px}
+.video-hero .hero-conversion-actions{display:flex;align-items:stretch;flex-wrap:wrap;gap:10px}
+.video-hero .hero-conversion-actions a{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:12px 15px;border-radius:9px;font-size:13px;font-weight:800;line-height:1.35;text-decoration:none;transition:background .18s,transform .18s}
+.video-hero .hero-whatsapp{flex:1 1 235px;background:#e3f8ff;color:#07344b}
+.video-hero .hero-whatsapp:hover{background:#fff;transform:translateY(-1px)}
+.video-hero .hero-whatsapp svg{flex-shrink:0}
+.video-hero .hero-call{flex:1 1 170px;border:1px solid rgba(255,255,255,.64);color:#fff;background:rgba(4,35,51,.5)}
+.video-hero .hero-call:hover{background:rgba(26,83,110,.8)}
+.video-hero .hero-phone{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:3px 12px;margin-top:13px;min-height:30px;text-decoration:none;color:#effaff;font-size:12px;line-height:1.6}
+.video-hero .hero-phone strong{font-size:17px;white-space:nowrap;letter-spacing:.15px;color:#fff}
+.video-hero .hero-phone:hover strong{text-decoration:underline;text-underline-offset:3px}
+.video-hero .hero-conversion a:focus-visible{outline:3px solid #ffc95a;outline-offset:3px}
+html .video-hero .minimal-lead{max-width:505px;margin:21px 0 0;line-height:1.65}
+html .video-hero .minimal-hint{max-width:520px;margin-top:13px;font-size:12px;line-height:1.5}
+@media(max-width:760px){
+ .minimal-hero.video-hero{min-height:max(735px,calc(100svh - 105px));padding:66px 6% 54px;align-items:flex-end}
+ .video-hero .hero-conversion{margin-top:18px;padding:16px 15px 14px;border-radius:12px}
+ .video-hero .hero-conversion-heading{font-size:14px;margin-bottom:11px}
+ .video-hero .hero-conversion-actions{gap:8px}
+ .video-hero .hero-conversion-actions a{min-height:49px;font-size:12px}
+ .video-hero .hero-phone{margin-top:11px}
+ .video-hero .hero-phone strong{font-size:16px}
+ html .video-hero .minimal-lead{margin:17px 0 0;font-size:14px;line-height:1.55}
+ html .video-hero .minimal-hint{font-size:11px;line-height:1.5}
+}
+@media(max-width:380px){
+ .minimal-hero.video-hero{min-height:775px;padding:35px 5.5% 36px}
+ html .video-hero h1{font-size:clamp(31px,8vw,36px)}
+ .video-hero .hero-conversion-actions a{flex-basis:100%}
+ .video-hero .hero-phone{display:block}
+ .video-hero .hero-phone strong{display:block;font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.video-hero .hero-conversion-actions a{transition:none}}

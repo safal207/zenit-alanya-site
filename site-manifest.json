@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "61ee5e0d6673f885e3177647fc6348edf4f6fc10bce015603e7738f78fc413d9",
+  "source_artifact_digest": "6518393647e10519acecc2b3980ac1d3633031ffe4b5638b0ef25f851d8afe74",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -200,8 +200,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 107692,
-      "sha256": "d1d7e4a976ffd06d402b1df7e9d849e7482979e2d7db717c41a6d51684f7a176"
+      "bytes": 107691,
+      "sha256": "e5bacfd86b655cf5be2b02b6b93ac3aac3b4f6ec059b13b32f4901fd5d95ae20"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -260,8 +260,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 17779,
-      "sha256": "1cbfb0688f75d441b8ddf3a39da1ab0ca413cb583a0eaf812590795a0cbb9a4c"
+      "bytes": 20739,
+      "sha256": "f73f2e121840c204d56f5afe6de79379d2598b4bb0924e17e2a004983d2a6742"
     },
     {
       "path": "assets/models/player.glb",
