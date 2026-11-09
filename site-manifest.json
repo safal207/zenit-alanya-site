@@ -1,12 +1,11 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "410b75da8d821a1ea1177b08f66117975e53eee27f519fe838eb82156a1fa7a8",
+  "source_artifact_digest": "44cf2ff194ef4e0f4d95fbbce60e5446862b17869705be3a594f973f9b7309bf",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
     "assets/app.js",
-    "assets/before-training-ai.webp",
     "assets/chess-app.css",
     "assets/chess-app.js",
     "assets/chess-bots.js",
@@ -23,13 +22,11 @@
     "assets/football-core.js",
     "assets/football3d.css",
     "assets/football3d.js",
-    "assets/goalkeeper-training-ai.webp",
     "assets/home.bundle.css",
     "assets/journey.bundle.css",
     "assets/journey.css",
     "assets/media.js",
     "assets/minimal.css",
-    "assets/older-play-ai.webp",
     "assets/player-api.js",
     "assets/player-journey-v1.webp",
     "assets/player-path.js",
@@ -39,7 +36,6 @@
     "assets/style.css",
     "assets/theme.css",
     "assets/theme.js",
-    "assets/young-play-ai.webp",
     "index.html",
     "journey.html",
     "play/chess.html",
@@ -62,11 +58,6 @@
       "path": "assets/app.js",
       "bytes": 59559,
       "sha256": "376a4a1c8156092530e9790b05bdc540e3952c7b8c093d89fe36cd1493272152"
-    },
-    {
-      "path": "assets/before-training-ai.webp",
-      "bytes": 104330,
-      "sha256": "37c3c308430161ade78a45a6f2e47328dd354ed6c09f63264a01f4681e35b0fb"
     },
     {
       "path": "assets/calendar-core.js",
@@ -194,11 +185,6 @@
       "sha256": "4828f195466a6eb67534bb15058c7b23a25da07484a7ebf3fb1cc0b35e672090"
     },
     {
-      "path": "assets/goalkeeper-training-ai.webp",
-      "bytes": 109398,
-      "sha256": "8b13394e173fb0083dcc8dabd0bce0987f0a4c6ec77fd9a78878551c5d0b0821"
-    },
-    {
       "path": "assets/home.bundle.css",
       "bytes": 112399,
       "sha256": "350780cf78d04b469cb908108966d13653e01910d6886f50320cecc5050b42fd"
@@ -267,11 +253,6 @@
       "path": "assets/models/player.glb",
       "bytes": 498212,
       "sha256": "7fd28255c484e19ba5086d9cf815128e21dfcb677d262a88b237a5f5af081c5f"
-    },
-    {
-      "path": "assets/older-play-ai.webp",
-      "bytes": 109380,
-      "sha256": "1ec2a819e16bf3a07789bccc313608bc999571296eb60495e93d86ae57b646f4"
     },
     {
       "path": "assets/player-api.js",
@@ -477,11 +458,6 @@
       "path": "assets/vendor/loaders-license.md",
       "bytes": 9226,
       "sha256": "9362ea9ea17cb221a20cbbd63f404710834cc273d2a9a7b60314fd68ab702cd6"
-    },
-    {
-      "path": "assets/young-play-ai.webp",
-      "bytes": 107264,
-      "sha256": "1e20f1757972adbe5b136036d8874a1944736d17985c595949bfc473a3aa154c"
     },
     {
       "path": "index.html",
