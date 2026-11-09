@@ -279,3 +279,8 @@ html[data-theme=dark] .real-social-details{border-color:#2b5163}
 @media(max-width:800px){.real-training-cta{flex-direction:column;align-items:stretch}.real-training-cta-actions{min-width:0;flex-direction:row}.real-training-cta-actions a{flex:1 1 50%}.real-social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.real-training-proof .training-gallery{grid-template-columns:minmax(0,1fr);gap:14px}.real-training-image{aspect-ratio:16/9}.real-training-info{padding:15px}.real-training-cta{padding:20px}.real-training-cta strong{font-size:18px}.real-training-cta-actions{flex-direction:column}.real-social-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:12px}.real-social-details>summary{padding:15px}.real-training-heading h3{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.real-training-image img{transition:none}}
+
+/* Accessible contrast in dark mode for authentic club media. */
+html[data-theme=dark] .real-training-info>a{color:#b0e9ff}
+html[data-theme=dark] .real-social-item{color:#e4f8ff;background:#123c52;border-color:#628699}
+html[data-theme=dark] .real-social-index{color:#c4dfeb}
