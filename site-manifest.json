@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "f2d16474a0c9f9a54d03958ac4bc12078c669e4648e95ab291da8b3d0301809f",
+  "source_artifact_digest": "fccb7636469d304df020a61d863a85c16a8e42c1dc7acf73f6fbb3680bca76ed",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -56,8 +56,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 62104,
-      "sha256": "22238f9ef88173abd3467d107cf22557b4dab9425fc771b25655bcef88f5b5f3"
+      "bytes": 61733,
+      "sha256": "4755a2d9fa7d272e16a107fa88a148682ab01bb0fc05983b5dbe2078041cc36b"
     },
     {
       "path": "assets/calendar-core.js",
@@ -211,8 +211,8 @@
     },
     {
       "path": "assets/media.js",
-      "bytes": 16814,
-      "sha256": "a1dc464b835a8284b590229e0d658251a2c0995a12b8aeab03f3ca692bdb3f4e"
+      "bytes": 16721,
+      "sha256": "c5f87361e6607834c0015c62b27a8eb6ba5c8e6fc30ce004cea60ff7b40e116b"
     },
     {
       "path": "assets/media/adamov-message.jpg",
