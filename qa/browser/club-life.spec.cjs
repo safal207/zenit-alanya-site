@@ -85,10 +85,13 @@ test('mobile viewports have no sideways scrolling or blocked controls',async({pa
 test('expired Instagram image has safe real-club photo fallback',async({page})=>{
   await page.goto(path);
   const image=page.locator('.story-card').first().locator('.story-cover');
-  await expect(image).toHaveAttribute('data-fallback','assets/club-training-young.jpg');
-  // Lazy images are intentionally not fetched before intersection in WebKit.
+  // Chromium may already have replaced a failed signed Instagram URL.
+  // WebKit may defer the first load until the picture enters the viewport.
   await image.scrollIntoViewIfNeeded();
-  await image.evaluate(el=>el.dispatchEvent(new Event('error')));
-  await expect(image).toHaveAttribute('src','assets/club-training-young.jpg');
+  const local='assets/club-training-young.jpg';
+  if(await image.getAttribute('src')!==local){
+    await image.evaluate(el=>el.dispatchEvent(new Event('error')));
+  }
+  await expect(image).toHaveAttribute('src',local);
   await expect.poll(()=>image.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
 });
