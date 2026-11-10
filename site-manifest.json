@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "83e95ba216e0f1f6752e317f559346da964aa4cc9a41b3d7a9993063c3076ff2",
+  "source_artifact_digest": "1f9ac55d4355af9a6cfb4979cde3f019516657c1411fb619f27a614d48db938a",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -462,8 +462,8 @@
     },
     {
       "path": "club-life.html",
-      "bytes": 45094,
-      "sha256": "950ea85daf84e719d0e1e7b0d245997655067d4f5ab3a8b5fc0b7e97f65a7334"
+      "bytes": 56589,
+      "sha256": "edea7a1258daffc3133919eef9eac2262b3d47f812626f7a77bf8b218e1ecc16"
     },
     {
       "path": "index.html",
