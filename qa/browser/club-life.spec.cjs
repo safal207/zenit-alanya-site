@@ -68,6 +68,10 @@ test('mobile viewports have no sideways scrolling or blocked controls',async({pa
     await expect(page.locator('[data-filter="all"]')).toBeVisible();
     await expect(page.locator('.mobile-action')).toHaveCount(0);
     await expect(page.locator('.story-card').first()).toBeVisible();
-    if(width===390)await page.screenshot({path:testInfo.outputPath('gallery-390.png'),fullPage:false});
+    if(width===390){
+      await page.screenshot({path:testInfo.outputPath('gallery-390.png'),fullPage:false});
+      await page.locator('#stories').scrollIntoViewIfNeeded();
+      await page.screenshot({path:testInfo.outputPath('archive-390.png'),fullPage:false});
+    }
   }
 });
