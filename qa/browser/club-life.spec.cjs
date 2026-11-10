@@ -13,6 +13,7 @@ test('authentic gallery: three large local photos and thirteen intentional story
   // No third-party Instagram iframe is loaded until a reader explicitly asks.
   await expect(page.locator('iframe[src*="instagram.com"]')).toHaveCount(0);
   for(const photo of await page.locator('.photo-grid img').all()){
+    await photo.scrollIntoViewIfNeeded();
     await expect.poll(()=>photo.evaluate(img=>img.complete&&img.naturalWidth>0)).toBeTruthy();
   }
 });
