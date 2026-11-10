@@ -86,6 +86,8 @@ test('expired Instagram image has safe real-club photo fallback',async({page})=>
   await page.goto(path);
   const image=page.locator('.story-card').first().locator('.story-cover');
   await expect(image).toHaveAttribute('data-fallback','assets/club-training-young.jpg');
+  // Lazy images are intentionally not fetched before intersection in WebKit.
+  await image.scrollIntoViewIfNeeded();
   await image.evaluate(el=>el.dispatchEvent(new Event('error')));
   await expect(image).toHaveAttribute('src','assets/club-training-young.jpg');
   await expect.poll(()=>image.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
