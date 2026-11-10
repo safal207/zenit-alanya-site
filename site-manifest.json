@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "fccb7636469d304df020a61d863a85c16a8e42c1dc7acf73f6fbb3680bca76ed",
+  "source_artifact_digest": "83e95ba216e0f1f6752e317f559346da964aa4cc9a41b3d7a9993063c3076ff2",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -36,6 +36,7 @@
     "assets/style.css",
     "assets/theme.css",
     "assets/theme.js",
+    "club-life.html",
     "index.html",
     "journey.html",
     "play/chess.html",
@@ -310,26 +311,6 @@
       "sha256": "44c2f027ec2b47fceb69c196042e698f5685b1c869c3a431d1093538d1d6f1e0"
     },
     {
-      "path": "assets/vendor/HavokPhysics.wasm",
-      "bytes": 2094563,
-      "sha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
-    },
-    {
-      "path": "assets/vendor/HavokPhysics_umd.js",
-      "bytes": 67605,
-      "sha256": "f378353fc44b33ee2c66b3110490ecfa72993a47652a3e57ba49c752f175f864"
-    },
-    {
-      "path": "assets/vendor/LICENSE-fonts.txt",
-      "bytes": 4427,
-      "sha256": "f2425a5b53396301011c60ba192ca9a9fb750638734b2dd599a028fdbe1c6e85"
-    },
-    {
-      "path": "assets/vendor/LICENSE-quaternius.txt",
-      "bytes": 364,
-      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c"
-    },
-    {
       "path": "assets/vendor/babylon.js",
       "bytes": 8759399,
       "sha256": "2e5958f72efa5bc4957a5267a4852b8c2f1577e335ed7e5088bba9e44b6dd1d0"
@@ -345,6 +326,11 @@
       "sha256": "633b1bec409a33ad1d4b0335820e27c1430c28cfaf13b4772c4bd38a598d7061"
     },
     {
+      "path": "assets/vendor/chess/chess.js",
+      "bytes": 110420,
+      "sha256": "c5d04c0e03e7cb913e67bc7e47447fa24dc92715570f95009cc1c9218efdc610"
+    },
+    {
       "path": "assets/vendor/chess/LICENSE-chessjs.txt",
       "bytes": 1338,
       "sha256": "2de72a0ab89c25da0e5c44c62108c47db186f95c08c9c652fd64c9c1ac457700"
@@ -355,24 +341,9 @@
       "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b"
     },
     {
-      "path": "assets/vendor/chess/chess.js",
-      "bytes": 110420,
-      "sha256": "c5d04c0e03e7cb913e67bc7e47447fa24dc92715570f95009cc1c9218efdc610"
-    },
-    {
       "path": "assets/vendor/chess/pieces/ATTRIBUTION.txt",
       "bytes": 247,
       "sha256": "ae7d5bd7af520f7175c0a04468c8cee8309fd2552958c20cf44813ee37f3c905"
-    },
-    {
-      "path": "assets/vendor/chess/pieces/COPYRIGHT.txt",
-      "bytes": 29,
-      "sha256": "a66f251bcdb99479c102695a75ba292244ccf45f1f2710af552acdf4887e4f90"
-    },
-    {
-      "path": "assets/vendor/chess/pieces/LICENSE.txt",
-      "bytes": 11560,
-      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
     },
     {
       "path": "assets/vendor/chess/pieces/bB.svg",
@@ -403,6 +374,16 @@
       "path": "assets/vendor/chess/pieces/bR.svg",
       "bytes": 3077,
       "sha256": "ad18856a97edf53281acc40e1e6e4f7021ed01fad380fff7e09e63465b3bb462"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/COPYRIGHT.txt",
+      "bytes": 29,
+      "sha256": "a66f251bcdb99479c102695a75ba292244ccf45f1f2710af552acdf4887e4f90"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/LICENSE.txt",
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
     },
     {
       "path": "assets/vendor/chess/pieces/wB.svg",
@@ -455,14 +436,39 @@
       "sha256": "1196da268a72f71d527156d33063e0a6abb191089105a616d56d257d9093d1cf"
     },
     {
+      "path": "assets/vendor/HavokPhysics_umd.js",
+      "bytes": 67605,
+      "sha256": "f378353fc44b33ee2c66b3110490ecfa72993a47652a3e57ba49c752f175f864"
+    },
+    {
+      "path": "assets/vendor/HavokPhysics.wasm",
+      "bytes": 2094563,
+      "sha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
+    },
+    {
+      "path": "assets/vendor/LICENSE-fonts.txt",
+      "bytes": 4427,
+      "sha256": "f2425a5b53396301011c60ba192ca9a9fb750638734b2dd599a028fdbe1c6e85"
+    },
+    {
+      "path": "assets/vendor/LICENSE-quaternius.txt",
+      "bytes": 364,
+      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c"
+    },
+    {
       "path": "assets/vendor/loaders-license.md",
       "bytes": 9226,
       "sha256": "9362ea9ea17cb221a20cbbd63f404710834cc273d2a9a7b60314fd68ab702cd6"
     },
     {
+      "path": "club-life.html",
+      "bytes": 45094,
+      "sha256": "950ea85daf84e719d0e1e7b0d245997655067d4f5ab3a8b5fc0b7e97f65a7334"
+    },
+    {
       "path": "index.html",
-      "bytes": 53322,
-      "sha256": "38003ef9f28a46a0fe946060d8c826d251680999c8b8e8092e55459509555a97"
+      "bytes": 55304,
+      "sha256": "8443334dbaf33f2c7c66a6e1d550bc8a7ef67a000f906f2ade1a99423f2f96fe"
     },
     {
       "path": "journey.html",
@@ -486,8 +492,8 @@
     },
     {
       "path": "stories.html",
-      "bytes": 8283,
-      "sha256": "95c384c5142a2e28c437a7c3dfd128cab94ab151d40a9638d20ac11c58ed8582"
+      "bytes": 9157,
+      "sha256": "9580924d9c4b1280de65ec63c8301a87f35182cbdd3cc295ab69c78c079f46be"
     }
   ],
   "source_repository": "safal207/zenit-alanya-academy"
