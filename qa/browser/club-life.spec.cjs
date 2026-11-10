@@ -6,7 +6,10 @@ test('authentic gallery: three large local photos and thirteen intentional story
   await page.goto(path);
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.locator('.story-card')).toHaveCount(13);
-  await expect(page.locator('#results-count')).toContainText('13');
+  await expect(page.locator('#results-count')).toContainText('6 из 13');
+  await expect(page.locator('.story-cover')).toHaveCount(13);
+  await expect(page.locator('.story-card:visible')).toHaveCount(6);
+  await expect(page.locator('#show-more')).toBeVisible();
   await expect(page.locator('.photo-grid img')).toHaveCount(3);
   await expect(page.locator('#story-viewer')).not.toBeVisible();
   await expect(page.locator('#viewer-frame')).not.toHaveAttribute('src',/.+/);
@@ -35,7 +38,10 @@ test('topics and Russian Turkish English copy remain functional',async({page})=>
   await page.locator('[data-filter="keepers"]').click();
   await expect(page.locator('.story-card:visible')).toHaveCount(4);
   await page.locator('[data-filter="all"]').click();
+  await expect(page.locator('.story-card:visible')).toHaveCount(6);
+  await page.locator('#show-more').click();
   await expect(page.locator('.story-card:visible')).toHaveCount(13);
+  await expect(page.locator('.archive-more')).toBeHidden();
   await page.locator('[data-lang="tr"]').click();
   await expect(page.locator('html')).toHaveAttribute('lang','tr');
   await expect(page.locator('.section-heading h2').first()).toContainText('küçük');
@@ -74,4 +80,13 @@ test('mobile viewports have no sideways scrolling or blocked controls',async({pa
       await page.screenshot({path:testInfo.outputPath('archive-390.png'),fullPage:false});
     }
   }
+});
+
+test('expired Instagram image has safe real-club photo fallback',async({page})=>{
+  await page.goto(path);
+  const image=page.locator('.story-card').first().locator('.story-cover');
+  await expect(image).toHaveAttribute('data-fallback','assets/club-training-young.jpg');
+  await image.evaluate(el=>el.dispatchEvent(new Event('error')));
+  await expect(image).toHaveAttribute('src','assets/club-training-young.jpg');
+  await expect.poll(()=>image.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
 });
