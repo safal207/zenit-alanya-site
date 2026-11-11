@@ -270,3 +270,40 @@ for(const lang of ['ru','tr','en'])test('Player pathway is readable, standalone 
   await page.locator('[data-theme-toggle]').click();
   await expect(page.locator('#path-title')).toBeVisible();
 });
+
+test('Mobile film previews use real posters and load full video only after explicit tap',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('./');
+ const previews=page.locator('[data-open-message]');
+ await expect(previews).toHaveCount(2);
+ await expect(page.locator('.message-card')).toHaveCount(2);
+ const video=page.locator('#message-player-video');
+ await expect(video).not.toHaveAttribute('src',/\S/);
+ for(const id of ['message','adamov']){
+  await expect(page.locator('[data-open-message='+id+'] img')).toBeVisible();
+  const bbox=await page.locator('[data-open-message='+id+']').boundingBox();
+  expect(bbox.height).toBeLessThan(350);
+  await expect(page.locator('[data-open-message='+id+']')).toHaveAttribute('aria-haspopup','dialog');
+ }
+ const account=await page.locator('.header-account').boundingBox();
+ expect(account.height).toBeLessThanOrEqual(52);
+ expect((await page.locator('.header').boundingBox()).height).toBeLessThanOrEqual(80);
+ await previews.first().focus();
+ await page.keyboard.press('Enter');
+ await expect(page.locator('#message-player-dialog')).toBeVisible();
+ await expect(video).toHaveAttribute('src','assets/media/erokhin-message.mp4');
+ await expect(page.locator('#message-player-download')).toHaveAttribute('download','zenit-alanya-erokhin.mp4');
+ await expect(page.locator('#message-player-source')).toHaveAttribute('href','https://www.instagram.com/zenitalanya/reel/Dejjp92OaRJ/');
+ await page.keyboard.press('Escape');
+ await expect(page.locator('#message-player-dialog')).not.toBeVisible();
+ await expect(video).not.toHaveAttribute('src',/\S/);
+ await expect(previews.first()).toBeFocused();
+ await page.locator('.languages button[data-lang=en]').click();
+ await previews.nth(1).click();
+ await expect(page.locator('#message-player-dialog')).toBeVisible();
+ await expect(video).toHaveAttribute('src','assets/media/adamov-message.mp4');
+ await expect(page.locator('#message-player-title')).not.toContainText('Поздравление');
+ await page.locator('[data-message-close]').click();
+ await expect(video).not.toHaveAttribute('src',/\S/);
+ expect(await page.locator('html').evaluate(e=>e.scrollWidth-e.clientWidth)).toBeLessThanOrEqual(1);
+});
