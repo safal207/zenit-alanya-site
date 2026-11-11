@@ -51,25 +51,22 @@ for p in DIST.rglob('*.css'):
 require(not list(DIST.glob('__qa*')),'Remove temporary browser QA fixture before release')
 home=(DIST/'index.html').read_text(encoding='utf-8')
 require('vendor/babylon' not in home and 'stockfish-19' not in home,'Homepage must not bootstrap game engines')
-# Requested messages remain site-hosted and available with JavaScript disabled.
-# On the landing, a slim poster opens a native video in an accessible dialog after a tap.
+# Original MP4 messages remain reachable without JavaScript via poster links.
+# The native video is created by the existing accessible film dialog only on click.
 home_attrs=pages[(DIST/'index.html').resolve()].attrs
 expected_videos={'message':'assets/media/erokhin-message.mp4','adamov':'assets/media/adamov-message.mp4'}
-previews=[a for tag,a in home_attrs if tag=='a' and a.get('data-open-message')]
+previews=[a for tag,a in home_attrs if tag=='a' and a.get('data-open-film') in expected_videos]
 require(len(previews)==2,'Both authentic film poster links must exist')
-require({a.get('data-open-message'):a.get('href') for a in previews}==expected_videos,'Posters must link directly to hosted MP4 when JavaScript is off')
+require({a.get('data-open-film'):a.get('href') for a in previews}==expected_videos,'Posters must link directly to hosted MP4 when JavaScript is off')
 require(all(a.get('aria-haspopup')=='dialog' and a.get('aria-labelledby') for a in previews),'Posters must be named dialog launchers')
 require(not any(tag=='iframe' for tag,a in home_attrs),'Landing messages must not depend on third-party frames')
+require(not any(tag=='video' and 'message-video' in a.get('class','').split() for tag,a in home_attrs),'Large portrait video players must not load in the home page')
 message_downloads=[a for tag,a in home_attrs if tag=='a' and 'message-download' in a.get('class','').split()]
 require({a.get('href') for a in message_downloads}==set(expected_videos.values()),'Both message files must have direct downloads')
 require(all(a.get('download','').endswith('.mp4') for a in message_downloads),'Each message download needs an MP4 filename')
-dialog_players=[a for tag,a in home_attrs if tag=='video' and a.get('id')=='message-player-video']
-require(len(dialog_players)==1,'One shared native dialog player required')
-player=dialog_players[0]
-require('controls' in player and 'playsinline' in player,'Native controls and inline mobile playback required')
-require(player.get('preload')=='none' and 'autoplay' not in player and 'src' not in player,'MP4 must not load before user request')
-require(bool(player.get('aria-label')),'Video needs an accessible label')
-require('id="message-player-dialog"' in home and 'data-message-close' in home,'Dialog must provide an accessible close action')
+film_js=(DIST/'assets/media.js').read_text(encoding='utf-8')
+require("dialog.id='film-dialog'" in film_js and 'v.controls=true' in film_js and 'v.playsInline=true' in film_js,'Shared accessible native movie viewer must remain')
+require("e.preventDefault();showFilm(el.dataset.openFilm)" in film_js,'Poster anchors must open the viewer instead of navigating from the site')
 require('data-open-film="young"' in home and 'data-open-film="sand"' in home,'Both on-site training launchers required')
 require(home.index('id="start"')<home.index('id="game"'),'Parent contact step must precede games')
 require('<input' not in home or 'type="password"' not in home,'This static site must not request account passwords')
