@@ -62,7 +62,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts --no-fund
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - name: Exercise six journeys on the published URL
         run: npx playwright test -c qa/playwright.live.config.cjs
       - name: Retain publication evidence
