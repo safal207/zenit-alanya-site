@@ -91,3 +91,75 @@ if(hero&&data.hero.file){
  sync();
 }
 })();
+/* On-demand portrait message player. The home page renders only authentic stills;
+   loading and playback of the actual MP4 occur after an explicit visitor click. */
+;(()=>{'use strict';
+ const dialog=document.querySelector('#message-player-dialog');
+ if(!dialog||typeof dialog.showModal!=='function')return;
+ const video=document.querySelector('#message-player-video');
+ const title=document.querySelector('#message-player-title');
+ const close=document.querySelector('[data-message-close]');
+ const status=document.querySelector('#message-player-status');
+ const download=document.querySelector('#message-player-download');
+ const source=document.querySelector('#message-player-source');
+ const translations={
+  ru:{loading:'Загружаем видео…',ready:'Нажмите ▶, чтобы запустить видео',error:'Видео недоступно. Откройте файл или оригинал ниже.',close:'Закрыть видео'},
+  tr:{loading:'Video yükleniyor…',ready:'Başlatmak için ▶ düğmesine basın',error:'Video açılamadı. MP4 dosyasını veya orijinal gönderiyi açın.',close:'Videoyu kapat'},
+  en:{loading:'Loading video…',ready:'Press ▶ to play the video',error:'Video unavailable. Open the MP4 file or original post below.',close:'Close video'}
+ };
+ let opener=null,reason='loading';
+ const strings=()=>translations[document.documentElement.lang]||translations.ru;
+ const showStatus=key=>{reason=key;status.textContent=strings()[key];status.hidden=false};
+ const clearStatus=()=>{status.hidden=true};
+ document.querySelectorAll('a[data-open-message]').forEach(anchor=>{
+  anchor.addEventListener('click',event=>{
+   if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.altKey||event.shiftKey)return;
+   event.preventDefault();
+   const card=anchor.closest('.message-card');
+   if(!card)return;
+   opener=anchor;
+   title.textContent=card.querySelector('.message-card-header h4')?.textContent||'ZENIT ALANYA';
+   const original=card.querySelector('.message-source');
+   const file=card.querySelector('.message-download');
+   if(original)source.href=original.href;
+   if(file){download.href=file.href;download.download=file.download;}
+   video.poster=anchor.querySelector('img')?.getAttribute('src')||'';
+   video.setAttribute('aria-label',title.textContent);
+   video.src=anchor.getAttribute('href');
+   video.preload='metadata';
+   showStatus('loading');
+   const hero=document.querySelector('#hero-film');
+   if(hero&&!hero.paused)hero.pause();
+   dialog.showModal();
+   try{
+    const started=video.play();
+    if(started&&typeof started.catch==='function')started.catch(()=>{if(dialog.open&&video.paused)showStatus('ready')});
+   }catch{showStatus('ready')}
+  });
+ });
+ video.addEventListener('waiting',()=>{if(dialog.open)showStatus('loading')});
+ video.addEventListener('playing',clearStatus);
+ video.addEventListener('canplay',clearStatus);
+ video.addEventListener('error',()=>{if(dialog.open)showStatus('error')});
+ close.addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{
+  if(event.target!==dialog)return;
+  const rect=dialog.getBoundingClientRect();
+  if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();
+ });
+ dialog.addEventListener('close',()=>{
+  video.pause();
+  video.removeAttribute('src');
+  video.removeAttribute('poster');
+  video.load();
+  video.preload='none';
+  clearStatus();
+  if(opener?.isConnected)opener.focus();
+  opener=null;
+ });
+ document.addEventListener('site:language',()=>{
+  close.setAttribute('aria-label',strings().close);
+  if(!status.hidden)status.textContent=strings()[reason];
+ });
+ close.setAttribute('aria-label',strings().close);
+})();
