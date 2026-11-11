@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "dd7f265203559a8d4ab7fac89bc86cfb5165acdb5d6b5f46f3382c1e23676c97",
+  "source_artifact_digest": "9d55f75605964f5d2ebb80609e2c7746ed49ff5fb206c695293419b64af91e05",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -187,8 +187,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 114310,
-      "sha256": "afa447889990990748864d36f2153dc67260f8a024351d7f9a5e8164a9f4a131"
+      "bytes": 120446,
+      "sha256": "358e057e319d5dc07fd6cdc136157d7338faaa17f20d029906ef47bb999f9656"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -212,8 +212,8 @@
     },
     {
       "path": "assets/media.js",
-      "bytes": 16721,
-      "sha256": "c5f87361e6607834c0015c62b27a8eb6ba5c8e6fc30ce004cea60ff7b40e116b"
+      "bytes": 20504,
+      "sha256": "c4b1d87945a75053f9ee975b2354213dbde19fc288cc714b75144166b7988053"
     },
     {
       "path": "assets/media/adamov-message.jpg",
@@ -467,8 +467,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 55304,
-      "sha256": "8443334dbaf33f2c7c66a6e1d550bc8a7ef67a000f906f2ade1a99423f2f96fe"
+      "bytes": 56504,
+      "sha256": "7e4091aa5d1cdc54bcd64a4393f809ee742256ce97dae2290fb8b1e5ef9cb41b"
     },
     {
       "path": "journey.html",
