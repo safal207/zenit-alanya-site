@@ -58,7 +58,7 @@ jobs:
       - if: inputs.bundle
         run: python3 qa/unpack-site.py
       - name: Install test browser
-        run: npx playwright install --with-deps ${{ matrix.browser }}
+        run: npx playwright install ${{ matrix.browser }}
       - name: Scenarios and regression checks
         run: npm run test:browser -- --project=${{ matrix.browser }}
       - name: Retain browser reports, traces and screenshots
@@ -87,7 +87,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-fund
       - if: inputs.bundle
         run: python3 qa/unpack-site.py
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - name: Three-run medians and performance budgets
         env:
           PERF_PROFILE: ${{ matrix.profile }}
