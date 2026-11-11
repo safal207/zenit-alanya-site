@@ -8,7 +8,8 @@ permissions:
   contents: read
 concurrency:
   group: pages-${{ github.ref }}
-  cancel-in-progress: false
+  # Cancel obsolete pull-request checks while preserving serialized production deployments.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   quality:
     uses: ./.github/workflows/quality.yml
