@@ -400,6 +400,58 @@ html[data-theme=dark] .real-social-index{color:#c4dfeb}
 .video-hero .hero-share-feedback{display:block;font-size:12px;color:#d7f5ff;line-height:1.55}
 @media(max-width:760px){.video-hero .hero-video-toggle{top:16px;right:6%;min-height:44px;padding:10px 12px;font-size:12px}.video-hero .hero-video-fallback{top:68px;right:6%}.video-hero .hero-share{min-height:44px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){.video-hero .hero-backdrop video[data-manual-play="true"]{display:block}}
+
+/* Compact football-school video story cards: keep the authentic posters visible, but do not
+   force 9:16 native player controls into the landing page. Full video opens on demand. */
+.message-players{max-width:860px;gap:16px}
+.message-card{border-radius:12px;box-shadow:0 10px 27px rgba(5,39,58,.07);transition:box-shadow .2s ease}
+.message-card:hover{box-shadow:0 14px 32px rgba(5,39,58,.12)}
+.message-card-header{min-height:100px;padding:17px 18px 14px}
+.message-card-header h4{font-size:17px;line-height:1.35}
+.message-preview{position:relative;display:block;width:100%;aspect-ratio:5/4;overflow:hidden;background:#092c40;color:#fff}
+.message-preview:focus-visible{outline:3px solid #f4b631;outline-offset:-3px}
+.message-preview::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(1,23,35,.07) 55%,rgba(1,23,35,.6));z-index:1}
+.message-preview-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .24s ease}
+.message-preview:hover .message-preview-image{transform:scale(1.025)}
+.message-preview-play{position:absolute;top:50%;left:50%;z-index:2;display:grid;place-items:center;transform:translate(-50%,-50%);width:60px;height:60px;padding-left:3px;border-radius:50%;background:rgba(255,255,255,.96);color:#07344b;box-shadow:0 8px 28px rgba(0,18,29,.25);font-size:22px}
+.message-preview-duration{position:absolute;bottom:13px;right:13px;z-index:2;border-radius:4px;background:rgba(2,25,40,.83);color:white;padding:5px 8px;font:800 11px/1 Manrope,Arial,sans-serif;font-variant-numeric:tabular-nums}
+.message-card .message-download,.message-card .message-source{padding:10px 18px;min-height:44px}
+html[data-theme=dark] .message-card{box-shadow:0 10px 28px rgba(0,0,0,.2)}
+@media(max-width:760px){
+ .message-players{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:10px}
+ .message-card-header{min-height:96px;padding:13px 11px 10px}
+ .message-card-header h4{font-size:13px;line-height:1.32}
+ .message-card-header p{font-size:10px;line-height:1.45;margin-top:5px}
+ .message-preview{aspect-ratio:4/5}
+ .message-preview-image{object-position:center 18%}
+ .message-preview-play{width:46px;height:46px;font-size:18px}
+ .message-preview-duration{font-size:10px;bottom:8px;right:8px;padding:4px 6px}
+ .message-card .message-download,.message-card .message-source{font-size:10px;min-height:44px;padding:9px 11px}
+ .message-card .message-download{gap:6px}
+ .message-card .message-download span:last-child{font-size:9px}
+}
+@media(max-width:600px){
+ .header{display:grid;grid-template-columns:minmax(0,1fr) 40px auto;align-items:center;gap:6px;min-height:64px;padding:8px 11px}
+ .header .brand{min-width:0;overflow:hidden;grid-column:1;grid-row:1}
+ .header .brand>img{width:34px;height:34px;flex:none}
+ .header .brand>span{font-size:12px;white-space:nowrap}
+ .header-account{grid-column:2;grid-row:1;order:initial;flex-basis:auto;width:40px;min-width:40px;height:40px;min-height:40px;padding:8px;border-radius:50%}
+ .header-account span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+ .header-actions{grid-column:3;grid-row:1;order:initial;gap:3px}
+ .header .languages button{min-width:26px}
+ .header .menu-toggle{width:33px}
+ .mobile-nav{top:64px}
+ html{scroll-padding-top:74px}
+}
+@media(max-width:360px){
+ .header{grid-template-columns:minmax(0,1fr) 36px auto;padding-inline:8px;gap:4px}
+ .header-account{width:36px;min-width:36px;height:36px;min-height:36px}
+ .header .brand>span{font-size:10px}
+ .header .languages button{min-width:24px}
+ .message-card-header h4{font-size:12px}
+ .message-card .message-source{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.message-preview-image,.message-card{transition:none}}
 /* journey.css */
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--theme-bg,#fff);color:var(--theme-ink,#07344b);font:15px/1.7 Manrope,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;max-width:100%}[hidden]{display:none!important}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #e9a622;outline-offset:4px}h1,h2,h3,p{margin:0}button{color:inherit} 
 .journal-header{max-width:1380px;margin:auto;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--theme-line)}.journal-brand{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:800;line-height:1.5;letter-spacing:1.4px}.journal-brand img{width:43px;height:43px;border-radius:3px}.journal-brand small{display:block;color:var(--theme-muted);font-size:9px;font-weight:500;letter-spacing:2px}.journal-actions{display:flex;align-items:center;gap:24px}.journal-home{font-size:12px;font-weight:700;min-height:44px;display:flex;align-items:center}.journal-languages{display:flex;gap:2px}.journal-languages button{min-width:32px;min-height:44px;font-size:10px;font-weight:800;border:0;border-bottom:2px solid transparent;background:none;color:var(--theme-muted)}.journal-languages button[aria-pressed=true]{border-color:var(--theme-accent);color:var(--theme-accent)}

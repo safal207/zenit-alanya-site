@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "dd7f265203559a8d4ab7fac89bc86cfb5165acdb5d6b5f46f3382c1e23676c97",
+  "source_artifact_digest": "f3028eb9513f20239be0fec81eee7d6c65e47e3c536af2d46218de846cfe57a9",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -187,8 +187,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 114310,
-      "sha256": "afa447889990990748864d36f2153dc67260f8a024351d7f9a5e8164a9f4a131"
+      "bytes": 118093,
+      "sha256": "d983136127bc4461d759c3a02f41f9192a1846ef0f9d3fcd357bf844f8cbeee0"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -212,8 +212,8 @@
     },
     {
       "path": "assets/media.js",
-      "bytes": 16721,
-      "sha256": "c5f87361e6607834c0015c62b27a8eb6ba5c8e6fc30ce004cea60ff7b40e116b"
+      "bytes": 16850,
+      "sha256": "7a72569e24a0303233b15b0554c11e826d667286642def442750b89b3cfd48f8"
     },
     {
       "path": "assets/media/adamov-message.jpg",
@@ -247,8 +247,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 27358,
-      "sha256": "55636680399d69bde2a9cc3cedcd11b77c7527cebba7dde2942d045054899ee0"
+      "bytes": 31141,
+      "sha256": "20a80a7c48b92ac9a6c61c2f20d8dc99fb7829069ad445906b7c841f029ef557"
     },
     {
       "path": "assets/models/player.glb",
@@ -467,8 +467,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 55304,
-      "sha256": "8443334dbaf33f2c7c66a6e1d550bc8a7ef67a000f906f2ade1a99423f2f96fe"
+      "bytes": 55543,
+      "sha256": "1593a76d5e44abc968f8455922aa99d90f1a779b5f2080f1c1ef417f2ed18c08"
     },
     {
       "path": "journey.html",

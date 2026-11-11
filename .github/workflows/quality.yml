@@ -41,6 +41,10 @@ jobs:
   browser:
     name: Browser / ${{ matrix.browser }}
     runs-on: ubuntu-24.04
+    # Official Playwright image includes Chromium, Firefox, WebKit and native media libraries.
+    # Browser binary version matches the exact @playwright/test lockfile.
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -58,8 +62,11 @@ jobs:
       - if: inputs.bundle
         run: python3 qa/unpack-site.py
       - name: Install test browser
-        run: npx playwright install --with-deps ${{ matrix.browser }}
+        run: npx playwright install ${{ matrix.browser }}
       - name: Scenarios and regression checks
+        env:
+          # Firefox requires a HOME directory owned by the invoking root user in the container.
+          HOME: /root
         run: npm run test:browser -- --project=${{ matrix.browser }}
       - name: Retain browser reports, traces and screenshots
         if: always()
@@ -87,7 +94,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-fund
       - if: inputs.bundle
         run: python3 qa/unpack-site.py
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium
       - name: Three-run medians and performance budgets
         env:
           PERF_PROFILE: ${{ matrix.profile }}
