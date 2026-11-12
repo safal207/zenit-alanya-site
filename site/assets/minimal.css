@@ -376,3 +376,7 @@ html[data-theme=dark] .message-card{box-shadow:0 10px 28px rgba(0,0,0,.2)}
 .venue-chess a:hover{background:#075777}
 .venue-chess a:focus-visible{outline:3px solid #e6b42c;outline-offset:2px}
 @media(max-width:600px){.venue-chess{display:grid;gap:9px}.venue-chess a{width:100%}.venue-times{gap:8px}}
+/* Static locale alternatives use the existing html lang switch with no extra runtime JavaScript. */
+[data-venue-locale]{display:none}
+html[lang="ru"] [data-venue-locale="ru"],html[lang="tr"] [data-venue-locale="tr"],html[lang="en"] [data-venue-locale="en"]{display:inline}
+html[lang="ru"] .venue-chess a[data-venue-locale="ru"],html[lang="tr"] .venue-chess a[data-venue-locale="tr"],html[lang="en"] .venue-chess a[data-venue-locale="en"]{display:inline-flex}
