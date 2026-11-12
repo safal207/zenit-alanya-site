@@ -136,14 +136,20 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  assert.ok(html.includes('Понедельник и среда · 18:00'));
  assert.ok(html.includes('Суббота · 14:00'));
  assert.ok(html.includes('data-chess-whatsapp'));
- const m=html.match(/<a data-chess-whatsapp href="([^"]+)"[^>]*>/);
- assert.ok(m,'Direct inquiry link is required even without JavaScript');
- const url=new URL(m[1].replaceAll('&amp;','&'));
- assert.equal(url.hostname,'wa.me');
- assert.equal(url.pathname,'/905388899272');
- assert.match(url.searchParams.get('text'),/шахматы.*субботу.*14:00/);
+ for(const lang of ['ru','tr','en']){
+  const all=[...html.matchAll(new RegExp('<a data-venue-locale="'+lang+'" href="([^"]+)"[^>]*>','g'))];
+  assert.equal(all.length,1,lang+': direct locale-specific WhatsApp link');
+  const u=new URL(all[0][1].replaceAll('&amp;','&'));
+  assert.equal(u.hostname,'wa.me');
+  assert.equal(u.pathname,'/905388899272');
+  assert.ok(u.searchParams.get('text').includes('14:00'),lang+': chess question');
+  assert.ok(html.includes('data-venue-locale="'+lang+'"'),lang+': translated venue text');
+ }
  assert.ok(!html.includes('Oğuzhan Cd. No:28'),'Do not publish unconfirmed street number');
  assert.match(html,/yandex\.com\.tr\/maps\/org\/futbol_alanya_milan_futbol_akademi_/);
- for(const key of ['venueHero','venueTitle','venueSchedule','venueChessWhen','venueChessName','venueChessAsk','venueChessMessage'])assert.equal((script.match(new RegExp('"'+key+'":','g'))||[]).length,3,key+' should have three localizations');
- assert.ok(script.includes("chessWhatsApp.href="),'Language selection should localise WhatsApp text');
+ const css=fs.readFileSync('dist/assets/home.bundle.css','utf8');
+ assert.ok(css.includes('html[lang="tr"] [data-venue-locale="tr"]'));
+ assert.ok(css.includes('html[lang="en"] [data-venue-locale="en"]'));
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
+ assert.ok(!script.includes('chessWhatsApp.href='),'Chess localisation adds no runtime JS');
 });
