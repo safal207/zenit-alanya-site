@@ -385,3 +385,6 @@ html[lang="ru"] .venue-chess a[data-venue-locale="ru"],html[lang="tr"] .venue-ch
 #funnel-preview{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin-top:7px;padding:10px 12px;border:1px solid var(--theme-line,#c7dae3);border-radius:8px;background:transparent;color:var(--theme-ink,#07344b);font-size:12px;font-weight:700;cursor:pointer;width:100%}
 #funnel-preview:hover{background:rgba(0,107,145,.06)}
 #funnel-preview:focus-visible,#funnel-create:focus-visible{outline:3px solid #efb939;outline-offset:3px}
+/* WCAG AA contrast for the now-visible direct-enquiry step in dark mode. */
+html[data-theme=dark] .funnel-optional summary{color:#e5f5ff}
+html[data-theme=dark] .funnel-safety{color:#e0f0fa}
