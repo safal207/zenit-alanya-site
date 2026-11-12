@@ -153,3 +153,17 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
  assert.ok(!script.includes('chessWhatsApp.href='),'Chess localisation adds no runtime JS');
 });
+
+test('Direct parent funnel: prominent age-choice path, optional preview and UTM source marker',()=>{
+ const html=fs.readFileSync('dist/index.html','utf8');
+ const js=fs.readFileSync('dist/assets/app.js','utf8');
+ assert.match(html,/<a class="hero-call" href="#inquiry-form">/);
+ assert.match(html,/<a id="funnel-create"[^>]*href="https:\/\/wa\.me\/905388899272"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+ assert.match(html,/<button id="funnel-preview" type="button"/);
+ assert.ok(!html.includes('<button id="funnel-create"'));
+ assert.ok(js.includes('function utmTag()'));
+ assert.ok(js.includes('utm_source'));
+ assert.ok(js.includes('previewDraft()'));
+ assert.ok(js.includes("heroWhatsApp.href=wa(t.heroWhatsappMessage)"));
+ for(const word of ['previewDraft','prepare','heroCallNow'])assert.equal((js.match(new RegExp('"'+word+'":','g'))||[]).length,3);
+});
