@@ -66,7 +66,7 @@ test('Coach cards keep the named person, original portrait and source together',
   const crypto=require('node:crypto'),html=fs.readFileSync('dist/index.html','utf8');
   const checks=[
     ['Таисия Кирилловна Зиновьева','coach-zinovyeva.jpg','DLFBqE2qP-5','75ce02ef1e0236e596324c3bf085a7a2bdc2e8937de1735d87da12dc4793323b'],
-    ['Андрей Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e']
+    ['Андрей Алексеевич Архипенко','coach-arkhipenko.jpg','DDNlByTMCPB','28e6a44004620eb538528c4969e44d3c0ac1670fedf7edfda1761da87fb3122e']
   ];
   const cards=[...html.matchAll(/<article class="coach-card">([\s\S]*?)<\/article>/g)].map(x=>x[1]);
   assert.equal(cards.length,2);
