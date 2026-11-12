@@ -135,7 +135,7 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  assert.ok(html.includes('id="venue"'));
  assert.ok(html.includes('Понедельник и среда · 18:00'));
  assert.ok(html.includes('Суббота · 14:00'));
- assert.ok(html.includes('data-chess-whatsapp'));
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
  for(const lang of ['ru','tr','en']){
   const all=[...html.matchAll(new RegExp('<a data-venue-locale="'+lang+'" href="([^"]+)"[^>]*>','g'))];
   assert.equal(all.length,1,lang+': direct locale-specific WhatsApp link');
