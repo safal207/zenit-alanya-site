@@ -1,6 +1,40 @@
 const {test,expect}=require('./fixtures.cjs');
 const fs=require('node:fs');
-async function draft(page){await page.locator('[name=age]').fill('7');await page.locator('[name=experience]').selectOption('regular');await page.locator('#funnel-next').click();await page.locator('#funnel-create').click();await expect(page.locator('#message-dialog')).toBeVisible();}
+async function draft(page){await page.locator('[name=age]').fill('7');await page.locator('[name=experience]').selectOption('regular');await page.locator('#funnel-next').click();await page.locator('#funnel-preview').click();await expect(page.locator('#message-dialog')).toBeVisible();}
+
+test('Qualified WhatsApp CTA includes UTM source and updates with form and language',async({page})=>{
+ await page.goto('./?utm_source=instagram&utm_medium=reel&utm_campaign=academy_2026');
+ await expect(page.locator('.hero-call')).toHaveAttribute('href','#inquiry-form');
+ const hero=new URL(await page.locator('[data-hero-whatsapp]').getAttribute('href'));
+ expect(hero.hostname).toBe('wa.me');expect(hero.pathname).toBe('/905388899272');
+ expect(hero.searchParams.get('text')).toContain('[source: source=instagram; medium=reel; campaign=academy_2026]');
+ await page.locator('[name=age]').fill('8');
+ await page.locator('[name=experience]').selectOption('beginner');
+ await page.locator('#funnel-next').click();
+ let u=new URL(await page.locator('#funnel-create').getAttribute('href'));
+ expect(u.searchParams.get('text')).toContain('Возраст: 8 лет.');
+ expect(u.searchParams.get('text')).toContain('source=instagram');
+ await expect(page.locator('#funnel-preview')).toBeVisible();
+ await page.locator('#funnel-back').click();
+ await page.locator('[name=age]').fill('10');
+ await page.locator('[name=experience]').selectOption('regular');
+ await page.locator('#funnel-next').click();
+ await page.locator('[data-lang=tr]').click();
+ u=new URL(await page.locator('#funnel-create').getAttribute('href'));
+ expect(u.searchParams.get('text')).toContain('10');
+ expect(u.searchParams.get('text')).toContain('source=instagram');
+ await expect(page.locator('#funnel-preview')).toHaveText('Mesaj metnini görüntüle');
+ await page.locator('#funnel-preview').click();
+ await expect(page.locator('#message-dialog')).toBeVisible();
+ await expect(page.locator('#draft-text')).toContainText('[source:');
+});
+test('UTM validation excludes values outside the allowed campaign tag format',async({page})=>{
+ await page.goto('./?utm_source=bad%20space&utm_medium=qr&utm_campaign=autumn_2026');
+ const u=new URL(await page.locator('[data-hero-whatsapp]').getAttribute('href'));
+ expect(u.searchParams.get('text')).not.toContain('bad space');
+ expect(u.searchParams.get('text')).toContain('medium=qr; campaign=autumn_2026');
+});
+
 async function theme(page,value){if(await page.locator('html').getAttribute('data-theme')!==value)await page.locator('[data-theme-toggle]').click();}
 for(const route of ['','stories.html','journey.html','play/chess.html','play/football.html'])test('Route and assets: '+(route||'home'),async({page})=>{if(route==='play/football.html')await page.setViewportSize({width:640,height:360});const response=await page.goto(route||'./');expect(response.status()).toBe(200);await expect(page.locator('h1')).toBeVisible();await expect(page.locator('html')).toHaveAttribute('lang','ru');await page.locator('h1').screenshot({path:test.info().outputPath('page-heading.png')});});
 
@@ -11,13 +45,13 @@ for(const width of [320,390,1280])for(const colour of ['light','dark'])test(`Enq
   expect(sizes.scroll).toBeLessThanOrEqual(sizes.client+1);expect(sizes.gap).toBeGreaterThanOrEqual(12);expect(sizes.overflow).toBeLessThanOrEqual(1);
   if(width===390&&colour==='dark')await page.screenshot({path:test.info().outputPath('enquiry-dark-mobile.png')});
   const modal=page.locator('#message-dialog');await page.keyboard.press('Shift+Tab');expect(await modal.evaluate(el=>el.contains(document.activeElement))).toBe(true);
-  await modal.locator('[data-close]').click();await expect(modal).not.toBeVisible();await expect(page.locator('#funnel-create')).toBeFocused();await page.locator('#funnel-create').click();await expect.poll(()=>modal.evaluate(el=>el.scrollTop)).toBe(0);
-  await page.keyboard.press('Escape');await expect(modal).not.toBeVisible();await expect(page.locator('#funnel-create')).toBeFocused();
+  await modal.locator('[data-close]').click();await expect(modal).not.toBeVisible();await expect(page.locator('#funnel-preview')).toBeFocused();await page.locator('#funnel-preview').click();await expect.poll(()=>modal.evaluate(el=>el.scrollTop)).toBe(0);
+  await page.keyboard.press('Escape');await expect(modal).not.toBeVisible();await expect(page.locator('#funnel-preview')).toBeFocused();
 });
 
 test('Draft validation, editing and no injection',async({page})=>{
   await page.goto('./');await page.locator('#funnel-next').click();await expect(page.locator('#funnel-step-1')).toBeVisible();await expect(page.locator('#message-dialog')).not.toBeVisible();await draft(page);await page.keyboard.press('Escape');await page.locator('#funnel-back').click();await page.locator('[name=age]').fill('16');await page.locator('[name=experience]').selectOption('beginner');await page.locator('#funnel-next').click();await page.locator('.funnel-optional summary').click();
-  await page.locator('[name=area]').fill('<img src=x onerror=alert(1)>');await page.locator('[name=language]').selectOption('tr');await page.locator('#funnel-create').click();await expect(page.locator('#draft-text')).toContainText('Возраст: 16 лет.');await expect(page.locator('#draft-text')).toContainText('Только начинает');await expect(page.locator('#draft-text')).toContainText('<img src=x onerror=alert(1)>');await expect(page.locator('#draft-text img')).toHaveCount(0);
+  await page.locator('[name=area]').fill('<img src=x onerror=alert(1)>');await page.locator('[name=language]').selectOption('tr');await page.locator('#funnel-preview').click();await expect(page.locator('#draft-text')).toContainText('Возраст: 16 лет.');await expect(page.locator('#draft-text')).toContainText('Только начинает');await expect(page.locator('#draft-text')).toContainText('<img src=x onerror=alert(1)>');await expect(page.locator('#draft-text img')).toHaveCount(0);
 });
 
 test('Clipboard contains exactly the generated draft',async({page,context,browserName})=>{

@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "a2cd38b3eb85e0d9df5f2d4594d3d42ae73850e99cd5ff992807c1fb88b6c963",
+  "source_artifact_digest": "8685e56eefbc3dbfe83ea6e2ccd96c3806af105756a50c855fe63eac684b17d3",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -57,8 +57,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 61733,
-      "sha256": "4755a2d9fa7d272e16a107fa88a148682ab01bb0fc05983b5dbe2078041cc36b"
+      "bytes": 61428,
+      "sha256": "ac5f3be8ac72a838f6ce4ddccaa49fc2a4e2d8c2dbd21aba13e14e9f422636b6"
     },
     {
       "path": "assets/calendar-core.js",
@@ -187,8 +187,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 118093,
-      "sha256": "d983136127bc4461d759c3a02f41f9192a1846ef0f9d3fcd357bf844f8cbeee0"
+      "bytes": 122816,
+      "sha256": "eb88dfd6e7dddc2548b9cfdb571d1781d39f079579543e0f67506db695d5ae03"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -247,8 +247,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 31141,
-      "sha256": "20a80a7c48b92ac9a6c61c2f20d8dc99fb7829069ad445906b7c841f029ef557"
+      "bytes": 35864,
+      "sha256": "4f6713789e0faf4ce80d5ab8520c5326aabfedd0853fd39975dc6bff553cf4d7"
     },
     {
       "path": "assets/models/player.glb",
@@ -467,8 +467,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 55585,
-      "sha256": "5b504b59e831eddaaf84235578c97bb7113cf9d0ffca3c8e9b2b2ac17e131f80"
+      "bytes": 61859,
+      "sha256": "2fe8fab4dbe839f868a0246191301ceef5019bc1fcb771884b6e23f8d4ceaaf9"
     },
     {
       "path": "journey.html",

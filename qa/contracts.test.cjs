@@ -128,3 +128,42 @@ test('Chess: actual chess.js legality, move history and undo',async()=>{({Chess}
 test('Chess: en passant works',async()=>{const {Chess}=await import('../dist/assets/vendor/chess/chess.js');const g=new Chess();for(const m of ['e4','a6','e5','d5'])g.move(m);const m=g.move('exd6');assert.ok(m.flags.includes('e'));assert.equal(g.get('d5'),undefined);});
 test('Chess: promotion supports a knight, not only a queen',async()=>{const {Chess}=await import('../dist/assets/vendor/chess/chess.js');const g=new Chess('7k/P7/8/8/8/8/8/7K w - - 0 1');g.move({from:'a7',to:'a8',promotion:'n'});assert.equal(g.get('a8').type,'n');});
 test('Chess: actual lesson positions and every published solution are legal',async()=>{const {Chess}=await import('../dist/assets/vendor/chess/chess.js');const s=fs.readFileSync('dist/assets/chess-app.js','utf8'),start=s.indexOf('lessons=')+8,end=s.indexOf('\n};',start)+2;const lessons=vm.runInNewContext('('+s.slice(start,end)+')');for(const [name,lesson]of Object.entries(lessons))for(const u of lesson.solutions){const g=new Chess(lesson.fen);g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});if(name==='mate')assert.ok(g.isCheckmate());if(name==='fork')assert.ok(g.isCheck());if(name==='capture')assert.equal(g.get('e4').type,'r');if(name==='castle')assert.equal(g.get(u.slice(2,4)).type,'k');}});
+
+test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday chess link',()=>{
+ const html=fs.readFileSync('dist/index.html','utf8');
+ const script=fs.readFileSync('dist/assets/app.js','utf8');
+ assert.ok(html.includes('id="venue"'));
+ assert.ok(html.includes('Понедельник и среда · 18:00'));
+ assert.ok(html.includes('Суббота · 14:00'));
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
+ for(const lang of ['ru','tr','en']){
+  const all=[...html.matchAll(new RegExp('<a data-venue-locale="'+lang+'" href="([^"]+)"[^>]*>','g'))];
+  assert.equal(all.length,1,lang+': direct locale-specific WhatsApp link');
+  const u=new URL(all[0][1].replaceAll('&amp;','&'));
+  assert.equal(u.hostname,'wa.me');
+  assert.equal(u.pathname,'/905388899272');
+  assert.ok(u.searchParams.get('text').includes('14:00'),lang+': chess question');
+  assert.ok(html.includes('data-venue-locale="'+lang+'"'),lang+': translated venue text');
+ }
+ assert.ok(!html.includes('Oğuzhan Cd. No:28'),'Do not publish unconfirmed street number');
+ assert.match(html,/yandex\.com\.tr\/maps\/org\/futbol_alanya_milan_futbol_akademi_/);
+ const css=fs.readFileSync('dist/assets/home.bundle.css','utf8');
+ assert.ok(css.includes('html[lang="tr"] [data-venue-locale="tr"]'));
+ assert.ok(css.includes('html[lang="en"] [data-venue-locale="en"]'));
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
+ assert.ok(!script.includes('chessWhatsApp.href='),'Chess localisation adds no runtime JS');
+});
+
+test('Direct parent funnel: prominent age-choice path, optional preview and UTM source marker',()=>{
+ const html=fs.readFileSync('dist/index.html','utf8');
+ const js=fs.readFileSync('dist/assets/app.js','utf8');
+ assert.match(html,/<a class="hero-call" href="#inquiry-form">/);
+ assert.match(html,/<a id="funnel-create"[^>]*href="https:\/\/wa\.me\/905388899272"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+ assert.match(html,/<button id="funnel-preview" type="button"/);
+ assert.ok(!html.includes('<button id="funnel-create"'));
+ assert.ok(js.includes('function utmTag()'));
+ assert.ok(js.includes('utm_source'));
+ assert.ok(js.includes('previewDraft()'));
+ assert.ok(js.includes("heroWhatsApp.href=wa(t.heroWhatsappMessage)"));
+ for(const word of ['previewDraft','prepare','heroCallNow'])assert.equal((js.match(new RegExp('"'+word+'":','g'))||[]).length,3);
+});
