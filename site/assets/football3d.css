@@ -393,3 +393,11 @@ html[data-theme="light"] .arena-page .arena-card :is(#arena-description, #diffic
   .team-actions button { min-height: 32px; padding: 5px; font-size: 10px; }
   .team-play { padding: 6px; }
 }
+
+@media (max-height: 550px) {
+  .arena-page .arena-help { gap: 5px; }
+  .arena-page .team-play { position: fixed; top: 111px; right: 15px; width: 220px; }
+  .stamina-control { padding: 4px 6px; }
+  .stamina-control label { font-size: 9px; line-height: 12px; margin-bottom: 3px; }
+  .stamina-control progress { height: 5px; }
+}
