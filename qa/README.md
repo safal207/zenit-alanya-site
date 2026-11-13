@@ -5,7 +5,7 @@ Development requirements: Node.js 24, Python 3 and `npm ci --ignore-scripts`. Th
 | Level | Automated evidence |
 | --- | --- |
 | Unit / contracts | 31 tests of shared calendar, translations, chess rules, lessons and media contracts |
-| Integration | Real Stockfish UCI reply; 17 Babylon NullEngine / Havok WASM / GLB scenarios including cup progression, golden goals, difficulty and stamina |
+| Integration | Real Stockfish UCI reply; 27 Babylon NullEngine / Havok WASM / GLB scenarios including cup progression, golden goals, difficulty and stamina |
 | HTTP integration | 10 checks of five routes, WASM MIME, MP4 byte ranges, 404/method handling and traversal containment and negotiated gzip on the test server |
 | System / regression | Browser journeys in Chromium, Firefox and WebKit: enquiry validation/copy/fallback, contacts, locales, theme persistence, journal, calendar export/persistence, checklist, media and chess |
 | Accessibility | axe WCAG 2 A/AA and 2.1 A/AA rules on five pages in both themes, plus open enquiry and active 3D arena; keyboard/focus scenarios |

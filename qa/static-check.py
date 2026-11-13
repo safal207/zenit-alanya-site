@@ -80,10 +80,10 @@ own_js_bytes=sum(p.stat().st_size for p in own_js)
 # The football cup, difficulty presets and match coaching load only on the arena.
 # Bound that feature separately while retaining the homepage and journal limits.
 player_js_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('player.js','player-api.js','player-path.js'))
-require(own_js_bytes-player_js_bytes<=210_000,f'Existing authored JS budget exceeded: {own_js_bytes-player_js_bytes}')
+require(own_js_bytes-player_js_bytes<=225_000,f'Existing authored JS budget exceeded: {own_js_bytes-player_js_bytes}')
 require(player_js_bytes<=50_000,f'Player dashboard JavaScript budget exceeded: {player_js_bytes}')
-football_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('football3d.js','football-core.js'))
-require(football_bytes<=52_000,f'Football JavaScript budget exceeded: {football_bytes}')
+football_bytes=sum((DIST/'assets'/name).stat().st_size for name in ('football3d.js','football-core.js','football-stadium.js'))
+require(football_bytes<=65_000,f'Football JavaScript budget exceeded: {football_bytes}')
 require((DIST/'assets/theme.js').stat().st_size<=3_000,'Shared theme controller exceeds 3 KB')
 require((DIST/'assets/journey.js').stat().st_size<=20_000,'Journal controller and three locales exceed 20 KB')
 require('src="assets/journey.js"' not in home,'Homepage must not bootstrap the journal controller')

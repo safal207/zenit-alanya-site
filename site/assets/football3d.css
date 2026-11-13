@@ -338,3 +338,58 @@ html[data-theme="light"] .arena-page .arena-card .competition-summary { border-c
 html[data-theme="light"] .arena-page .arena-card :is(#arena-description, #difficulty-description, #arena-loading) {
   color: #07344b;
 }
+
+/* Team controls remain reachable over the pitch and beside the active-player readout. */
+.team-play {
+  padding: 9px;
+  background: #07344b;
+  color: #eff9ff;
+  border: 1px solid #42627a;
+  border-radius: 6px;
+  pointer-events: auto;
+}
+.team-readout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.team-readout span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #cfecfa;
+}
+.team-readout b { flex-shrink: 0; }
+.team-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 7px; }
+.team-actions button {
+  min-height: 40px;
+  padding: 7px 8px;
+  border: 1px solid #93b8ca;
+  border-radius: 5px;
+  background: #173e55;
+  color: #f4fbff;
+  font-size: 11px;
+  font-weight: 800;
+}
+.team-actions kbd { margin-right: 5px; font: inherit; color: #bff35d; }
+.team-actions button[aria-pressed="true"] { color: #102b36; background: #bff35d; }
+.team-actions button[aria-pressed="true"] kbd { color: inherit; }
+.team-actions button:disabled { opacity: .55; cursor: default; }
+@media (max-width: 760px) {
+  .arena-page .arena-help .match-tip { display: none; }
+  .team-play { padding: 7px 9px; }
+  .team-readout { font-size: 10px; }
+  .team-actions { margin-top: 5px; }
+  .team-actions button { min-height: 36px; }
+}
+@media (max-height: 550px) {
+  .arena-page .arena-help { width: 210px; }
+  .team-readout b { display: none; }
+  .team-actions { gap: 5px; }
+  .team-actions button { min-height: 32px; padding: 5px; font-size: 10px; }
+  .team-play { padding: 6px; }
+}

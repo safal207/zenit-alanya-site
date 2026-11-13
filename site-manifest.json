@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "8d9fc132ef9d680218504b3dcee2421785f99f29",
-  "source_artifact_digest": "8685e56eefbc3dbfe83ea6e2ccd96c3806af105756a50c855fe63eac684b17d3",
+  "site_source_commit": "7621ac7abf7086fdfcbac9b9930c6e3d8d85f409",
+  "source_artifact_digest": "8fd2b58aeefbbf15a03aa5357b169a37fad7785761e5c2ad23f23fdcfcfc4ed5",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -20,6 +20,7 @@
     "assets/font-5.woff2",
     "assets/fonts.css",
     "assets/football-core.js",
+    "assets/football-stadium.js",
     "assets/football3d.css",
     "assets/football3d.js",
     "assets/home.bundle.css",
@@ -171,14 +172,19 @@
       "sha256": "aa96a6248afaf0d17bdc7da11cf3a3317d284f2f6095677e1802275273b3af68"
     },
     {
+      "path": "assets/football-stadium.js",
+      "bytes": 5280,
+      "sha256": "04b9b4c6425ee0a4b408a4f46cd4b7af21cd65cc4f6dbce498d0901c5de771c0"
+    },
+    {
       "path": "assets/football3d.css",
-      "bytes": 20507,
-      "sha256": "2e4aa50d8d276a4a4c655b697a017ae5f2ac0b8c59684f3634a7438557e0187e"
+      "bytes": 22114,
+      "sha256": "a9ec6f12926015fd35dbf0d3a132091076fa0d62162ee41a346775dc4a39b57b"
     },
     {
       "path": "assets/football3d.js",
-      "bytes": 42609,
-      "sha256": "5e935e1f3379a9e2816f8cf724c095def7d1d654f5b1161b5dc178c59acdb08a"
+      "bytes": 47472,
+      "sha256": "1fb2b35f53698dc24d2862e909169332d7b591e7e0460a4dad6493a7b6f2a731"
     },
     {
       "path": "assets/funnel.css",
@@ -311,6 +317,26 @@
       "sha256": "44c2f027ec2b47fceb69c196042e698f5685b1c869c3a431d1093538d1d6f1e0"
     },
     {
+      "path": "assets/vendor/HavokPhysics.wasm",
+      "bytes": 2094563,
+      "sha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
+    },
+    {
+      "path": "assets/vendor/HavokPhysics_umd.js",
+      "bytes": 67605,
+      "sha256": "f378353fc44b33ee2c66b3110490ecfa72993a47652a3e57ba49c752f175f864"
+    },
+    {
+      "path": "assets/vendor/LICENSE-fonts.txt",
+      "bytes": 4427,
+      "sha256": "f2425a5b53396301011c60ba192ca9a9fb750638734b2dd599a028fdbe1c6e85"
+    },
+    {
+      "path": "assets/vendor/LICENSE-quaternius.txt",
+      "bytes": 364,
+      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c"
+    },
+    {
       "path": "assets/vendor/babylon.js",
       "bytes": 8759399,
       "sha256": "2e5958f72efa5bc4957a5267a4852b8c2f1577e335ed7e5088bba9e44b6dd1d0"
@@ -326,11 +352,6 @@
       "sha256": "633b1bec409a33ad1d4b0335820e27c1430c28cfaf13b4772c4bd38a598d7061"
     },
     {
-      "path": "assets/vendor/chess/chess.js",
-      "bytes": 110420,
-      "sha256": "c5d04c0e03e7cb913e67bc7e47447fa24dc92715570f95009cc1c9218efdc610"
-    },
-    {
       "path": "assets/vendor/chess/LICENSE-chessjs.txt",
       "bytes": 1338,
       "sha256": "2de72a0ab89c25da0e5c44c62108c47db186f95c08c9c652fd64c9c1ac457700"
@@ -341,9 +362,24 @@
       "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b"
     },
     {
+      "path": "assets/vendor/chess/chess.js",
+      "bytes": 110420,
+      "sha256": "c5d04c0e03e7cb913e67bc7e47447fa24dc92715570f95009cc1c9218efdc610"
+    },
+    {
       "path": "assets/vendor/chess/pieces/ATTRIBUTION.txt",
       "bytes": 247,
       "sha256": "ae7d5bd7af520f7175c0a04468c8cee8309fd2552958c20cf44813ee37f3c905"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/COPYRIGHT.txt",
+      "bytes": 29,
+      "sha256": "a66f251bcdb99479c102695a75ba292244ccf45f1f2710af552acdf4887e4f90"
+    },
+    {
+      "path": "assets/vendor/chess/pieces/LICENSE.txt",
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
     },
     {
       "path": "assets/vendor/chess/pieces/bB.svg",
@@ -374,16 +410,6 @@
       "path": "assets/vendor/chess/pieces/bR.svg",
       "bytes": 3077,
       "sha256": "ad18856a97edf53281acc40e1e6e4f7021ed01fad380fff7e09e63465b3bb462"
-    },
-    {
-      "path": "assets/vendor/chess/pieces/COPYRIGHT.txt",
-      "bytes": 29,
-      "sha256": "a66f251bcdb99479c102695a75ba292244ccf45f1f2710af552acdf4887e4f90"
-    },
-    {
-      "path": "assets/vendor/chess/pieces/LICENSE.txt",
-      "bytes": 11560,
-      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
     },
     {
       "path": "assets/vendor/chess/pieces/wB.svg",
@@ -436,26 +462,6 @@
       "sha256": "1196da268a72f71d527156d33063e0a6abb191089105a616d56d257d9093d1cf"
     },
     {
-      "path": "assets/vendor/HavokPhysics_umd.js",
-      "bytes": 67605,
-      "sha256": "f378353fc44b33ee2c66b3110490ecfa72993a47652a3e57ba49c752f175f864"
-    },
-    {
-      "path": "assets/vendor/HavokPhysics.wasm",
-      "bytes": 2094563,
-      "sha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
-    },
-    {
-      "path": "assets/vendor/LICENSE-fonts.txt",
-      "bytes": 4427,
-      "sha256": "f2425a5b53396301011c60ba192ca9a9fb750638734b2dd599a028fdbe1c6e85"
-    },
-    {
-      "path": "assets/vendor/LICENSE-quaternius.txt",
-      "bytes": 364,
-      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c"
-    },
-    {
       "path": "assets/vendor/loaders-license.md",
       "bytes": 9226,
       "sha256": "9362ea9ea17cb221a20cbbd63f404710834cc273d2a9a7b60314fd68ab702cd6"
@@ -482,8 +488,8 @@
     },
     {
       "path": "play/football.html",
-      "bytes": 7374,
-      "sha256": "1f92dd3329959cceafa00c92fc9f931bbe964efcf7c408d3b7115f2b3c1c3f2f"
+      "bytes": 8181,
+      "sha256": "24aa796f8ce756f71eed9ec2e900b2a5e3ead54bb4e1442dd2332d65a35a8e88"
     },
     {
       "path": "player.html",
