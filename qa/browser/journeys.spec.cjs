@@ -5,6 +5,11 @@ async function draft(page){await page.locator('[name=age]').fill('7');await page
 test('Qualified WhatsApp CTA includes UTM source and updates with form and language',async({page})=>{
  await page.goto('./?utm_source=instagram&utm_medium=reel&utm_campaign=academy_2026');
  await expect(page.locator('.hero-call')).toHaveAttribute('href','#inquiry-form');
+ await expect(page.locator('.mobile-actions,.contact-fab,.header-cta,.hero-phone')).toHaveCount(0);
+ await expect(page.locator('.real-training-card')).toHaveCount(0);
+ await expect(page.locator('#club-life-highlight img')).toHaveCount(1);
+ await expect(page.locator('footer [data-hero-share]')).toHaveCount(1);
+
  const hero=new URL(await page.locator('[data-hero-whatsapp]').getAttribute('href'));
  expect(hero.hostname).toBe('wa.me');expect(hero.pathname).toBe('/905388899272');
  expect(hero.searchParams.get('text')).toContain('[source: source=instagram; medium=reel; campaign=academy_2026]');
@@ -121,7 +126,7 @@ test('Hero video: denied playback leaves manual control and direct MP4 fallback'
  await expect(page.locator('#hero-video-fallback')).toBeVisible();
  await expect(page.locator('#hero-video-fallback')).toHaveAttribute('href','assets/media/zenit.mp4');
 });
-test('Hero share: invitation includes the published site and contact phone',async({page})=>{
+test('Footer share: invitation includes the published site and contact phone',async({page})=>{
  await page.addInitScript(()=>{
   Object.defineProperty(navigator,'share',{configurable:true,value:undefined});
   Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__sharedInvitation=text;}}});

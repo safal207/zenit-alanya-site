@@ -388,3 +388,50 @@ html[lang="ru"] .venue-chess a[data-venue-locale="ru"],html[lang="tr"] .venue-ch
 /* WCAG AA contrast for the now-visible direct-enquiry step in dark mode. */
 html[data-theme=dark] .funnel-optional summary{color:#e5f5ff}
 html[data-theme=dark] .funnel-safety{color:#e0f0fa}
+
+/* Keep the first visit focused on training, trust and one primary contact action. */
+body { padding-bottom: 0; }
+.video-hero .hero-conversion { max-width: 550px; }
+.video-hero .hero-conversion-actions { align-items: center; gap: 12px 24px; }
+.video-hero .hero-whatsapp { flex: 0 1 auto; }
+.video-hero .hero-call {
+  flex: 0 1 auto;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.video-hero .hero-call:hover { background: transparent; color: #b4f0ff; }
+.club-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+}
+.club-preview-copy > p:not(.eyebrow) { max-width: 480px; margin: 18px 0; line-height: 1.8; color: var(--theme-muted, #526b79); }
+.club-preview .text-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.club-preview-image { margin: 0; overflow: hidden; border-radius: 6px; }
+.club-preview-image img { display: block; width: 100%; max-height: 420px; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 35%; }
+.journey-teaser.journey-compact { display: block; padding-top: 32px; padding-bottom: 32px; border-top: 1px solid var(--theme-line, #dbe7ed); }
+.journey-compact .journey-teaser-copy { max-width: 720px; }
+.journey-compact h2 { font-size: 30px; }
+.journey-compact .journey-teaser-copy > p:not(.eyebrow) { margin-top: 14px; font-size: 14px; line-height: 1.7; }
+.journey-compact .journey-cta { display: inline-flex; min-height: 44px; margin-top: 10px; font-size: 13px; }
+.journey-compact small { display: block; margin-top: 8px; }
+.footer-share { background: transparent; color: inherit; min-height: 44px; padding: 8px 0; font-size: 12px; text-align: left; text-decoration: underline; text-underline-offset: 4px; }
+.footer-share-feedback { font-size: 12px; color: inherit; }
+.footer-share-feedback:empty { display: none; }
+@media (max-width: 760px) {
+  .video-hero { padding-top: 62px; padding-bottom: 36px; }
+  .video-hero h1 { font-size: clamp(32px, 7.5vw, 46px); line-height: 1.12; letter-spacing: -1.3px; }
+  .video-hero .minimal-lead { margin-top: 18px; margin-bottom: 20px; font-size: 14px; line-height: 1.7; }
+  .video-hero .hero-conversion-actions { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .video-hero .hero-whatsapp { width: 100%; min-height: 50px; }
+  .video-hero .hero-call { min-height: 44px; width: auto; }
+  .club-preview { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .club-preview-image img { max-height: 300px; }
+  .journey-teaser.journey-compact { padding-top: 28px; padding-bottom: 28px; }
+}
