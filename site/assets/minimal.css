@@ -413,8 +413,8 @@ body { padding-bottom: 0; }
 }
 .club-preview-copy > p:not(.eyebrow) { max-width: 480px; margin: 18px 0; line-height: 1.8; color: var(--theme-muted, #526b79); }
 .club-preview .text-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
-.club-preview-image { margin: 0; overflow: hidden; border-radius: 6px; }
-.club-preview-image img { display: block; width: 100%; max-height: 420px; aspect-ratio: 4 / 3; object-fit: cover; object-position: center top; }
+.club-preview-image { margin: 0; width: 100%; max-width: 960px; overflow: hidden; border-radius: 6px; }
+.club-preview-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 .journey-teaser.journey-compact { display: block; padding-top: 32px; padding-bottom: 32px; border-top: 1px solid var(--theme-line, #dbe7ed); }
 .journey-compact .journey-teaser-copy { max-width: 720px; }
 .journey-compact h2 { font-size: 30px; }
@@ -432,6 +432,5 @@ body { padding-bottom: 0; }
   .video-hero .hero-whatsapp { width: 100%; min-height: 50px; }
   .video-hero .hero-call { min-height: 44px; width: auto; }
   .club-preview { grid-template-columns: minmax(0, 1fr); gap: 22px; }
-  .club-preview-image img { max-height: 300px; }
   .journey-teaser.journey-compact { padding-top: 28px; padding-bottom: 28px; }
 }

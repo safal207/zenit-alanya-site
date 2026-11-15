@@ -8,6 +8,16 @@ test('Qualified WhatsApp CTA includes UTM source and updates with form and langu
  await expect(page.locator('.mobile-actions,.contact-fab,.header-cta,.hero-phone')).toHaveCount(0);
  await expect(page.locator('.real-training-card')).toHaveCount(0);
  await expect(page.locator('#club-life-highlight img')).toHaveCount(1);
+ const trainingPhoto=page.locator('#club-life-highlight img');
+ await trainingPhoto.scrollIntoViewIfNeeded();
+ await expect.poll(()=>trainingPhoto.evaluate(img=>img.naturalWidth)).toBe(960);
+ const frame=await trainingPhoto.evaluate(img=>({width:img.clientWidth,height:img.clientHeight,fit:getComputedStyle(img).objectFit}));
+ expect(Math.abs(frame.width/frame.height-16/9)).toBeLessThan(0.02);
+ expect(frame.fit).toBe('contain');
+ await page.locator('#club-life-highlight').screenshot({path:test.info().outputPath('training-preview-desktop.png')});
+ await page.setViewportSize({width:390,height:844});
+ await page.locator('#club-life-highlight').screenshot({path:test.info().outputPath('training-preview-mobile.png')});
+ await page.setViewportSize({width:1280,height:800});
  await expect(page.locator('footer [data-hero-share]')).toHaveCount(1);
 
  const hero=new URL(await page.locator('[data-hero-whatsapp]').getAttribute('href'));

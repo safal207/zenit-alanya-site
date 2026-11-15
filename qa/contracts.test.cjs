@@ -77,7 +77,9 @@ test('Coach cards keep the named person, original portrait and source together',
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync('dist/assets/'+file)).digest('hex'),sha);
   }
   assert.ok(!html.includes('class="real-training-card"'),'Homepage does not repeat the archive photo grid');
-  assert.equal((html.match(/src="assets\/club-team-2.jpg"/g)||[]).length,1,'One authentic archive preview');
+  assert.equal((html.match(/src="assets\/club-ball-training.webp"/g)||[]).length,1,'One authentic archive preview');
+  assert.ok(html.includes('data-source="https://www.instagram.com/reel/DbirWUnqSjC/"'),'Selected training frame retains its school source');
+  assert.ok(html.includes('src="assets/club-ball-training.webp" width="960" height="540"'),'Preview declares its original landscape dimensions');
   assert.ok(html.includes('href="club-life.html"'),'The full photo archive stays reachable');
   for(const file of ['young-play-ai.webp','older-play-ai.webp','goalkeeper-training-ai.webp','before-training-ai.webp']){
     assert.ok(!html.includes(file),'no AI image in page: '+file);
