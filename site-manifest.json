@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "6c5be9b2a9bb4c1d01dc1ce3b06023e1c2c627b5",
-  "source_artifact_digest": "d44a6bc41917a4649482f2138c16097b362692cc679617ec4a62f1c159273cc6",
+  "site_source_commit": "9471d45dbabd2d805974e65d1486a37dbb692044",
+  "source_artifact_digest": "c6ceb5ca027c5215bfdb88cc51adf2a1d93b4dcd7fb59a97cd17c8b54bd4fb34",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -10,6 +10,8 @@
     "assets/chess-app.js",
     "assets/chess-bots.js",
     "assets/club-ball-training.webp",
+    "assets/club-chess-training.webp",
+    "assets/club-goalkeeper-training.webp",
     "assets/club-media.js",
     "assets/club-sand.webp",
     "assets/films.css",
@@ -86,6 +88,16 @@
       "path": "assets/club-ball-training.webp",
       "bytes": 89110,
       "sha256": "26b4f884fd14c3fc39dd13e8a8609b96a1135841cdbf99427edfdb9dcb5c2529"
+    },
+    {
+      "path": "assets/club-chess-training.webp",
+      "bytes": 130274,
+      "sha256": "af19a043cecfced0a1c1fd088905d422e8109a02bd0dcdccaff1499fc16f745c"
+    },
+    {
+      "path": "assets/club-goalkeeper-training.webp",
+      "bytes": 76294,
+      "sha256": "8e3c717009cdeed5b454981b98d89de73c6cad2647b540639e922816df18745e"
     },
     {
       "path": "assets/club-logo.jpg",
@@ -474,8 +486,8 @@
     },
     {
       "path": "club-life.html",
-      "bytes": 64176,
-      "sha256": "4792245e169d7a000621998c0d5fa0c8bbb2c832f9bfe85210b1e6b876bb4037"
+      "bytes": 63807,
+      "sha256": "53643af72ca9d3dbbb026249d6be4fa622455a03174c35bda9e7ca0e8f180759"
     },
     {
       "path": "index.html",

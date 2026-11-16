@@ -11,6 +11,10 @@ test('authentic gallery: three large local photos and thirteen intentional story
   await expect(page.locator('.story-card:visible')).toHaveCount(6);
   await expect(page.locator('#show-more')).toBeVisible();
   await expect(page.locator('.photo-grid img')).toHaveCount(3);
+  await expect(page.locator('.photo-grid img[src="assets/club-chess-training.webp"]')).toHaveCount(1);
+  await expect(page.locator('.photo-grid img[src="assets/club-goalkeeper-training.webp"]')).toHaveCount(1);
+  await expect(page.locator('.photo-grid a[href="https://www.instagram.com/p/DXR8wRWjE74/"]')).toHaveCount(1);
+  await expect(page.locator('.photo-grid a[href="https://www.instagram.com/reel/Dbfwb5-OQkV/"]')).toHaveCount(1);
   await expect(page.locator('#story-viewer')).not.toBeVisible();
   await expect(page.locator('#viewer-frame')).not.toHaveAttribute('src',/.+/);
   // No third-party Instagram iframe is loaded until a reader explicitly asks.
@@ -79,6 +83,7 @@ test('mobile viewports have no sideways scrolling or blocked controls',async({pa
       await page.locator('#stories').scrollIntoViewIfNeeded();
       await page.screenshot({path:testInfo.outputPath('archive-390.png'),fullPage:false});
     }
+    if(width===390||width===1280)await page.locator('.photo-grid').screenshot({path:testInfo.outputPath('training-photos-'+width+'.png')});
   }
 });
 
