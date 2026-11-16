@@ -83,7 +83,13 @@ test('mobile viewports have no sideways scrolling or blocked controls',async({pa
       await page.locator('#stories').scrollIntoViewIfNeeded();
       await page.screenshot({path:testInfo.outputPath('archive-390.png'),fullPage:false});
     }
-    if(width===390||width===1280)await page.locator('.photo-grid').screenshot({path:testInfo.outputPath('training-photos-'+width+'.png')});
+    if(width===390||width===1280){
+      for(const photo of await page.locator('.photo-grid img').all()){
+        await photo.scrollIntoViewIfNeeded();
+        await expect.poll(()=>photo.evaluate(img=>img.complete&&img.naturalWidth>0)).toBeTruthy();
+      }
+      await page.locator('.photo-grid').screenshot({path:testInfo.outputPath('training-photos-'+width+'.png'),style:'.nav{visibility:hidden!important}'});
+    }
   }
 });
 
