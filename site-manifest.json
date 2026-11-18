@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "9471d45dbabd2d805974e65d1486a37dbb692044",
-  "source_artifact_digest": "c6ceb5ca027c5215bfdb88cc51adf2a1d93b4dcd7fb59a97cd17c8b54bd4fb34",
+  "source_artifact_digest": "667273c588acf0e81d8b03b9ece8fb1f3047db01738f3ec8717ce91ab08651ff",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -56,13 +56,13 @@
     },
     {
       "path": "assets/academy.js",
-      "bytes": 34506,
-      "sha256": "29fca1dc6a92e9c1ad0e18b590e213dbd49dcea383167651a3edb01d2bb94420"
+      "bytes": 34595,
+      "sha256": "51a896b55c1fc093e8e2e4c1e4db45ef2d40732a2df7dc617cf3fa35fe5d34f7"
     },
     {
       "path": "assets/app.js",
-      "bytes": 61428,
-      "sha256": "ac5f3be8ac72a838f6ce4ddccaa49fc2a4e2d8c2dbd21aba13e14e9f422636b6"
+      "bytes": 61576,
+      "sha256": "bdcabeeb2aca6cfe023dd62038c411b82db32958e49f41339b2428b74324200b"
     },
     {
       "path": "assets/calendar-core.js",
@@ -211,8 +211,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 125447,
-      "sha256": "104c91f620c202dc5a45c01868668740f91b55fa338c3eda0dbb0c96480ff2de"
+      "bytes": 127097,
+      "sha256": "b54299dd1c00b8cd6f3ce3e965f67bccd7301567bd1cfb0da13763eb11442c60"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -271,8 +271,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 38495,
-      "sha256": "306b83d06de4b692f137a4afe754ca98085becd2a66ee284a09881f6cadefca5"
+      "bytes": 40145,
+      "sha256": "6101c5b99b62b1a3f1fe7a6bf03bc8280271aae13c74111d9d4ec7377e518fb1"
     },
     {
       "path": "assets/models/player.glb",
@@ -491,8 +491,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 51180,
-      "sha256": "6053a0ef7227f76800b3d64e4fb5cc0ae762a6168c9d6a32dde6a19dab818f09"
+      "bytes": 53543,
+      "sha256": "45751f7fc8d3580e598d6df832f395518441fb0c956e841138cd50d4363517c0"
     },
     {
       "path": "journey.html",
