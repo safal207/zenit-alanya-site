@@ -134,7 +134,12 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  assert.ok(html.includes('id="venue"'));
  assert.ok(html.includes('Понедельник и среда · 18:00'));
  assert.ok(html.includes('Суббота · 14:00'));
- assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
+ assert.ok(html.includes('Суббота · 15:00–16:30'));
+ assert.ok(html.includes('Старшая группа · 12+'));
+ assert.ok(html.includes('После основной тренировки'));
+ assert.equal((html.match(/class="venue-times venue-program-card/g)||[]).length,3);
+ assert.ok(html.includes('Группы занимаются параллельно'));
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,21);
  for(const lang of ['ru','tr','en']){
   const all=[...html.matchAll(new RegExp('<a data-venue-locale="'+lang+'" href="([^"]+)"[^>]*>','g'))];
   assert.equal(all.length,1,lang+': direct locale-specific WhatsApp link');
@@ -149,7 +154,7 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  const css=fs.readFileSync('dist/assets/home.bundle.css','utf8');
  assert.ok(css.includes('html[lang="tr"] [data-venue-locale="tr"]'));
  assert.ok(css.includes('html[lang="en"] [data-venue-locale="en"]'));
- assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,14);
+ assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,21);
  assert.ok(!script.includes('chessWhatsApp.href='),'Chess localisation adds no runtime JS');
 });
 
