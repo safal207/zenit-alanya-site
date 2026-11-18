@@ -1,6 +1,7 @@
 """Bounded read-only smoke of the published artifact; no production load test."""
 from pathlib import Path
-from urllib.request import Request, urlopen
+from urllib.request import Request
+from release_http import open_public
 from urllib.parse import urljoin, urlsplit
 import datetime, hashlib, json, time
 
@@ -13,7 +14,7 @@ rows = []
 def fetch(entry, method='GET'):
     url = urljoin(BASE, entry['path']) + '?ci=' + digest[:16]
     request = Request(url, method=method, headers={'User-Agent': 'Zenit-website-CI-smoke', 'Accept-Encoding': 'identity'})
-    with urlopen(request, timeout=20) as response:
+    with open_public(request) as response:
         assert response.status == 200, (entry['path'], response.status)
         assert urlsplit(response.url).scheme == 'https'
         assert urlsplit(response.url).netloc == urlsplit(BASE).netloc

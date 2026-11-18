@@ -4,10 +4,11 @@
   let saved=null;
   try{saved=localStorage.getItem(key);}catch{}
   if(saved!=='light'&&saved!=='dark')saved=null;
-  const labels={ru:{light:'Светлая',dark:'Тёмная',toLight:'Включить светлую тему',toDark:'Включить тёмную тему'},en:{light:'Light',dark:'Dark',toLight:'Switch to light theme',toDark:'Switch to dark theme'},tr:{light:'Açık',dark:'Koyu',toLight:'Açık temaya geç',toDark:'Koyu temaya geç'}};
+  const labels={ru:{skip:'К содержимому',light:'Светлая',dark:'Тёмная',toLight:'Включить светлую тему',toDark:'Включить тёмную тему'},en:{skip:'Skip to content',light:'Light',dark:'Dark',toLight:'Switch to light theme',toDark:'Switch to dark theme'},tr:{skip:'İçeriğe geç',light:'Açık',dark:'Koyu',toLight:'Açık temaya geç',toDark:'Koyu temaya geç'}};
   function paint(theme){
     root.dataset.theme=theme;root.style.colorScheme=theme;
     const words=labels[root.lang]||labels.ru,dark=theme==='dark';
+    document.querySelectorAll('[data-skip-link]').forEach(link=>link.textContent=words.skip);
     document.querySelectorAll('[data-theme-toggle]').forEach(button=>{
       const label=words[theme]+'. '+words[dark?'toLight':'toDark'];
       button.setAttribute('aria-label',label);button.setAttribute('title',label);button.setAttribute('aria-pressed',String(dark));

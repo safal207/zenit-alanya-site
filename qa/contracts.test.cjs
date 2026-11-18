@@ -128,18 +128,17 @@ test('Chess: en passant works',async()=>{const {Chess}=await import('../dist/ass
 test('Chess: promotion supports a knight, not only a queen',async()=>{const {Chess}=await import('../dist/assets/vendor/chess/chess.js');const g=new Chess('7k/P7/8/8/8/8/8/7K w - - 0 1');g.move({from:'a7',to:'a8',promotion:'n'});assert.equal(g.get('a8').type,'n');});
 test('Chess: actual lesson positions and every published solution are legal',async()=>{const {Chess}=await import('../dist/assets/vendor/chess/chess.js');const s=fs.readFileSync('dist/assets/chess-app.js','utf8'),start=s.indexOf('lessons=')+8,end=s.indexOf('\n};',start)+2;const lessons=vm.runInNewContext('('+s.slice(start,end)+')');for(const [name,lesson]of Object.entries(lessons))for(const u of lesson.solutions){const g=new Chess(lesson.fen);g.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});if(name==='mate')assert.ok(g.isCheckmate());if(name==='fork')assert.ok(g.isCheck());if(name==='capture')assert.equal(g.get('e4').type,'r');if(name==='castle')assert.equal(g.get(u.slice(2,4)).type,'k');}});
 
-test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday chess link',()=>{
+test('Venue schedule distinguishes football, the older group and Saturday chess',()=>{
  const html=fs.readFileSync('dist/index.html','utf8');
  const script=fs.readFileSync('dist/assets/app.js','utf8');
  assert.ok(html.includes('id="venue"'));
- assert.ok(html.includes('Понедельник и среда · 18:00'));
+ assert.match(html,/Понедельник и среда<\/span>[\s\S]*?<time datetime="18:00">18:00<\/time>/);
  assert.ok(html.includes('Суббота · 14:00'));
- assert.ok(html.includes('Суббота · 15:00–16:30'));
+ assert.match(html,/<time datetime="15:00">15:00<\/time>–<time datetime="16:30">16:30<\/time>/);
  assert.ok(html.includes('Старшая группа · 12+'));
- assert.ok(html.includes('После основной тренировки'));
+ assert.ok(html.includes('Начинает сразу после детской и средней групп.'));
  assert.equal((html.match(/class="venue-times venue-program-card/g)||[]).length,3);
- assert.ok(html.includes('Группы занимаются параллельно'));
- assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,21);
+ assert.ok(html.includes('Детская и средняя группы тренируются одновременно.'));
  for(const lang of ['ru','tr','en']){
   const all=[...html.matchAll(new RegExp('<a data-venue-locale="'+lang+'" href="([^"]+)"[^>]*>','g'))];
   assert.equal(all.length,1,lang+': direct locale-specific WhatsApp link');
@@ -154,7 +153,6 @@ test('Venue and chess schedule: localised Mon/Wed groups and optional Saturday c
  const css=fs.readFileSync('dist/assets/home.bundle.css','utf8');
  assert.ok(css.includes('html[lang="tr"] [data-venue-locale="tr"]'));
  assert.ok(css.includes('html[lang="en"] [data-venue-locale="en"]'));
- assert.equal((html.match(/data-venue-locale="ru"/g)||[]).length,21);
  assert.ok(!script.includes('chessWhatsApp.href='),'Chess localisation adds no runtime JS');
 });
 

@@ -4,18 +4,18 @@ Development requirements: Node.js 24, Python 3 and `npm ci --ignore-scripts`. Th
 
 | Level | Automated evidence |
 | --- | --- |
-| Unit / contracts | 31 tests of shared calendar, translations, chess rules, lessons and media contracts |
+| Unit / contracts | Calendar, translations, chess rules, lessons, schedule, media and player account contracts |
 | Integration | Real Stockfish UCI reply; 27 Babylon NullEngine / Havok WASM / GLB scenarios including cup progression, golden goals, difficulty and stamina |
-| HTTP integration | 10 checks of five routes, WASM MIME, MP4 byte ranges, 404/method handling and traversal containment and negotiated gzip on the test server |
-| System / regression | Browser journeys in Chromium, Firefox and WebKit: enquiry validation/copy/fallback, contacts, locales, theme persistence, journal, calendar export/persistence, checklist, media and chess |
-| Accessibility | axe WCAG 2 A/AA and 2.1 A/AA rules on five pages in both themes, plus open enquiry and active 3D arena; keyboard/focus scenarios |
-| Responsive layout | 320/390/768/1280 CSS-pixel bounds on four pages; enquiry at 320/390/1280 in both themes |
+| HTTP integration | Seven page routes, WASM MIME, MP4 byte ranges, 404/method handling, path containment and negotiated gzip on the test server |
+| System / regression | Chromium, Firefox and WebKit journeys for enquiries, themed gallery, localized training schedule, journal, family tools, media, chess and the player account with a controlled API |
+| Accessibility | axe WCAG 2 A/AA and 2.1 A/AA rules on seven pages in both themes, open enquiry and active 3D arena; keyboard entry, modal focus and skip navigation |
+| Responsive layout | 320/390/768/1280 CSS-pixel bounds on content pages and the schedule. Home, gallery and player page also reflow with doubled text in the test browser |
 | Rendered 3D | Chromium with software GPU: cup selection and difficulty, moving clock, sprint/stamina, pause/resume, shooting; explicit missing-WebGL fallback; in-game contrast and control separation in both themes at 320/390/640/1280 CSS pixels, including header bounds and non-overlapping help |
 | Performance | Lighthouse, three-run medians for home/stories/journal in mobile and desktop simulation |
 | Security | Pinned workflow actions, bounded authored-source checks, npm dependency advisories, input-injection regression |
 | Release integrity | Static references/licences/size budgets and exact SHA-256 manifest; public bundle is verified before testing and deployment |
 
-The browser suite contains 103 scheduled cases. Two clipboard-permission cases are explicitly skipped in Firefox/WebKit because that permission automation is Chromium-specific; denied-copy fallback runs in all engines. A scheduled case is not evidence of passing: inspect its actual run result.
+Browser coverage comes from the run reports. Clipboard permission automation is Chromium-specific, and the denied-copy fallback runs in all three engines.
 
 Generated files: after editing stylesheet sources, run `node qa/build-css.cjs`; after changing film data, run `node qa/build-stories.cjs`; after changing the inline theme bootstrap, run `node qa/build-theme-head.cjs`. CI rejects stale generated bundles/feed.
 
@@ -41,7 +41,7 @@ Use the supported computer-use interface for interactive local QA. The Playwrigh
 
 Performance gates: median performance >=80 mobile / >=90 desktop; LCP <=4000 ms mobile / <=2500 ms desktop; CLS <=0.1; TBT <=300 ms; accessibility >=95; best practices >=90. Three runs reduce noise. These are lab budgets, not field Core Web Vitals.
 
-The public repository holds `site.zip` as the verified base for large unchanged media/vendor assets, reviewed source overrides under `site/`, the complete final file/hash manifest and this test harness. `qa/unpack-site.py` verifies the archive hash, exact file set, safe paths, each final file (including source overrides) and aggregate artifact digest before assembling a fresh `dist/`. The deployment uploads only `dist/`, never the test harness or dependency tree. A post-deployment smoke then compares public HTML and authored CSS/JS/JSON to that exact manifest and checks media/WOFF2/WASM availability.
+The public repository holds `site.zip` as the verified base for large unchanged media/vendor assets, reviewed source overrides under `site/`, the complete final file/hash manifest and this test harness. `qa/unpack-site.py` verifies the archive hash, exact file set, safe paths, each final file (including source overrides) and aggregate artifact digest before assembling a fresh `dist/`. The deployment uploads only `dist/`. A post-deployment check compares the live HTML, CSS, JS and JSON to the manifest, checks media and font delivery, and exercises the published site in Chromium. It retries temporary server errors at most twice per request. Missing files and rate limits fail immediately.
 
 The automated source CI tests its checked-out commit directly and does not depend on a stale manual report for another artifact. For the private Sites channel, run `node qa/verify-release.cjs` after updating the bounded manual audit to the exact artifact. The native source helper packages the exact pushed commit. CI reports complement that audit; they do not manufacture manual evidence.
 

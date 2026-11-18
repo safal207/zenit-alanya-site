@@ -9,19 +9,20 @@
   <title>Мой футбол — Зенит Аланья</title>
   <link rel="icon" href="assets/club-logo.jpg">
   <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="assets/theme.css?v=20261116-ui">
   <link rel="stylesheet" href="assets/player.css">
-  <!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="assets/theme.js" defer></script>
+  <!-- theme-init:start --><script>(()=>{let t;try{t=localStorage.getItem('zenit-theme-v1')}catch{}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t})();</script><!-- theme-init:end --><script src="assets/theme.js?v=20261116-ui" defer></script>
   <script src="assets/player-api.js" defer></script>
   <script src="assets/player-path.js" defer></script>
   <script src="assets/player.js" defer></script>
 </head>
 <body>
+<a class="skip-link" data-skip-link href="#main-content">К содержимому</a>
   <header class="player-header">
     <a class="club-link" href="./#player-journey"><img src="assets/club-logo.jpg" width="42" height="42" alt=""><span>ЗЕНИТ ALANYA<small data-copy="back">← На сайт клуба</small></span></a>
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="Включить тёмную тему" aria-pressed="false"><span data-theme-icon aria-hidden="true">☼</span><span data-theme-label>Светлая</span></button>
   </header>
-  <main class="player-main">
+  <main id="main-content" tabindex="-1" class="player-main">
     <section class="player-hero is-guest" id="player-hero" aria-labelledby="player-title">
       <div class="player-avatar" id="player-avatar" hidden>
         <div id="avatar-placeholder" aria-hidden="true">

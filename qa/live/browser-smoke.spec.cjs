@@ -24,3 +24,13 @@ test('Published self-hosted message plays without Instagram',async({page})=>{awa
 test('Published journal: deep link, chapter and comic',async({page})=>{await page.goto('journey.html?lang=tr#age-7');await expect(page.locator('html')).toHaveAttribute('lang','tr');await expect(page.locator('#chapter-number')).toHaveText('02 / 06');await page.locator('#age-7').press('ArrowRight');await expect(page.locator('#chapter-number')).toHaveText('03 / 06');await page.locator('[data-journal-view=comic]').click();await expect(page.locator('.comic-card')).toHaveCount(6);});
 test('Published mobile navigation, locales and saved theme',async({page})=>{await page.setViewportSize({width:390,height:844});await page.goto('./');await page.locator('[data-lang=en]').click();await expect(page.locator('html')).toHaveAttribute('lang','en');await page.locator('.menu-toggle').click();await expect(page.locator('#mobile-nav')).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('#mobile-nav')).not.toBeVisible();await page.locator('[data-theme-toggle]').click();await page.reload();await expect(page.locator('html')).toHaveAttribute('data-theme','dark');});
 test('Published chess worker loads and makes a legal reply',async({page})=>{await page.goto('play/chess.html');await expect(page.locator('#engine-state')).toContainText('готов',{timeout:30000});await page.locator('#chess-level').selectOption('0');await page.locator('[data-square=e2]').click();await page.locator('[data-square=e4]').click();await expect(page.locator('#board-status')).toContainText('Твой ход');await expect(page.locator('#move-list li')).toHaveCount(1);});
+test('Published schedule distinguishes Saturday football, chess and the older group',async({page},info)=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('./#venue');
+  await expect(page.locator('.venue-program-card--saturday .venue-program-time')).toHaveText('15:00–16:30');
+  await expect(page.locator('.venue-program-card--senior strong').locator('[data-venue-locale]:visible')).toHaveText('Старшая группа · 12+');
+  await expect(page.locator('.venue-program-card--senior .venue-program-tag').locator('[data-venue-locale]:visible')).toContainText('сразу после');
+  await expect(page.locator('.venue-chess-when [data-venue-locale]:visible')).toHaveText('Суббота · 14:00');
+  await expect(page.locator('.venue-chess a:visible')).toHaveCount(1);
+  await page.locator('.venue-schedule').screenshot({path:info.outputPath('published-schedule-mobile.png')});
+});

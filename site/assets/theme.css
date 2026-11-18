@@ -64,3 +64,9 @@ html[data-theme=dark] .story-body p{color:var(--theme-muted)}
 html[data-theme=dark] :is(.coach-box>p:first-child,#copy-pgn,.chess-page footer a){color:var(--theme-accent)}
 html[data-theme=dark] body:has(.chessboard) footer a{color:var(--theme-accent)}
 .square.dark .coord{color:#063a44}
+
+.skip-link{position:fixed;top:10px;left:10px;z-index:1000;display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:2px solid var(--theme-accent);border-radius:8px;background:var(--theme-bg);color:var(--theme-ink);font:800 14px/1.4 Manrope,Arial,sans-serif;transform:translateY(-160%)}
+.skip-link:focus{transform:none;outline:3px solid #efa900;outline-offset:2px}
+#main-content{scroll-margin-top:100px}
+
+#main-content :is(h1,h2,h3,h4){overflow-wrap:anywhere}

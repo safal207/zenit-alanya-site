@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "9471d45dbabd2d805974e65d1486a37dbb692044",
-  "source_artifact_digest": "667273c588acf0e81d8b03b9ece8fb1f3047db01738f3ec8717ce91ab08651ff",
+  "site_source_commit": "03e49080d0d1f60c6b5fa646d010570e7cbeb062",
+  "source_artifact_digest": "e142f5b55b8f585e978a1372e9ffa6b626189fb3e422a31b410cd05c31b6eb4d",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -12,6 +12,7 @@
     "assets/club-ball-training.webp",
     "assets/club-chess-training.webp",
     "assets/club-goalkeeper-training.webp",
+    "assets/club-life.css",
     "assets/club-media.js",
     "assets/club-sand.webp",
     "assets/films.css",
@@ -29,6 +30,7 @@
     "assets/home.bundle.css",
     "assets/journey.bundle.css",
     "assets/journey.css",
+    "assets/journey.js",
     "assets/media.js",
     "assets/minimal.css",
     "assets/player-api.js",
@@ -61,8 +63,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 61576,
-      "sha256": "bdcabeeb2aca6cfe023dd62038c411b82db32958e49f41339b2428b74324200b"
+      "bytes": 61759,
+      "sha256": "9c499064c04fb9e690be07731347d55bd0511ba9ded93fdf7c508b9a1e5184c4"
     },
     {
       "path": "assets/calendar-core.js",
@@ -98,6 +100,11 @@
       "path": "assets/club-goalkeeper-training.webp",
       "bytes": 76294,
       "sha256": "8e3c717009cdeed5b454981b98d89de73c6cad2647b540639e922816df18745e"
+    },
+    {
+      "path": "assets/club-life.css",
+      "bytes": 14275,
+      "sha256": "46ebd504b0a27999043b940eb163ac6dfc64838ecdbe84e51007c8b992d4a192"
     },
     {
       "path": "assets/club-logo.jpg",
@@ -211,8 +218,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 127097,
-      "sha256": "b54299dd1c00b8cd6f3ce3e965f67bccd7301567bd1cfb0da13763eb11442c60"
+      "bytes": 127524,
+      "sha256": "b1bd32316c70c772d0bfe3a7b43592c66dbd4c124f1c7ef509f9524022e8d064"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -221,8 +228,8 @@
     },
     {
       "path": "assets/journey.bundle.css",
-      "bytes": 22668,
-      "sha256": "8f801f9ebe1f987d94a908c084b8588990d7bad21579b214b697f6ea0f9d5dcc"
+      "bytes": 23150,
+      "sha256": "978d7ae322d1cbb52961610b797d8c80d69cbd337b59f9424b1fbc59c3e06694"
     },
     {
       "path": "assets/journey.css",
@@ -231,8 +238,8 @@
     },
     {
       "path": "assets/journey.js",
-      "bytes": 16393,
-      "sha256": "baa7fecba70f8b72c474c5389523a01a3b8c6611abe2e9c72513b0db155915b5"
+      "bytes": 16459,
+      "sha256": "5d14b617cb50007025b5425718aa2f71c3c9e5130ace6df9c1ed80e0329be88b"
     },
     {
       "path": "assets/media.js",
@@ -271,8 +278,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 40145,
-      "sha256": "6101c5b99b62b1a3f1fe7a6bf03bc8280271aae13c74111d9d4ec7377e518fb1"
+      "bytes": 40090,
+      "sha256": "7533efa12013f723786778ed8e034d4d7a0e22ed5b70da8c6752128125bfd4a7"
     },
     {
       "path": "assets/models/player.glb",
@@ -311,8 +318,8 @@
     },
     {
       "path": "assets/stories.bundle.css",
-      "bytes": 22521,
-      "sha256": "9ee0de4d3f199036cfd82e34444bdbfc7cc55436f9b592e3b03d0ddfa91f0d79"
+      "bytes": 23003,
+      "sha256": "78b63a049d61cd41b7f4c60015018d68659f85c96d597778471bc0e8e04ace07"
     },
     {
       "path": "assets/style.css",
@@ -326,13 +333,13 @@
     },
     {
       "path": "assets/theme.css",
-      "bytes": 9842,
-      "sha256": "f6f01db809847e958be93d33b7e5406a3f59384b5aca823b702f88e66de92278"
+      "bytes": 10324,
+      "sha256": "f0b306bc902e357c20170b6a2a5065d3524735cffd1e0d0ac2fd8146ae34ec31"
     },
     {
       "path": "assets/theme.js",
-      "bytes": 2209,
-      "sha256": "44c2f027ec2b47fceb69c196042e698f5685b1c869c3a431d1093538d1d6f1e0"
+      "bytes": 2382,
+      "sha256": "e2c60fc133d493fce28dd24019130cce86a7be85f67a34ddaf51d4ae9c0c879d"
     },
     {
       "path": "assets/vendor/HavokPhysics.wasm",
@@ -486,38 +493,38 @@
     },
     {
       "path": "club-life.html",
-      "bytes": 63807,
-      "sha256": "53643af72ca9d3dbbb026249d6be4fa622455a03174c35bda9e7ca0e8f180759"
+      "bytes": 51914,
+      "sha256": "9374d7dbe9f31e78c07ef480a0eadbc5cd4ac8e1dba7c1cfce4819f4b47dde51"
     },
     {
       "path": "index.html",
-      "bytes": 53543,
-      "sha256": "45751f7fc8d3580e598d6df832f395518441fb0c956e841138cd50d4363517c0"
+      "bytes": 53295,
+      "sha256": "4da0a08ecec30003746ee09d13687ea3be5c658ba27eaf021a512499e41f84c4"
     },
     {
       "path": "journey.html",
-      "bytes": 11782,
-      "sha256": "d9d2839535a5a5929b3f711a5c0002a75d78782cc04cf597333f338f064c1fe1"
+      "bytes": 11930,
+      "sha256": "d5643f9f43fbcd404d772f068110c07f9c29b008e0075be93f51b539fffad105"
     },
     {
       "path": "play/chess.html",
-      "bytes": 6856,
-      "sha256": "d7dfde9c2cb57a584a23b91b0a13e7955ba31530e5a4d04d66f2c33cb9232194"
+      "bytes": 7003,
+      "sha256": "46464ac09855989ed3d2b6f886ecc332f38c8b5b0a1b08773d784e1b04655f68"
     },
     {
       "path": "play/football.html",
-      "bytes": 8183,
-      "sha256": "9c1d297711473b22aca05ac3e0f0a1e1dd2a36167785d48ca80d235e5700cee1"
+      "bytes": 8211,
+      "sha256": "d8e4061eb079c69e7f7046aa754e45940056bdbba2e26f5073c33632a413538f"
     },
     {
       "path": "player.html",
-      "bytes": 18582,
-      "sha256": "d8c557228e3abf86ea177abaead2cb75622bd7777bd00a95b1b063066320927b"
+      "bytes": 18729,
+      "sha256": "82cee0b4a32d359e9941938f440ff7a84b9574b8a0917b2699b518727c3dd98f"
     },
     {
       "path": "stories.html",
-      "bytes": 9157,
-      "sha256": "9580924d9c4b1280de65ec63c8301a87f35182cbdd3cc295ab69c78c079f46be"
+      "bytes": 9291,
+      "sha256": "5622e1fe773a39eaaca7a1feca6153972597f243dbdee01c6dbcef45005055f8"
     }
   ],
   "source_repository": "safal207/zenit-alanya-academy"
