@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
-  "site_source_commit": "03e49080d0d1f60c6b5fa646d010570e7cbeb062",
-  "source_artifact_digest": "e142f5b55b8f585e978a1372e9ffa6b626189fb3e422a31b410cd05c31b6eb4d",
+  "site_source_commit": "b1d9638ce16f29bd0af0e7e7aadb06041bef1dcd",
+  "source_artifact_digest": "9341abc65a175b79e3e20ee450239e804fdb28e789d015092ac50196629542bd",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -33,11 +33,15 @@
     "assets/journey.js",
     "assets/media.js",
     "assets/minimal.css",
+    "assets/play-map.css",
+    "assets/play-map.js",
     "assets/player-api.js",
     "assets/player-journey-v1.webp",
     "assets/player-path.js",
     "assets/player.css",
     "assets/player.js",
+    "assets/quest-chess.png",
+    "assets/quest-football.png",
     "assets/stories.bundle.css",
     "assets/style.css",
     "assets/theme.css",
@@ -78,8 +82,8 @@
     },
     {
       "path": "assets/chess-app.js",
-      "bytes": 20748,
-      "sha256": "43321d4d03092808e8598d8179ca93a062d2f819e044d145cc2a7005bb2e6260"
+      "bytes": 21100,
+      "sha256": "417efcce48076e73ae3b2845fe0ae013eb6b168c8f33469c6ee1dfb1ae39674e"
     },
     {
       "path": "assets/chess-bots.js",
@@ -287,6 +291,16 @@
       "sha256": "7fd28255c484e19ba5086d9cf815128e21dfcb677d262a88b237a5f5af081c5f"
     },
     {
+      "path": "assets/play-map.css",
+      "bytes": 3616,
+      "sha256": "2aa33c510dad56e95a8a0e80f00db69c713590efb9e010293e4c89637ac67b4b"
+    },
+    {
+      "path": "assets/play-map.js",
+      "bytes": 4137,
+      "sha256": "6632d6ba18833064a59a3ba63ce05d095cf400a67a0bfa9ec50c7954695c717d"
+    },
+    {
       "path": "assets/player-api.js",
       "bytes": 3849,
       "sha256": "dbde90c0e855ca1bddec4a94a501722cf7d2c25d22f4e339fa966be56077c7d2"
@@ -315,6 +329,16 @@
       "path": "assets/player.js",
       "bytes": 19425,
       "sha256": "97bb1bab14c32cab9da541e449042b4bcfa74c36f789b4b9b9807821f7d37334"
+    },
+    {
+      "path": "assets/quest-chess.png",
+      "bytes": 1077,
+      "sha256": "9b0dee457dad3a218e6ff20e1424d4b2abcfb983305905e2913b0f6892f9e226"
+    },
+    {
+      "path": "assets/quest-football.png",
+      "bytes": 1373,
+      "sha256": "d8a3a83e4b5d23f9ab5951488c2a086b095002c1799c1f5714646cdd7fb23def"
     },
     {
       "path": "assets/stories.bundle.css",
@@ -498,8 +522,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 53295,
-      "sha256": "4da0a08ecec30003746ee09d13687ea3be5c658ba27eaf021a512499e41f84c4"
+      "bytes": 53481,
+      "sha256": "f7ee23a4d35f64409ae269f25f00658337f90fcf7ff5e5014380039565c9932b"
     },
     {
       "path": "journey.html",
@@ -508,8 +532,8 @@
     },
     {
       "path": "play/chess.html",
-      "bytes": 7003,
-      "sha256": "46464ac09855989ed3d2b6f886ecc332f38c8b5b0a1b08773d784e1b04655f68"
+      "bytes": 7052,
+      "sha256": "4835ba7c78e63d937b04147985cf070706791819396febd92dcf9f26e0261320"
     },
     {
       "path": "play/football.html",
@@ -518,8 +542,8 @@
     },
     {
       "path": "player.html",
-      "bytes": 18729,
-      "sha256": "82cee0b4a32d359e9941938f440ff7a84b9574b8a0917b2699b518727c3dd98f"
+      "bytes": 19204,
+      "sha256": "488dac3f2627d846536234b674a079b99d8b0bed27622e522e13dd3fc8c7f547"
     },
     {
       "path": "stories.html",

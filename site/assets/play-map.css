@@ -1,0 +1,84 @@
+.play-map {
+  --play-surface: #e6f5ff;
+  --play-edge: #acd9ee;
+  --play-action: #006e9b;
+  --play-shadow: #00486b;
+  padding: clamp(20px, 4.5vw, 52px);
+  border: 2px solid var(--play-edge);
+  border-radius: 26px;
+  background: var(--play-surface);
+  color: var(--theme-ink);
+}
+[data-theme=dark] .play-map {
+  --play-surface: #10314a;
+  --play-edge: #34627d;
+  --play-action: #0076a2;
+  --play-shadow: #002c47;
+}
+.play-map-head { display: flex; align-items: end; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.play-map-head h2 { margin: 0 0 7px; font-size: clamp(28px, 4vw, 46px); line-height: 1.12; letter-spacing: -.035em; }
+.play-map-head p { margin: 0; line-height: 1.55; color: var(--theme-muted); }
+.play-levels { display: flex; flex-wrap: wrap; gap: 7px; padding: 0; }
+.play-levels[hidden] { display: none; }
+.play-levels button {
+  min-height: 44px;
+  padding: 9px 13px;
+  border: 1px solid var(--play-edge);
+  border-radius: 12px;
+  background: var(--theme-raised);
+  color: var(--theme-ink);
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.play-levels button[aria-pressed=true] { color: #fff; background: var(--play-action); border-color: var(--play-action); box-shadow: 0 3px 0 var(--play-shadow); }
+.play-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.play-path { min-width: 0; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--play-edge); border-radius: 18px; background: var(--theme-raised); }
+.play-path img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; image-rendering: pixelated; }
+.play-path-copy { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: clamp(16px, 2.4vw, 24px); }
+.play-path-copy h3 { margin: 0; font-size: clamp(20px, 3vw, 30px); line-height: 1.18; letter-spacing: -.025em; }
+.play-path-copy p { flex: 1; margin: 0 0 5px; color: var(--theme-muted); line-height: 1.5; }
+.play-path-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 9px 16px;
+  background: var(--play-action);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--play-shadow);
+  font-weight: 850;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.play-path-cta:hover { background: var(--play-shadow); }
+.play-map :is(button,a):focus-visible,.play-shortcut:focus-visible { outline: 3px solid #df9d00; outline-offset: 3px; }
+.play-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 10px 14px;
+  border: 1px solid var(--theme-line);
+  border-radius: 16px;
+  color: var(--theme-ink);
+  background: var(--theme-soft);
+  font-weight: 800;
+  text-decoration: none;
+}
+.play-shortcut img { width: 55px; aspect-ratio: 16/9; height: auto; border-radius: 7px; image-rendering: pixelated; }
+.play-shortcut span { min-width: 0; }
+.play-shortcut small { display: block; color: var(--theme-muted); font-weight: 650; }
+.play-shortcut:hover { border-color: var(--theme-accent); }
+.play-home .training-tile,.play-home .coach-card,.play-home .club-preview-image { border-radius: 18px; }
+.play-home .utility-item,.play-home .utility-link { border-radius: 14px; }
+.play-home .header a[data-play-text=zone] { color: var(--theme-accent); font-weight: 850; }
+.play-chess .chess-tabs button { border-radius: 12px; }
+.play-chess .chess-tabs button.active { box-shadow: 0 3px 0 #003c59; }
+@media (max-width: 620px) {
+  .play-paths { grid-template-columns: 1fr; }
+  .play-path-cta { width: 100%; }
+}

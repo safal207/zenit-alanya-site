@@ -34,3 +34,15 @@ test('Published schedule distinguishes Saturday football, chess and the older gr
   await expect(page.locator('.venue-chess a:visible')).toHaveCount(1);
   await page.locator('.venue-schedule').screenshot({path:info.outputPath('published-schedule-mobile.png')});
 });
+test('Published play zone shows illustrated challenges and responds to level selection',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('./?lang=ru#game');
+  const zone=page.locator('#game');
+  await zone.getByRole('button',{name:'Детям',exact:true}).click();
+  await expect(zone.locator('[data-football-quest]')).toHaveAttribute('href','play/football.html?mode=shoot');
+  await expect(zone.locator('[data-chess-quest]')).toHaveAttribute('href','play/chess.html?lesson=fork');
+  for(const image of await zone.locator('img').all()){
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(()=>image.evaluate(el=>el.naturalWidth)).toBeGreaterThan(0);
+  }
+});

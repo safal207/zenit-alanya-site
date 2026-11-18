@@ -176,4 +176,15 @@ levelSelect.addEventListener('change', () => {
   render();
   if (mode === 'play' && game.turn() === 'b') search('move');
 });$('#new-game').addEventListener('click',()=>mode==='learn'?loadLesson():newGame());$('#flip-board').addEventListener('click',()=>{flipped=!flipped;render();});$('#undo-move').addEventListener('click',()=>{cancelSearch();if(mode==='learn'){loadLesson();return;}const turn=game.turn();game.undo();if(turn==='w')game.undo();selected=null;legal=[];resetHint();lastMove=null;$('#engine-line').textContent='';notice('Ход отменён. Можно попробовать другой план.');render();});$('#hint-move').addEventListener('click', showHint);
-$('#copy-pgn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(game.pgn());notice('PGN партии скопирован.');}catch{notice(game.pgn()||'В партии пока нет ходов.');}});$('#promotion-dialog').addEventListener('cancel',()=>{pendingPromotion=null;});window.addEventListener('beforeunload',()=>worker?.terminate());render();setupWorker();
+$('#copy-pgn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(game.pgn());notice('PGN партии скопирован.');}catch{notice(game.pgn()||'В партии пока нет ходов.');}});$('#promotion-dialog').addEventListener('cancel',()=>{pendingPromotion=null;});window.addEventListener('beforeunload',()=>worker?.terminate());
+const launch = new URLSearchParams(location.search);
+const lessonId = launch.get('lesson');
+const botLevel = launch.get('level');
+if (lessonOrder.includes(lessonId)) {
+  lessonSelect.value = lessonId;
+  document.querySelector('[data-chess-mode="learn"]').click();
+} else {
+  if (Object.hasOwn(BOT_LEVELS, botLevel)) levelSelect.value = botLevel;
+  render();
+}
+setupWorker();

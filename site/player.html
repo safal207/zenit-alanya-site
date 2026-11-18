@@ -15,6 +15,7 @@
   <script src="assets/player-api.js" defer></script>
   <script src="assets/player-path.js" defer></script>
   <script src="assets/player.js" defer></script>
+<link rel="stylesheet" href="assets/play-map.css"><script defer src="assets/play-map.js"></script>
 </head>
 <body>
 <a class="skip-link" data-skip-link href="#main-content">К содержимому</a>
@@ -61,6 +62,11 @@
         <button id="auth-switch" type="button" class="button quiet">У меня есть код клуба</button>
       </div>
     </form>
+    <a class="play-shortcut" href="./#game">
+      <img src="assets/quest-football.png" width="192" height="108" loading="lazy" alt="">
+      <img src="assets/quest-chess.png" width="192" height="108" loading="lazy" alt="">
+      <span><b data-play-text="zone">Игровая зона</b><small data-play-text="shortcut">Футбол и шахматы</small></span>
+    </a>
     <section id="path-overview" class="player-card path-overview" aria-labelledby="path-title">
       <p class="player-kicker" data-path-copy="eyebrow">ПУТЬ ИГРОКА</p>
       <h2 id="path-title" data-path-copy="title">Мой путь в футболе</h2>
