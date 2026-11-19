@@ -97,3 +97,17 @@ revealTool(location.hash,Boolean(location.hash));
 
 // Keep the illustrated journal in the language chosen on the club page.
 (()=>{const sync=()=>document.querySelectorAll("[data-journey-link],[data-player-link],[data-club-link]").forEach(a=>{const u=new URL(a.href);u.searchParams.set("lang",document.documentElement.lang);a.href=u.href;});new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});sync();})();
+
+/* Original Zenit club dock: clear destinations and a11y state, without Roblox assets. */
+(()=>{
+ const nav=document.querySelector('[data-zenit-nav]');if(!nav)return;
+ const t={ru:{label:'Навигация по клубу',home:'Главная',training:'Тренировки',game:'Играть',calendar:'Расписание',account:'Кабинет'},tr:{label:'Kulüp navigasyonu',home:'Ana sayfa',training:'Antrenman',game:'Oyunlar',calendar:'Program',account:'Profil'},en:{label:'Club navigation',home:'Home',training:'Training',game:'Play',calendar:'Schedule',account:'Account'}};
+ const links=[...nav.querySelectorAll('[data-nav-key]')],sections=links.filter(a=>a.hash&&document.getElementById(a.hash.slice(1)));
+ function localize(){const copy=t[document.documentElement.lang]||t.ru;nav.setAttribute('aria-label',copy.label);for(const a of links)a.querySelector('.zenit-nav-label').textContent=copy[a.dataset.navKey];}
+ function active(selected){for(const a of links){if(a===selected)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');}}
+ function track(){let selected=sections[0],limit=Math.max(110,innerHeight*.36);for(const a of sections){const el=document.getElementById(a.hash.slice(1));if(el&&el.getBoundingClientRect().top<=limit)selected=a;}if(selected)active(selected);}
+ let requested=false;function queued(){if(requested)return;requested=true;requestAnimationFrame(()=>{requested=false;track();});}
+ links.forEach(a=>a.addEventListener('click',()=>{if(a.hash)active(a);}));
+ document.addEventListener('site:language',localize);window.addEventListener('scroll',queued,{passive:true});window.addEventListener('resize',queued,{passive:true});window.addEventListener('hashchange',queued);
+ localize();track();
+})();
