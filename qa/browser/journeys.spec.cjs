@@ -231,7 +231,7 @@ test('Player account is standalone and restores the photo and plan after sign-in
   await page.setViewportSize({width:390, height:844});
   await mock(page.context());
   await page.goto('./');
-  await expect(page.locator('[data-player-link]')).toHaveCount(2);
+  await expect(page.locator('[data-player-link]')).toHaveCount(3);
   await expect(page.locator('.header-account')).toBeVisible();
   await page.evaluate(() => localStorage.setItem('zenit-alanya-player-v1', JSON.stringify({strength:'Черновик с устройства'})));
   await page.locator('.header-account').click();

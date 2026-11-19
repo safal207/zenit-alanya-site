@@ -565,6 +565,31 @@ body { padding-bottom: 0; }
   .club-preview { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .journey-teaser.journey-compact { padding-top: 28px; padding-bottom: 28px; }
 }
+
+/* Roblox-inspired five-destination navigation, with original club branding. */
+.zenit-roblox-nav{position:fixed;z-index:45;display:flex;background:var(--theme-raised,#fff);color:var(--theme-ink,#07344b);border:1px solid var(--theme-line,#d2e1e8);box-shadow:0 12px 35px rgba(1,27,43,.17);font-family:Manrope,Arial,sans-serif}
+.zenit-nav-item{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;min-width:0;min-height:62px;padding:9px 5px;border-radius:13px;text-decoration:none!important;color:var(--theme-muted,#526b79);font-weight:800;transition:background .16s ease,color .16s ease}
+.zenit-nav-item svg{flex:none;display:block}
+.zenit-nav-label{font-size:10px;line-height:1.28;letter-spacing:-.12px;text-align:center;overflow-wrap:anywhere}
+.zenit-nav-item[aria-current=location]{color:#fff;background:#006b92}
+.zenit-nav-item:hover:not([aria-current=location]){background:var(--theme-soft,#e4f2f8);color:var(--theme-ink,#07344b)}
+.zenit-nav-item:focus-visible{outline:3px solid #f5b93e;outline-offset:2px}
+@media(min-width:901px){
+ body.play-home{padding-left:100px}
+ .play-home .desktop-nav{display:none}
+ .zenit-roblox-nav{left:12px;top:50%;transform:translateY(-50%);width:78px;max-height:calc(100svh - 110px);padding:7px;gap:6px;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;border-radius:22px}
+ .zenit-nav-item{width:100%;min-height:66px}
+}
+@media(max-width:900px){
+ .play-home .desktop-nav{display:none}
+ body.play-home{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+ .zenit-roblox-nav{bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:7px 5px calc(6px + env(safe-area-inset-bottom));border-radius:17px 17px 0 0;border-bottom:0;min-height:77px}
+ .zenit-nav-item{min-height:59px;padding:7px 2px}
+ .zenit-nav-label{font-size:9px}
+ .video-hero{padding-bottom:max(40px,calc(80px + env(safe-area-inset-bottom)))}
+}
+@media(max-width:360px){.zenit-roblox-nav{gap:0;padding-inline:3px}.zenit-nav-item{padding-inline:0;gap:4px}.zenit-nav-label{font-size:8px}.zenit-nav-item svg{width:22px;height:22px}}
+@media(prefers-reduced-motion:reduce){.zenit-nav-item{transition:none}}
 /* journey.css */
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--theme-bg,#fff);color:var(--theme-ink,#07344b);font:15px/1.7 Manrope,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;max-width:100%}[hidden]{display:none!important}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #e9a622;outline-offset:4px}h1,h2,h3,p{margin:0}button{color:inherit} 
 .journal-header{max-width:1380px;margin:auto;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--theme-line)}.journal-brand{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:800;line-height:1.5;letter-spacing:1.4px}.journal-brand img{width:43px;height:43px;border-radius:3px}.journal-brand small{display:block;color:var(--theme-muted);font-size:9px;font-weight:500;letter-spacing:2px}.journal-actions{display:flex;align-items:center;gap:24px}.journal-home{font-size:12px;font-weight:700;min-height:44px;display:flex;align-items:center}.journal-languages{display:flex;gap:2px}.journal-languages button{min-width:32px;min-height:44px;font-size:10px;font-weight:800;border:0;border-bottom:2px solid transparent;background:none;color:var(--theme-muted)}.journal-languages button[aria-pressed=true]{border-color:var(--theme-accent);color:var(--theme-accent)}

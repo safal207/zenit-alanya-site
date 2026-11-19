@@ -1,7 +1,7 @@
 {
   "assembly": "verified-base-plus-source-v1",
   "site_source_commit": "b1d9638ce16f29bd0af0e7e7aadb06041bef1dcd",
-  "source_artifact_digest": "9341abc65a175b79e3e20ee450239e804fdb28e789d015092ac50196629542bd",
+  "source_artifact_digest": "d90625cc4b3463c5fb04bf82a7bc9df115b0e1da966db62e95c7a59de84a88fa",
   "archive_sha256": "b137cbb978e1d136f5452dc898312ea813b791b147629bbca77d7588aebfc248",
   "overrides": [
     "assets/academy.js",
@@ -67,8 +67,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 61759,
-      "sha256": "9c499064c04fb9e690be07731347d55bd0511ba9ded93fdf7c508b9a1e5184c4"
+      "bytes": 63586,
+      "sha256": "38996f8ff1323d82d041c12b2731f3085e4b26b8d2aa226657455c59c929912e"
     },
     {
       "path": "assets/calendar-core.js",
@@ -212,8 +212,8 @@
     },
     {
       "path": "assets/football3d.js",
-      "bytes": 47472,
-      "sha256": "1fb2b35f53698dc24d2862e909169332d7b591e7e0460a4dad6493a7b6f2a731"
+      "bytes": 48208,
+      "sha256": "8c235c84b82d7cc7e3b8297dc74a44864f7a3fc1ee6b0abc6bfd14963c2c55fb"
     },
     {
       "path": "assets/funnel.css",
@@ -222,8 +222,8 @@
     },
     {
       "path": "assets/home.bundle.css",
-      "bytes": 127524,
-      "sha256": "b1bd32316c70c772d0bfe3a7b43592c66dbd4c124f1c7ef509f9524022e8d064"
+      "bytes": 129713,
+      "sha256": "218aa7b07065115eac07543d73f517d48a0699b4192307a1cad1cc5383e1b284"
     },
     {
       "path": "assets/inquiry-core.js",
@@ -282,8 +282,8 @@
     },
     {
       "path": "assets/minimal.css",
-      "bytes": 40090,
-      "sha256": "7533efa12013f723786778ed8e034d4d7a0e22ed5b70da8c6752128125bfd4a7"
+      "bytes": 42279,
+      "sha256": "cf78390a86aa2292d21480d3f49d4fd4451eaf8c1c27827475d2d9f24feec4fa"
     },
     {
       "path": "assets/models/player.glb",
@@ -522,8 +522,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 53481,
-      "sha256": "f7ee23a4d35f64409ae269f25f00658337f90fcf7ff5e5014380039565c9932b"
+      "bytes": 55628,
+      "sha256": "5477e7cb140c6f3880c707dc1ecff844b8af8732695b5593a0d07cb4846e92ab"
     },
     {
       "path": "journey.html",
@@ -537,8 +537,8 @@
     },
     {
       "path": "play/football.html",
-      "bytes": 8211,
-      "sha256": "d8e4061eb079c69e7f7046aa754e45940056bdbba2e26f5073c33632a413538f"
+      "bytes": 8218,
+      "sha256": "63ca0dfa8d15a8b951aa871dd81f2a9e3c7d64528dec1b254d83b8e7c6a53cb7"
     },
     {
       "path": "player.html",

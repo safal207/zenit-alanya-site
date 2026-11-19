@@ -169,3 +169,16 @@ test('Direct parent funnel: prominent age-choice path, optional preview and UTM 
  assert.ok(js.includes("heroWhatsApp.href=wa(t.heroWhatsappMessage)"));
  for(const word of ['previewDraft','prepare','heroCallNow'])assert.equal((js.match(new RegExp('"'+word+'":','g'))||[]).length,3);
 });
+
+test('Original blocky football figures retain animated legs and collider physics',()=>{
+ const js=fs.readFileSync('dist/assets/football3d.js','utf8');
+ for(const term of ['function blockFootballer(','MeshBuilder.CreateBox','upper-leg','lower-leg','boot','PhysicsShapeType.CAPSULE',"dataset.playerStyle='block-football'"])assert.ok(js.includes(term),term);
+ assert.ok(!js.includes('LoadAssetContainerAsync'));
+});
+test('Club navigation has five meaningful destinations and locale support',()=>{
+ const html=fs.readFileSync('dist/index.html','utf8'),js=fs.readFileSync('dist/assets/app.js','utf8'),css=fs.readFileSync('dist/assets/home.bundle.css','utf8');
+ assert.equal((html.match(/class="zenit-nav-item"/g)||[]).length,5);
+ for(const href of ['#home','#training','#game','#venue','player.html'])assert.ok(html.includes('href="'+href+'"'));
+ for(const str of ['Ana sayfa','Home','Главная','Schedule','Расписание'])assert.ok(js.includes(str),str);
+ assert.ok(css.includes('.zenit-roblox-nav'));
+});
